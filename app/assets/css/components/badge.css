@@ -1,0 +1,29 @@
+/* ─── Badges ──────────────────────────────────────────────── */
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-success {
+    background: var(--success-subtle);
+    color: var(--success-fg);
+  }
+  .badge-danger {
+    background: var(--danger-subtle);
+    color: var(--danger-fg);
+  }
+  .badge-warning {
+    background: var(--warning-subtle);
+    color: var(--warning-fg);
+  }
+  .badge-muted {
+    background: var(--surface-hover);
+    color: var(--fg-muted);
+  }
+}

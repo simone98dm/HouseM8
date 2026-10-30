@@ -1,0 +1,74 @@
+/* ─── Semantic State Card ─────────────────────────────────────
+   Canonical bg + border + icon-chip + text pattern for banners, alerts,
+   inline errors and status surfaces. Built on the --{state}-subtle /
+   --{state}-fg custom properties, which already flip under `.dark` — so
+   consumers never need `dark:` classes of their own for these states.
+   Use `.state-card` on the container + `.state-card--{variant}`, and
+   `.state-card-icon-chip` + `.state-card-icon-chip--{variant}` on the
+   leading icon wrapper (the chip class works standalone too, e.g. inside
+   a list row).
+
+   Established by the ui/ primitives sweep — reuse this instead of
+   hand-rolling color-100/color-700 Tailwind pairs per component; that
+   pattern was found duplicated ad hoc (Notification, chips, upload
+   errors) with inconsistent/missing dark-mode coverage.
+
+   Variants are generated from the map below. Notification and
+   NotificationDropdown build the modifier at runtime
+   (`state-card--${variant}`), mapping `info` onto `primary` — so every
+   key here must stay in sync with the notification type union. */
+@layer components {
+  .state-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-radius: var(--radius-card);
+    padding: 0.875rem 1rem;
+    border: 1px solid transparent;
+  }
+  .state-card-icon-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+  .state-card--success {
+    color: var(--success-fg);
+    background: var(--success-subtle);
+    border-color: color-mix(in srgb, var(--success) 25%, transparent);
+  }
+  .state-card-icon-chip--success {
+    color: var(--success-fg);
+    background: color-mix(in srgb, var(--success) 18%, transparent);
+  }
+  .state-card--error {
+    color: var(--danger-fg);
+    background: var(--danger-subtle);
+    border-color: color-mix(in srgb, var(--danger) 25%, transparent);
+  }
+  .state-card-icon-chip--error {
+    color: var(--danger-fg);
+    background: color-mix(in srgb, var(--danger) 18%, transparent);
+  }
+  .state-card--warning {
+    color: var(--warning-fg);
+    background: var(--warning-subtle);
+    border-color: color-mix(in srgb, var(--warning) 25%, transparent);
+  }
+  .state-card-icon-chip--warning {
+    color: var(--warning-fg);
+    background: color-mix(in srgb, var(--warning) 18%, transparent);
+  }
+  .state-card--primary {
+    color: var(--primary-hover);
+    background: var(--primary-subtle);
+    border-color: color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+  .state-card-icon-chip--primary {
+    color: var(--primary-hover);
+    background: color-mix(in srgb, var(--primary) 18%, transparent);
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "bill-0001",
+      "house_id": "house-0001",
+      "description": "Electricity",
+      "monthly_cost": 60.0,
+      "currency": "EUR",
+      "next_due_date": "2026-07-01",
+      "payment_period": 1,
+      "active": true
+    },
+    {
+      "id": "bill-0002",
+      "house_id": "house-0001",
+      "description": "Water",
+      "monthly_cost": 30.0,
+      "currency": "EUR",
+      "next_due_date": "2026-07-15",
+      "payment_period": 1,
+      "active": true
+    }
+  ],
+  "pagination": { "page": 1, "limit": 20, "total": 2, "total_pages": 1 }
+}

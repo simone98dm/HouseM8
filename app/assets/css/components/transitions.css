@@ -1,0 +1,17 @@
+/* ─── Transition groups ───────────────────────────────────────
+   Class names are derived by Vue from `<TransitionGroup name="list-item">`
+   (expenses and bills lists) — nothing references them literally, so do not
+   treat them as dead code. */
+@layer components {
+  .list-item-enter-active {
+    animation: fadeIn 300ms ease-out;
+  }
+  .list-item-leave-active {
+    animation: slideOutRight 220ms ease-in forwards;
+    position: absolute;
+    width: 100%;
+  }
+  .list-item-move {
+    transition: transform 280ms ease;
+  }
+}

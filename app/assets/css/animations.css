@@ -1,0 +1,85 @@
+/* ─── Animations ──────────────────────────────────────────────
+   Keyframes behind the `animate-*` utilities declared in main.css
+   (@theme --animate-*), plus `slideOutRight`, which only
+   `.list-item-leave-active` uses. `fadeIn` is also driven from inline
+   styles in UiEmptyState. */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scales from the left edge instead of animating `width`, so the bar
+   grows without triggering layout. The element is sized by
+   `width: var(--target-width)`. */
+@keyframes expandWidth {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+/* ─── Reduced Motion ──────────────────────────────────────────
+   One global rule instead of a per-class list: every animation and
+   transition in the app, present and future, is covered. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* A spinner frozen mid-frame reads as a broken icon; stop it cleanly. The
+     loading state is carried by aria-busy / the visible loading text. */
+  .animate-spin,
+  .auth-spinner,
+  .app-loader-bar {
+    animation: none !important;
+  }
+}
+
+/* Top-of-viewport indeterminate progress line (AppLoader). Transform only. */
+@keyframes loaderSlide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+.app-loader-bar {
+  animation: loaderSlide 1.2s linear infinite;
+}

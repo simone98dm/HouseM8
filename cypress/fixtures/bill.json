@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "bill-0009",
+    "house_id": "house-0001",
+    "description": "Gas",
+    "monthly_cost": 40.0,
+    "currency": "EUR",
+    "next_due_date": "2026-07-20",
+    "payment_period": 1,
+    "active": true
+  }
+}

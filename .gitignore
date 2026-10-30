@@ -1,0 +1,218 @@
+# ===========================================
+# House-m8 .gitignore
+# ===========================================
+
+# ===========================================
+# Nuxt / Build outputs
+# ===========================================
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+dist-temp
+dist-dir
+
+# ===========================================
+# Node dependencies
+# ===========================================
+node_modules
+package-lock.json
+pnpm-lock.yaml
+# yarn.lock is tracked on purpose: this is an app, builds must be reproducible.
+
+# ===========================================
+# IDE & Editor files
+# ===========================================
+.idea
+.vscode
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===========================================
+# Environment files
+# ===========================================
+.env
+.env.local
+.env.*
+!.env.example
+
+# ===========================================
+# Logs
+# ===========================================
+logs
+*.log
+firebase-debug.log
+
+# ===========================================
+# Test reports
+# ===========================================
+coverage/
+lighthouse-reports/
+lighthouse-report.html
+.lighthouseci/
+
+# Cypress artifacts
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress.env.json
+
+# ===========================================
+# Coverage & snapshots
+# ===========================================
+*.test.js.snap
+
+# ===========================================
+# Temporary files
+# ===========================================
+tmp/
+temp/
+.temp/
+*.tmp
+node_modules/.cache/
+
+# ===========================================
+# Build artifacts
+# ===========================================
+.vercel
+.supabase
+dist/
+.nuxt/
+
+# ===========================================
+# Coverage
+# ===========================================
+coverage/
+
+# ===========================================
+# Editor configs
+# ===========================================
+.obsidian
+.fleet
+.pre-commit-metadata.json
+
+# ===========================================
+# Local environment
+# ===========================================
+local.defaults.ts
+local.*
+.env.local
+
+# ===========================================
+# Misc
+# ===========================================
+graphify-out/
+# Anchored to the repo root on purpose: unanchored, `templates/` matched
+# server/templates/ too and silently excluded the 12 email templates that
+# server/emails/index.ts imports, breaking `nuxt build` at the prerender step.
+/marketing/
+/templates/
+.scripts
+DESIGN.md
+CLAUDE.md
+# CHANGELOG.md is tracked: scripts/release.mjs writes it and the release commits it.
+
+# ===========================================
+# SonarQube scanner work
+# ===========================================
+.scannerwork/
+
+# ===========================================
+# Supabase local dev (keep migrations, ignore generated/data files)
+# ===========================================
+supabase/.branches/
+supabase/dump_data.sql
+supabase/schema.sql
+supabase/snippets/
+
+# ===========================================
+# Docker
+# ===========================================
+docker-compose.override.yml
+
+# ===========================================
+# Postman
+# ===========================================
+# NOTE: this used to be a bare `*.json`, which silently ignored EVERY json file
+# in the repo. Existing files survived only because tracking beats ignoring, but
+# any NEW json — a new i18n locale, a new config — was dropped without warning.
+# Scoped to actual Postman exports.
+.postman_
+postman-*.json
+*.postman_collection.json
+*.postman_environment.json
+
+# ===========================================
+# Firebase debug (temporary)
+# ===========================================
+firebase-debug.log
+.worktrees/
+
+# NOTE: this used to be a bare `supabase`, which ignored the whole directory —
+# including supabase/migrations/, which CLAUDE.md calls "the source of truth for
+# schema changes". `git ls-files supabase/migrations/` returned 0: the schema
+# history was not in version control at all. The generated/data files are already
+# ignored individually in the Supabase section above, so the blanket rule was
+# both redundant and harmful.
+supabase/.temp/
+docs/superpowers
+
+# ===========================================
+# Local databases / vector stores
+# ===========================================
+ruvector.db
+*.db
+agentdb.rvf
+agentdb.rvf.lock
+.superpowers/
+
+# ===========================================
+# Claude agent memory (per-session learnings, not shared source of truth)
+# ===========================================
+.claude/agent-memory/
+# Harness-managed state, not project config. `.claude/agents/` and
+# `.claude/skills/` are deliberately NOT ignored — they are project agent
+# definitions and were already tracked historically.
+.claude
+
+# ===========================================
+# Local tool artifacts (regenerated on demand, never source)
+# ===========================================
+# Agent-swarm scratch state (~11 MB).
+.swarm/
+# Playwright MCP session output: DOM snapshots, console logs, screenshots.
+.playwright-mcp/
+# Backup of a previous .claude/ config, kept locally during migration.
+.old-claude/
+# Local markdown issue tracker (see docs/agents/issue-tracker.md).
+.scratch/
+
+# NOT ignored, deliberately:
+#   .impeccable/critique/  — Phase 1 critique snapshots. docs/handover/
+#     PHASE-1-critique-audit.md references these by filename and Phase 9's polish
+#     step reads them as its backlog. A fresh clone without them loses that input.
+#   docs/audit/, docs/handover/, docs/PROGRESS.md — phase deliverables.
+#   shared/ — the money/balance/settlement engine used by app and server.
+
+database/prod-ca-2021.crt
+
+# Agent tooling artifacts
+.claude-flow/
+.impeccable/
+
+# Stray screenshots from browser-verification runs
+/*.png
+
+# ===========================================
+# Local audit / probe scratch (regenerated by browser-verification runs)
+# ===========================================
+audit-dump.json
+probe-*.json

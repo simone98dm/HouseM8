@@ -1,0 +1,77 @@
+/* ─── Avatars ─────────────────────────────────────────────────
+   People are drawn by Blobatar (UiUserAvatar). `.avatar` + `.avatar-a…e`
+   remain for the landing page's static initials; `.avatar-ink-*` colour a
+   person's name in their tone (avatarTone), picked by hash, so all five must
+   exist even though no template names them literally. */
+@layer components {
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .avatar-sm {
+    width: 24px;
+    height: 24px;
+    font-size: var(--fs-2xs);
+  }
+  .avatar-a {
+    background: var(--blue-500);
+  }
+  .avatar-b {
+    /* white-on-purple-500 measured 4.23:1; -600 clears 5.70:1 */
+    background: var(--purple-600);
+  }
+  .avatar-c {
+    /* white-on-green-500 measured 2.54:1; -700 clears 5.48:1 */
+    background: var(--green-700);
+  }
+  .avatar-d {
+    /* white-on-orange-400 measured 2.26:1; -700 clears 5.18:1 */
+    background: var(--orange-700);
+  }
+  .avatar-e {
+    /* white-on-red-500 measured 3.76:1; -700 clears 6.47:1 */
+    background: var(--red-700);
+  }
+
+  /* Name ink in the person's avatar hue (e.g. the money headline). Text on
+     surface, so darker steps in light mode and lighter ones in dark mode;
+     every pair clears 4.5:1 on its surface. */
+  .avatar-ink-a {
+    color: var(--blue-600);
+  }
+  .avatar-ink-b {
+    color: var(--purple-600);
+  }
+  .avatar-ink-c {
+    color: var(--green-700);
+  }
+  .avatar-ink-d {
+    color: var(--orange-700);
+  }
+  .avatar-ink-e {
+    color: var(--red-700);
+  }
+  .dark .avatar-ink-a {
+    color: var(--blue-400);
+  }
+  .dark .avatar-ink-b {
+    color: var(--purple-400);
+  }
+  .dark .avatar-ink-c {
+    color: var(--green-400);
+  }
+  .dark .avatar-ink-d {
+    color: var(--orange-400);
+  }
+  .dark .avatar-ink-e {
+    color: var(--red-400);
+  }
+}

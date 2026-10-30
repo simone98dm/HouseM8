@@ -1,0 +1,45 @@
+/* ─── Dashboard Layout ────────────────────────────────────── */
+/* Hierarchy: the month hero, the owner's status line and upcoming bills stack
+   in `.dash-main`; the bulletin board sits beside it.
+   Desktop (≥1280): `.dash-main` takes two of three columns, the right column
+   holds the board and the payment feed, so no column ends early.
+   Below that: one column in source order (main, then board). */
+.dash-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dash-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.dash-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.dash-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (min-width: 1280px) {
+  .dash-top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .dash-main {
+    grid-column: 1 / span 2;
+  }
+  .dash-side {
+    grid-column: 3;
+    /* Sized to its content: one note must not leave a tall empty board. */
+    align-self: start;
+  }
+}

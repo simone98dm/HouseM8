@@ -1,0 +1,1870 @@
+{
+  "app": {
+    "name": "House M8"
+  },
+  "navigation": {
+    "home": "Home",
+    "expenses": "Expenses",
+    "bills": "Bills",
+    "balance": "Balance",
+    "profile": "Profile",
+    "house": "House",
+    "reports": "Reports",
+    "main": "Main navigation",
+    "mainMobile": "Main navigation, mobile",
+    "more": "More",
+    "switchToDark": "Switch to dark theme",
+    "switchToLight": "Switch to light theme",
+    "commander": "Commander"
+  },
+  "seo": {
+    "description": "A modern roommate management app for tracking shared expenses and bills with your housemates",
+    "titles": {
+      "dashboard": "Dashboard",
+      "login": "Login",
+      "register": "Register",
+      "confirmEmail": "Confirm email",
+      "forgotPassword": "Forgot password",
+      "passwordReset": "Reset password",
+      "expenses": "Expenses",
+      "balance": "Balance",
+      "bills": "Bills",
+      "billDetails": "Bill details",
+      "houseDetails": "House details",
+      "joinHouse": "Join house",
+      "userProfile": "User profile",
+      "reports": "Reports",
+      "pricing": "Pricing",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy",
+      "pendingDeletion": "Account scheduled for deletion",
+      "accessibility": "Accessibility statement"
+    },
+    "descriptions": {
+      "pricing": "Simple, transparent pricing for shared living. Start free, upgrade when you need more.",
+      "privacy": "House M8 Privacy Policy — how we collect, use, and protect your personal data.",
+      "terms": "House M8 Terms of Service — the rules for using the app.",
+      "cookies": "House M8 Cookie Policy — the cookies and browser storage the app uses, and how to manage them.",
+      "accessibility": "House M8 accessibility statement: scope, conformance status and how to report a barrier."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "That didn't go through",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "create": "Create",
+    "skipToContent": "Skip to content",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "retry": "Retry",
+    "success": "Success",
+    "optional": "Optional",
+    "more": "more",
+    "goHome": "Go home",
+    "upload": "Upload",
+    "select": "Select...",
+    "viewDetails": "View details",
+    "unknown": "Unknown",
+    "next": "Next",
+    "finish": "Finish",
+    "areYouSure": "Are you sure?",
+    "codeGroupLabel": "Verification code",
+    "remove": "Remove",
+    "removeItem": "Remove {label}",
+    "imagePreview": "Preview of the selected image",
+    "clickToUpload": "Click to upload or drag and drop",
+    "pngJpgGifUpTo": "PNG, JPG, GIF up to {size}",
+    "filesUpTo": "Files up to {size}",
+    "addItem": "Add",
+    "dropFilesHere": "Drop files here",
+    "uploadDocuments": "Upload documents",
+    "dragDropFilesOrClick": "Drag & drop files or click to browse",
+    "dragDropFileOrClick": "Drag & drop a file or click to browse",
+    "supportedFormats": "Supported formats:",
+    "maxSize": "Max size:",
+    "selectedFiles": "Selected files",
+    "uploadFile": "Upload file",
+    "uploadFiles": "Upload files",
+    "fileTooLarge": "File \"{fileName}\" exceeds maximum size of {maxSize}",
+    "unsupportedFileType": "File type \"{fileType}\" is not supported",
+    "amountMustBeGreaterThanZero": "Amount must be greater than 0",
+    "monthlyCostMustBeGreaterThanZero": "Monthly cost must be greater than 0",
+    "pleaseSelectDueDate": "Please select a due date",
+    "pleaseSelectAtLeastOneUser": "Please select at least one user",
+    "failedToLoadExpenses": "Couldn't load your expenses. Check your connection and try again.",
+    "failedToUpdateExpense": "Couldn't save the expense. Check your connection and try again.",
+    "payNow": "Pay now",
+    "viewAll": "View all",
+    "description": "Description",
+    "status": "Status",
+    "amount": "Amount",
+    "date": "Date",
+    "invalidDate": "Invalid date",
+    "month": "month",
+    "year": "year",
+    "opensInNewTab": "opens in a new tab"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Your house's bills and balances, where you left them.",
+      "email": "Email",
+      "password": "Password",
+      "button": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Create one",
+      "emailConfirmed": "Your email is confirmed. You can now sign in.",
+      "welcomeBack": "Welcome back",
+      "success": "Successfully signed in",
+      "orContinueWith": "Or continue with",
+      "googleButton": "Continue with Google",
+      "rememberMe": "Remember me for 7 days",
+      "forgotPassword": "Forgot password?",
+      "passwordResetSuccess": "Your password is changed. Sign in with the new one.",
+      "emailRequired": "Enter your email address to sign in.",
+      "passwordRequired": "Enter your password to sign in.",
+      "signingIn": "Signing in…"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "Enter your email. We'll send a link to confirm it, then you'll choose a password.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "button": "Create account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "orContinueWith": "Or continue with",
+      "googleButton": "Sign up with Google",
+      "success": "Account created",
+      "welcomeMessage": "Your account has been created. Check your email to confirm and get started.",
+      "consentIncomplete": "Please confirm that you are 14 or older and accept the Terms and Privacy Policy to create your account.",
+      "googleConsentNote": "With Google, you will confirm your age and accept the Terms and Privacy Policy right after signing in.",
+      "emailRequired": "Enter your email address to create your account.",
+      "sending": "Sending link…"
+    },
+    "signOut": "Sign out",
+    "welcome": "Welcome to House M8",
+    "signInSubtitle": "Sign in to manage your shared expenses",
+    "user": "User",
+    "loggedIn": "Logged in",
+    "notLoggedIn": "Not logged in",
+    "errors": {
+      "invalidCredentials": "That email and password don't match. Check both, or reset your password.",
+      "userExists": "User already exists",
+      "weakPassword": "Password is too weak",
+      "passwordMismatch": "Passwords do not match",
+      "genericError": "Authentication failed",
+      "loginFailed": "Login failed",
+      "registrationFailed": "Registration failed",
+      "emailNotConfirmed": "This email isn't confirmed yet. Open the link we sent you, or sign up again to get a new one.",
+      "tooManyAttempts": "Too many attempts in a short time. Wait a few minutes, then try again.",
+      "network": "Couldn't reach House M8. Check your connection and try again.",
+      "tryAgainLater": "Something went wrong on our side. Try again in a moment.",
+      "invalidEmail": "That email address doesn't look right. Check it and try again.",
+      "resendFailed": "Couldn't send a new link. Try again in a moment.",
+      "googleFailed": "Couldn't start Google sign-in. Try again, or use your email instead."
+    },
+    "confirmation": {
+      "title": "Confirming your email",
+      "processing": "Checking your link…",
+      "success": {
+        "title": "Email confirmed",
+        "message": "You're signed in. Taking you to House M8 now.",
+        "button": "Continue"
+      },
+      "setPassword": {
+        "title": "Choose a password",
+        "subtitle": "Last step. You'll use it with your email to sign in.",
+        "passwordLabel": "Password",
+        "button": "Save and sign in",
+        "failed": "Your password was not saved. Check your connection and try again."
+      },
+      "missing": {
+        "title": "This link is incomplete",
+        "message": "Part of the link is missing, which often happens when it's copied by hand. Open it straight from the email, or get a new one here."
+      },
+      "invalid": {
+        "title": "This link no longer works",
+        "message": "Confirmation links work once and expire after a while. Enter your email and we'll send a fresh one."
+      },
+      "network": {
+        "title": "We couldn't check your link",
+        "message": "Your connection may have dropped. Check it, then try again with the same link."
+      },
+      "rateLimited": {
+        "title": "Too many attempts",
+        "message": "Wait a few minutes, then try again with the same link."
+      },
+      "failed": {
+        "title": "Something went wrong on our side",
+        "message": "Your link may still be fine. Try again in a moment."
+      },
+      "tryAgain": "Try again",
+      "signIn": "Sign in"
+    },
+    "register": {
+      "emailSent": {
+        "title": "Check your email",
+        "message": "We sent a link to {email}. Open it to choose your password and finish signing up.",
+        "spamHint": "Nothing after a few minutes? Check your spam folder.",
+        "differentEmail": "Use a different email"
+      },
+      "closed": {
+        "title": "Registrations are closed",
+        "message": "New sign-ups are paused right now. If you already have an account, sign in.",
+        "button": "Sign in"
+      }
+    },
+    "forgotPassword": {
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you a link to reset your password.",
+      "email": "Email",
+      "button": "Send reset link",
+      "rememberPassword": "Remember your password?",
+      "backToLogin": "Back to sign in",
+      "sent": {
+        "title": "Check your email",
+        "message": "If an account exists for {email}, we've sent it a link to reset your password.",
+        "button": "Back to sign in",
+        "spamHint": "Nothing after a few minutes? Check your spam folder.",
+        "differentEmail": "Use a different email"
+      },
+      "errors": {
+        "network": "Couldn't reach the server. Check your connection and try again."
+      },
+      "emailRequired": "Enter your email address to get a reset link.",
+      "sending": "Sending link…"
+    },
+    "passwordReset": {
+      "title": "Reset password",
+      "subtitle": "Choose a new password for your account.",
+      "newPassword": "New password",
+      "passwordHint": "At least {min} characters.",
+      "button": "Reset password",
+      "missingToken": {
+        "title": "This link is incomplete",
+        "message": "Part of the reset link is missing. Open it straight from the email, or request a new one.",
+        "requestButton": "Request new link"
+      },
+      "invalidToken": {
+        "title": "This link no longer works",
+        "message": "Reset links work once and expire after a while. Request a new one and use the newest email.",
+        "requestButton": "Request new link",
+        "loginButton": "Sign in"
+      },
+      "success": {
+        "title": "Password changed",
+        "message": "Your new password is ready to use.",
+        "button": "Sign in"
+      },
+      "errors": {
+        "network": "Couldn't reach the server. Check your connection and try again."
+      },
+      "showPassword": "Show password",
+      "saving": "Saving…"
+    },
+    "joiningHouse": "You're joining {house}. Sign in or create an account to accept the invite.",
+    "resend": {
+      "email": "Email you signed up with",
+      "emailRequired": "Enter the email you signed up with.",
+      "button": "Send the link again",
+      "sending": "Sending…",
+      "sent": "If {email} is waiting to be confirmed, a new link is on its way. You can ask again after 15 minutes."
+    }
+  },
+  "home": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "noHouse": {
+      "title": "No house",
+      "message": "You're not part of any house yet. Create or join one to get started.",
+      "createHouse": "Create house",
+      "joinHouse": "Join house"
+    },
+    "recentExpenses": "Recent expenses",
+    "upcomingBills": "Upcoming bills",
+    "quickActions": "Quick actions",
+    "addExpense": "Add expense",
+    "viewAll": "View all",
+    "housemateCount": "{n} housemate | {n} housemates",
+    "haveInviteLink": "Have an invite link?",
+    "inviteLinkHint": "Paste the full link or just its code.",
+    "inviteInvalid": "That does not look like an invite link. Check it and try again.",
+    "noHouseFound": "No house found",
+    "createOrJoinHouse": "Create a house, or join one you were invited to.",
+    "createHouse": "Create house",
+    "joinHouse": "Join house",
+    "viewHouseBalance": "View house balance",
+    "due": "Due",
+    "createdBy": "Created by",
+    "you": "You",
+    "viewBalance": "View balance",
+    "overview": "House overview",
+    "paidThisMonth": "Paid this month",
+    "noPendingExpenses": "No pending expenses",
+    "noUpcomingBills": "No upcoming bills",
+    "viewAllExpenses": "View all expenses",
+    "ouchIOwe": "Ouch, I owe",
+    "paydayComing": "Payday coming",
+    "recentActivity": "Recent activity",
+    "dashboardOverview": "Dashboard overview",
+    "dashboardSubtitle": "Victory favors the prepared.",
+    "yourMonth": {
+      "title": "Your month",
+      "next": "Next:",
+      "balanceUnavailable": "Couldn't load the balance. Reload the page to try again.",
+      "facts": {
+        "total": "Your part this month",
+        "bills": "Bills",
+        "shared": "Split expenses"
+      }
+    },
+    "status": {
+      "label": "House status",
+      "allInOrder": "All in order",
+      "needAttention": "{n} thing needs attention | {n} things need attention",
+      "overdueBills": "{n} overdue bill | {n} overdue bills",
+      "openReports": "{n} open report | {n} open reports",
+      "dueSoonBills": "{n} bill due this week | {n} bills due this week",
+      "unsettled": "{amount} still to pay back"
+    }
+  },
+  "balance": {
+    "headline": {
+      "owe": "You owe {name} {amount}",
+      "oweBy": "You owe {name} {amount} before {date}",
+      "oweOverdue": "You owe {name} {amount}, overdue since {date}",
+      "andMore": "{base} and {n} more",
+      "owedOne": "{name} owes you {amount}",
+      "owedOneBy": "{name} owes you {amount} by {date}",
+      "owedOneOverdue": "{name} owes you {amount}, overdue since {date}",
+      "owedMany": "{n} housemates owe you {amount}",
+      "settled": "You're all settled up",
+      "settleUp": "Pay back",
+      "view": "View balance"
+    },
+    "youOwe": "You owe {name}",
+    "owesYou": "{name} owes you",
+    "you": "You",
+    "isOwed": "Is owed",
+    "owes": "Owes",
+    "youAreOwed": "You're owed",
+    "youOweTotal": "You owe",
+    "squareWith": "You and {name} are square.",
+    "squareAll": "You're square with everyone.",
+    "comingToYou": "Coming to you",
+    "comingToYouCount": "{count} to receive",
+    "markReceived": "Mark as received",
+    "recordedReceived": "Recorded {amount} received from {name}",
+    "everyoneBalance": "Everyone's balance",
+    "markPaidFailed": "Couldn't record the payment. Check your connection and try again.",
+    "markPaidFailedCause": "This is usually a connection problem. Nothing was recorded. Check it and retry.",
+    "planChanged": "Who pays whom changed",
+    "planChangedCause": "Someone recorded a payment or an expense just now. Check who pays whom now and try again.",
+    "recent": {
+      "title": "Recent payments",
+      "empty": "No payments recorded yet.",
+      "youPaid": "You paid {name} {amount}",
+      "paidYou": "{name} paid you {amount}",
+      "paidOther": "{from} paid {to} {amount}",
+      "undone": "Undone",
+      "showUndone": "Show undone ({n})"
+    },
+    "recordedPaid": "Recorded {amount} paid to {name}",
+    "dueBy": "By {date}",
+    "dueOverdue": "Overdue since {date}",
+    "undo": "Undo",
+    "recordUndone": "Payment record undone",
+    "undoExpired": "More than 24 hours have passed, so this payment can't be undone anymore.",
+    "undoAlready": "This payment record was already undone.",
+    "undoFailed": "Couldn't undo the payment record. Try again.",
+    "howThisWorksSummary": "How is this calculated?",
+    "pays": "pays",
+    "noBalanceData": "Couldn't load the balance. Check your connection and try again.",
+    "myDebts": "My debts",
+    "myDebtsCount": "{count} to pay back",
+    "noDebts": "No outstanding debts",
+    "noDebtsDesc": "You're even with all your housemates",
+    "allSettled": "All settled",
+    "even": "Even",
+    "markPaid": "Mark paid",
+    "howThisWorks": "How this works:",
+    "howThisWorksDesc": "We use the fewest payments that bring everyone to zero, so not everyone pays everyone.",
+    "allSettledDesc": "Nobody owes anyone anything right now.",
+    "noBalanceDataDesc": "This is usually a connection problem, or no house is selected yet. Check both and try again."
+  },
+  "bills": {
+    "title": "Bills",
+    "loadFailedCause": "Couldn't load your bills. This is usually a connection problem. Check it and try again.",
+    "addBill": "Add bill",
+    "overdue": "Overdue",
+    "dueSoon": "Due soon",
+    "dueRelative": {
+      "today": "today",
+      "tomorrow": "tomorrow",
+      "inDays": "in {n} day | in {n} days",
+      "overdueDays": "overdue by {n} day | overdue by {n} days"
+    },
+    "advance": "Mark paid & advance",
+    "activeBills": "Active bills",
+    "notFoundDesc": "The bill you're looking for doesn't exist or you don't have access to it.",
+    "deleteDocumentConfirm": "Are you sure you want to delete this document?",
+    "failedToDeleteDocument": "Couldn't delete the document. Check your connection and try again.",
+    "noBills": {
+      "title": "No bills yet",
+      "message": "Add your first recurring bill"
+    },
+    "periods": {
+      "1": "1 month",
+      "2": "2 months",
+      "6": "6 months",
+      "12": "1 year"
+    },
+    "form": {
+      "description": "Description",
+      "descriptionPlaceholder": "Enter bill description",
+      "costPerPeriod": "Cost per period ({currency})",
+      "costPlaceholder": "0.00",
+      "paymentPeriod": "Payment period",
+      "nextDueDate": "Next due date",
+      "active": "Active",
+      "activeDescription": "Uncheck to disable this bill",
+      "createBill": "Add bill",
+      "errors": {
+        "description": "Add a description.",
+        "cost": "Enter a cost above 0.",
+        "nextDueDate": "Pick the next due date."
+      }
+    },
+    "edit": {
+      "title": "Edit bill",
+      "updateBill": "Update bill"
+    },
+    "details": {
+      "notFound": "Bill not found",
+      "backToBills": "Back to bills",
+      "perMonth": "per month",
+      "perYear": "per year",
+      "perSixMonths": "per 6 months",
+      "monthly": "Monthly",
+      "billManager": "Bill manager",
+      "totalPayments": "Total payments",
+      "totalAmountPaid": "Total amount paid",
+      "lastUpdated": "Last updated",
+      "documents": "Documents",
+      "noDocuments": "No documents",
+      "uploadDocument": "Upload document",
+      "addDocument": "Add document",
+      "costPerPeriod": "Cost per period",
+      "monthlyCost": "Monthly cost",
+      "annualCost": "Annual cost",
+      "semiAnnualCost": "Semi-annual cost",
+      "biAnnualCost": "Bi-annual cost",
+      "totalCost": "Total cost",
+      "nextDueDate": "Next due date",
+      "daysRemaining": "{days} days remaining",
+      "paymentPeriod": "Payment period",
+      "renewalCycle": "Renewal cycle",
+      "autoRenews": "Auto-renews on {month} of each month",
+      "autoRenewsEvery": "Auto-renews every {period} on day {day}",
+      "advanceDueDate": "Advance due date",
+      "advanceDueDateLabel": "Advance due date for {description} to its next payment period",
+      "advanceConfirmTitle": "Advance due date?",
+      "advanceConfirmMessage": "This moves the due date from {from} to {to}. It cannot be undone automatically.",
+      "advanceConfirmButton": "Advance",
+      "costPeriods": {
+        "1": "per month",
+        "2": "every 2 months",
+        "6": "every 6 months",
+        "12": "per year"
+      },
+      "contactDetails": "Contact details",
+      "contractDetails": "Contract details",
+      "contractStarted": "Contract started",
+      "ago": "{time} ago",
+      "createdBy": "Created by",
+      "contractHistory": "Contract history",
+      "document": "Document",
+      "uploadedBy": "Uploaded by",
+      "uploadInstructions": "Upload contracts, invoices, or other bill-related documents",
+      "uploadButton": "Upload document",
+      "selectFile": "Select file",
+      "supportedFormats": "Supported: PDF, DOC, DOCX, JPG, PNG (max 10MB)",
+      "deleteDocumentConfirm": "Are you sure you want to delete this document? This action cannot be undone.",
+      "active": "Active",
+      "inactive": "Inactive",
+      "documentCount": "{count} document | {count} documents",
+      "deleteDocumentTitle": "Delete document"
+    },
+    "monthly": "monthly",
+    "due": "Due",
+    "createdBy": "Created by",
+    "notifications": {
+      "billCreatedDesc": "Bill '{description}' has been added to the house",
+      "billUpdatedDesc": "Bill details have been updated",
+      "billDeletedDesc": "Bill has been removed from the house"
+    },
+    "delete": {
+      "title": "Delete bill",
+      "warning": "Permanent action",
+      "description": "This action cannot be undone",
+      "confirmMessage": "Are you sure you want to delete '{description}'? All associated documents and payment history will be permanently removed."
+    },
+    "recurringTitle": "Recurring bills",
+    "table": {
+      "bill": "Bill",
+      "amount": "Amount",
+      "nextDueDate": "Next due date",
+      "action": "Action"
+    },
+    "summary": {
+      "nextDue": "Next bill due",
+      "nextDueDetail": "Your share of the {total} bill",
+      "monthlyPhrase": "{total} a month across all bills",
+      "nextDueWhen": "due {date}"
+    },
+    "card": {
+      "perMonth": "per month",
+      "every": "Every {period} months"
+    },
+    "duration": {
+      "days": "{count} day | {count} days",
+      "months": "{count} month | {count} months",
+      "years": "{count} year | {count} years"
+    }
+  },
+  "expenses": {
+    "monthlyReport": "Monthly report",
+    "downloadReport": "Download PDF",
+    "reportProOnly": "Pro feature — upgrade to download",
+    "filterTitle": "Filter expenses",
+    "title": "House expenses",
+    "addExpense": "Add expense",
+    "recentExpenses": "Recent expenses",
+    "recurring": "Recurring",
+    "createdBy": "Created by",
+    "yourShare": "Your share",
+    "paid": "Paid",
+    "pending": "Pending",
+    "settled": "Settled",
+    "markPaid": "Mark paid",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this expense?",
+    "noExpenses": {
+      "title": "No expenses yet",
+      "message": "Start by adding your first shared expense"
+    },
+    "status": {
+      "pending": "Pending",
+      "settled": "Settled"
+    },
+    "filter": {
+      "all": "All",
+      "pending": "Pending",
+      "settled": "Settled"
+    },
+    "form": {
+      "title": "Add expense",
+      "billTitle": "Add bill",
+      "description": "Description",
+      "descriptionPlaceholder": "What was this expense for?",
+      "billDescriptionPlaceholder": "What is this bill for?",
+      "detailsEdit": "Edit",
+      "detailsDone": "Done",
+      "paidSummary": "Paid by {payer} · split with {split}",
+      "splitEveryone": "everyone",
+      "splitSome": "{count} of {total}",
+      "amount": "Amount ({currency})",
+      "paidBy": "Paid by",
+      "repeats": "Does it repeat?",
+      "repeatsHelper": "Repeating costs (rent, wifi) become bills; one-off costs are expenses.",
+      "errors": {
+        "description": "Add a description.",
+        "amount": "Enter an amount above 0.",
+        "members": "Pick at least one person to split with.",
+        "includeYou": "Include yourself in the split when someone else paid.",
+        "nextDueDate": "Pick the next due date."
+      },
+      "amountPlaceholder": "0.00",
+      "splitBetween": "Split between",
+      "members": "Split between",
+      "selectMembers": "Select house members",
+      "you": "You",
+      "createExpense": "Add",
+      "categories": "Categories (optional)",
+      "categoriesPlaceholder": "Start typing, e.g. groceries",
+      "categoriesHint": "Up to 3.",
+      "categoriesFull": "3 of 3 — remove one to add another.",
+      "categoriesNoMatch": "No matching category",
+      "categoriesResults": "No suggestions | {n} suggestion | {n} suggestions"
+    },
+    "splitBetween": "Split between {count} members",
+    "youOwe": "You owe",
+    "owesYou": "owes you",
+    "unpaid": "Unpaid",
+    "noExpensesFound": "No expenses found",
+    "startByAdding": "Start by adding your first expense",
+    "noFilteredExpenses": "No {filter} expenses",
+    "debugInfo": "No expenses found. Debug info:",
+    "totalAmount": "Total",
+    "shareBreakdown": "Share breakdown",
+    "shares": "shares",
+    "notifications": {
+      "expenseCreatedDesc": "Expense '{title}' has been added and shared with house members",
+      "expenseUpdatedDesc": "Expense details have been updated",
+      "expenseDeletedDesc": "Expense has been removed from the house",
+      "expenseSharePaidDesc": "Your share has been marked as paid"
+    },
+    "date": "Date",
+    "description": "Description",
+    "paidBy": "Paid by",
+    "amount": "Amount",
+    "statusTitle": "Status",
+    "searchPlaceholder": "Search expenses...",
+    "summary": {
+      "line": "You still owe {owe} · you're owed {owed}",
+      "oweOnly": "You still owe {owe}",
+      "owedOnly": "You're owed {owed}",
+      "square": "Nothing to pay back right now."
+    },
+    "card": {
+      "yourShare": "Your share",
+      "settled": "Settled",
+      "viewDetails": "View details",
+      "viewDetailsLabel": "View details for {description}",
+      "paidBy": "{name} paid",
+      "youPaidAmount": "You paid {amount}",
+      "owedToYou": "you're owed {amount}",
+      "ofTotal": "of {amount}",
+      "notInSplit": "Not in your split"
+    },
+    "viewModal": {
+      "title": "Expense details",
+      "created": "Created",
+      "totalAmount": "Total amount",
+      "currency": "Currency",
+      "splitDetails": "Split details",
+      "deleteExpense": "Delete expense"
+    },
+    "day": {
+      "today": "Today",
+      "yesterday": "Yesterday"
+    }
+  },
+  "user": {
+    "noDetails": "{name} hasn't shared more details.",
+    "title": "User profile",
+    "notFound": "User not found",
+    "notFoundDesc": "The user you are looking for does not exist or is not in your house.",
+    "failedToLoadTitle": "Couldn't load this profile. Check your connection and try again.",
+    "failedToLoadDesc": "An error occurred while loading the user profile.",
+    "unknownUser": "Unknown user",
+    "goBack": "Go back",
+    "houseStatistics": "House statistics",
+    "expensesCreated": "Expenses created",
+    "totalPaid": "Total paid",
+    "totalOwed": "Total owed",
+    "recentExpenses": "Recent expenses",
+    "lastFive": "Last 5",
+    "creator": "Creator",
+    "yourShare": "Your share:",
+    "contactInformation": "Contact information",
+    "email": "Email",
+    "phone": "Phone",
+    "joinedHouse": "Joined house",
+    "personalInformation": "Personal information",
+    "profilePictures": "Profile pictures",
+    "gender": "Gender",
+    "occupation": "Occupation",
+    "languages": "Languages",
+    "pets": "Pets",
+    "yes": "Yes",
+    "no": "No",
+    "socialMedia": "Social media"
+  },
+  "profile": {
+    "title": "Profile",
+    "editProfile": "Edit profile",
+    "personalInformation": "Profile details",
+    "memberSince": "Member since {date}",
+    "currentHouse": {
+      "title": "Current house",
+      "admin": "Co-admin",
+      "name": "House",
+      "role": "Role",
+      "joinedHouse": "Joined house",
+      "owner": "Owner",
+      "member": "Member",
+      "members": "{count} members",
+      "leaveHouse": "Leave house"
+    },
+    "noHouse": {
+      "title": "No house",
+      "message": "You're not part of any house yet",
+      "createHouse": "Create house",
+      "joinHouse": "Join house"
+    },
+    "pictures": {
+      "title": "Profile pictures",
+      "description": "Add up to {max} pictures to your profile",
+      "uploadError": "Couldn't upload the picture. Use a JPG, PNG or WebP under 5 MB, then try again.",
+      "deleteError": "Couldn't delete the picture. Check your connection and try again.",
+      "maxSizeError": "Picture size must be less than 5MB",
+      "formatError": "Only JPEG, PNG and WebP formats are allowed"
+    },
+    "bio": {
+      "title": "About me",
+      "label": "Bio",
+      "placeholder": "Tell others about yourself..."
+    },
+    "personal": {
+      "identity": "Name and sign-in",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Your first name",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Your last name",
+      "email": "Email",
+      "emailPlaceholder": "you{'@'}example.com",
+      "emailHint": "This is the address you sign in with.",
+      "emailLockedHint": "This is the address you sign in with. It can't be changed from this form.",
+      "emailTaken": "That email address is already in use.",
+      "title": "Personal information",
+      "gender": "Gender",
+      "genders": {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "preferNotToSay": "Prefer not to say"
+      },
+      "pets": "Pets",
+      "petsPlaceholder": "Tell us about your pets",
+      "occupationType": "Occupation",
+      "occupationTypes": {
+        "student": "Student",
+        "worker": "Worker",
+        "other": "Other"
+      },
+      "studyField": "Field of study",
+      "studyFieldPlaceholder": "Computer science, medicine, etc.",
+      "jobTitle": "Job title",
+      "jobTitlePlaceholder": "Software engineer, teacher, etc.",
+      "languages": "Languages",
+      "addLanguage": "Add language",
+      "languagesPlaceholder": "Enter a language",
+      "preferredCurrency": "Preferred currency",
+      "noInformation": "No personal information added yet",
+      "clickEditToAdd": "Click Edit to add your personal details",
+      "contactAndSocial": "Contact & social media"
+    },
+    "social": {
+      "title": "Get in touch",
+      "telephone": "Phone number",
+      "telephonePlaceholder": "+1 234 567 8900",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok",
+      "emptyState": {
+        "title": "No contact information added yet",
+        "description": "Click Edit to add your contact details"
+      },
+      "display": {
+        "phone": "Phone",
+        "instagram": "Instagram",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "tiktok": "TikTok"
+      }
+    },
+    "about": {
+      "title": "About House M8",
+      "version": "Version 1.0.0",
+      "description": "A modern roommate management app for tracking expenses and bills.",
+      "help": "Help & support"
+    },
+    "settings": {
+      "title": "Settings",
+      "language": "Language",
+      "current": "Current language"
+    },
+    "stats": {
+      "expenses": "Expenses",
+      "paid": "Paid",
+      "owed": "Owed",
+      "balance": "Balance"
+    },
+    "notifications": {
+      "profileUpdatedDesc": "Your profile details have been saved"
+    },
+    "sharing": {
+      "title": "Extra details for your housemates",
+      "purpose": "Optional. Helps your housemates know you a bit better.",
+      "optIn": "Share extra profile details with my housemates",
+      "optInHint": "Lets you add gender, occupation, languages, pets, phone and social links. You can turn this off at any time in privacy settings.",
+      "privacyLink": "Read how we use them",
+      "error": "Could not turn on profile sharing. Please try again.",
+      "active": "You are sharing these details with your housemates.",
+      "manage": "Manage in privacy settings"
+    }
+  },
+  "house": {
+    "create": {
+      "title": "Create house",
+      "name": "House name",
+      "namePlaceholder": "e.g. Via Roma flat",
+      "address": "Address (optional)",
+      "addressPlaceholder": "123 Main St, City",
+      "success": "House created successfully",
+      "error": "Couldn't create the house. Check your connection and try again.",
+      "cta": "Create house",
+      "errors": {
+        "name": "Give the house a name.",
+        "memberCount": "Choose between {min} and {max} housemates."
+      }
+    },
+    "join": {
+      "title": "Join house",
+      "code": "House code",
+      "codePlaceholder": "Enter house code",
+      "join": "Join house"
+    },
+    "leave": {
+      "title": "Leave house",
+      "message": "Are you sure you want to leave this house?",
+      "warning": "This action cannot be undone.",
+      "leave": "Leave house",
+      "pendingBalance": "You have a pending balance of {amount}. Pay back what you owe before leaving.",
+      "ownerWarning": "You are the house owner. Transfer ownership to another member before leaving.",
+      "settleFirst": "Pay back first",
+      "transferFirst": "Transfer ownership first",
+      "confirmed": "You have successfully left the house",
+      "selectNewOwner": "Choose who will become the new owner:",
+      "transferAndLeave": "Transfer and leave",
+      "soleOwnerWarning": "You are the only member of this house, so there is no one to transfer ownership to. Archive the house instead."
+    }
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "network": "Network error",
+    "notFound": "Not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "validation": "Validation error",
+    "tryAgain": "Please try again",
+    "noHouseSelected": "No house selected",
+    "serviceNotAvailable": "Service not available",
+    "userNotAuthenticated": "User not authenticated",
+    "failedToLoad": "Couldn't load this page. Check your connection and try again.",
+    "failedToSave": "Couldn't save your changes. Check your connection and try again.",
+    "failedToDelete": "Couldn't delete it. Check your connection and try again.",
+    "failedToLoadBills": "Couldn't load your bills. Check your connection and try again.",
+    "errorLoadingBills": "An error occurred while loading bills",
+    "authenticationRequired": "Authentication required",
+    "failedToCreateExpense": "Couldn't add the expense. Check your connection and try again.",
+    "failedToCreateBill": "Couldn't add the bill. Check your connection and try again.",
+    "failedToCreateHouse": "Couldn't create the house. Check your connection and try again.",
+    "failedToUpdateHouse": "Couldn't save the house details. Check your connection and try again.",
+    "failedToJoinHouse": "Couldn't join the house. Check your connection and try again.",
+    "failedToLeaveHouse": "Couldn't leave the house. Check your connection and try again.",
+    "failedToAddMember": "Couldn't add the housemate. Check your connection and try again.",
+    "failedToRemoveMember": "Couldn't remove the housemate. Check your connection and try again.",
+    "failedToUpdateExpense": "Couldn't save the expense. Check your connection and try again.",
+    "failedToDeleteExpense": "Couldn't delete the expense. Check your connection and try again.",
+    "failedToUpdateBill": "Couldn't save the bill. Check your connection and try again.",
+    "failedToDeleteBill": "Couldn't delete the bill. Check your connection and try again.",
+    "failedToUpdateProfile": "Couldn't save your profile. Check your connection and try again.",
+    "failedToCreateNote": "Couldn't post the note. Check your connection and try again.",
+    "failedToDeleteNote": "Couldn't delete the note. Check your connection and try again.",
+    "connectionLost": "Connection lost",
+    "sessionExpired": "Session expired",
+    "insufficientPermissions": "Insufficient permissions",
+    "anErrorOccurred": "An error occurred",
+    "noActiveHouse": "No active house",
+    "noCurrentHouseSelected": "No current house selected",
+    "invalidState": "Invalid state",
+    "failedToFetchCurrentHouse": "Couldn't load your house. Check your connection and try again.",
+    "failedToFetchMembers": "Couldn't load your housemates. Check your connection and try again.",
+    "uncategorized": "Uncategorized",
+    "uploadNotAvailable": "Upload functionality is not available yet. Please try again later.",
+    "uploadFailed": "Couldn't upload the document. Check your connection and try again.",
+    "deleteNotAvailable": "Delete functionality is not available yet. Please try again later.",
+    "deleteFailed": "Couldn't delete the document. Check your connection and try again.",
+    "failedToSwitchHouse": "Couldn't switch house. Check your connection and try again.",
+    "failedToCreateReport": "Couldn't send the report. Check your connection and try again.",
+    "failedToUpdateReport": "Couldn't update the report. Check your connection and try again.",
+    "failedToDeleteReport": "Couldn't delete the report. Check your connection and try again.",
+    "sessionExpiredMessage": "Your session has expired. Please sign in again.",
+    "accessDenied": "Access denied",
+    "accessDeniedMessage": "You don't have permission to perform this action.",
+    "serverError": "Server error",
+    "serverErrorMessage": "Something went wrong on our side. Try again in a minute; if it keeps happening, reload the page.",
+    "tooManyRequests": "Too many attempts",
+    "tooManyRequestsMessage": "Too many attempts. Please wait a few minutes and try again.",
+    "checkoutFailed": "Couldn't open checkout. Check your connection and try again.",
+    "portalFailed": "Couldn't open the billing portal. Check your connection and try again.",
+    "failedToAdvanceBill": "Couldn't move the due date. Check your connection and try again.",
+    "downloadReportFailed": "Couldn't download the report. Check your connection and try again.",
+    "consentGrantFailed": "Could not save your consent. Please try again.",
+    "consentWithdrawFailed": "Could not withdraw your consent. Please try again.",
+    "consentAcceptFailed": "Could not save your acceptance. Please try again.",
+    "withdrawFailed": "Could not cancel the subscription. Please try again."
+  },
+  "success": {
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "created": "Created successfully",
+    "updated": "Updated successfully",
+    "houseCreated": "House created successfully",
+    "houseUpdated": "House updated successfully",
+    "houseLeft": "Left house successfully",
+    "memberAdded": "Member added successfully",
+    "memberRemoved": "Member removed successfully",
+    "expenseCreated": "Expense created successfully",
+    "expenseUpdated": "Expense updated successfully",
+    "expenseDeleted": "Expense deleted successfully",
+    "billCreated": "Bill created. Open it to add the contract and other documents.",
+    "billUpdated": "Bill updated successfully",
+    "billDeleted": "Bill deleted successfully",
+    "profileUpdated": "Profile updated successfully",
+    "bulletinNoteCreated": "Note posted successfully",
+    "bulletinNoteDeleted": "Note deleted successfully",
+    "joinedHouse": "Successfully joined house",
+    "settingsUpdated": "Settings updated successfully",
+    "houseSwitched": "Switched to {name}",
+    "reportSubmitted": "Report submitted successfully",
+    "reportSolved": "Report marked as solved",
+    "reportDeleted": "Report deleted successfully",
+    "billAdvanced": "Bill advanced to next due date",
+    "openBill": "Open bill"
+  },
+  "currency": {
+    "label": "Currency",
+    "description": "All expenses and bills will use this currency",
+    "usd": "US dollar ($)",
+    "eur": "Euro (€)",
+    "selectCurrency": "Select currency"
+  },
+  "bulletin": {
+    "title": "Bulletin board",
+    "newNote": "New note",
+    "noNotes": "No notes",
+    "addOne": "Add one",
+    "modal": {
+      "title": "My bulletin note",
+      "message": "Message",
+      "messagePlaceholder": "Enter your message...",
+      "dismissDate": "Dismiss date",
+      "dismissDateOptional": "Dismiss date (optional)",
+      "dismissDateHelp": "Leave empty to keep the note until manually deleted",
+      "cancel": "Cancel",
+      "post": "Post note",
+      "errors": {
+        "message": "Write a message for the board."
+      }
+    },
+    "deleteConfirm": "Are you sure you want to delete this note?",
+    "until": "Until {date}",
+    "permanent": "Permanent",
+    "deleteNote": "Delete note",
+    "deleteNoteBy": "Delete note from {author}",
+    "justNow": "Just now"
+  },
+  "houseProfile": {
+    "keyFacts": {
+      "title": "Key facts",
+      "members": "Housemates",
+      "membersValue": "{taken} of {max}",
+      "created": "Created"
+    },
+    "about": {
+      "title": "About this house",
+      "label": "Description",
+      "counter": "{n} / {max}",
+      "empty": "No description yet.",
+      "ownerHint": "Add house rules, wifi details or anything housemates should know."
+    },
+    "money": {
+      "title": "Money snapshot",
+      "month": "Your share this month",
+      "balance": "Your balance",
+      "settled": "You're square",
+      "owe": "You owe {amount}",
+      "owed": "You're owed {amount}",
+      "balanceUnavailable": "Balance unavailable",
+      "viewExpenses": "View expenses",
+      "viewBalance": "View balance"
+    },
+    "danger": {
+      "title": "Danger zone",
+      "leaveExplain": "Leave this house. You lose access to its expenses and bills. Pay back what you owe first.",
+      "ownerExplain": "As the owner you can't leave. Transfer ownership from the housemates menu, or archive the house for everyone.",
+      "leave": "Leave house",
+      "archive": "Archive house"
+    },
+    "archive": {
+      "title": "Archive this house?",
+      "message": "The house is closed for everyone: housemates lose access and no new expenses or bills can be added. This can't be undone from the app.",
+      "confirm": "Archive house",
+      "error": "Couldn't archive the house. Check your connection and try again."
+    },
+    "title": "House profile",
+    "edit": "Edit",
+    "save": "Save changes",
+    "changeRoleTo": "Change role to {role}",
+    "summary": {
+      "places": "{taken} of {max} places taken",
+      "square": "everyone's square",
+      "unsettled": "{amount} to pay back",
+      "billDue": "{name} due {date}"
+    },
+    "houseName": "House name",
+    "location": "Location",
+    "currency": "Currency",
+    "owner": "House owner",
+    "members": "Housemates",
+    "memberCount": "Max housemates",
+    "bills": "Bills",
+    "viewBills": "View all bills",
+    "noBills": "No bills found",
+    "memberSince": "Member since",
+    "phone": "Phone",
+    "notProvided": "Not provided",
+    "editSuccess": "House updated successfully",
+    "editError": "Couldn't save the house details. Check your connection and try again.",
+    "loadError": "Couldn't load the house details. Check your connection and try again.",
+    "accessDenied": "You don't have access to view this house",
+    "loadErrorTitle": "Could not load this house",
+    "accessDeniedTitle": "No access to this house",
+    "changeRole": "Change role",
+    "roleUpdated": "Role changed",
+    "roleUpdateError": "Couldn't change the role. Check your connection and try again.",
+    "confirmRoleChange": "Change role to {role} for {name}?",
+    "transferOwnershipTitle": "Transfer ownership",
+    "transferOwnershipMessage": "You are about to make {name} the new owner of this house. Since a house can only have one owner, you will become a regular member. This action cannot be undone unless the new owner transfers it back to you.",
+    "transferOwnershipConfirm": "Yes, transfer ownership",
+    "roleOwner": "Owner",
+    "roleMember": "Member",
+    "inviteByEmailLabel": "Email address",
+    "inviteByEmailSubmit": "Send invite",
+    "inviteSentTitle": "Invitation sent",
+    "inviteSentDesc": "If this email can receive invitations, we sent a link and a code to join the house. They join once they accept.",
+    "removeFromHouse": "Remove from house",
+    "removeMemberTitle": "Remove from house",
+    "removeMemberMessage": "{name} will lose access to this house immediately. This can't be undone — they'll need a new invitation to rejoin.",
+    "removeMemberConfirm": "Remove from house",
+    "notifications": {
+      "houseCreatedDesc": "Your house '{name}' has been created and you can now invite members",
+      "houseUpdatedDesc": "House details have been saved",
+      "memberAddedDesc": "New member has been added to the house",
+      "memberRemovedDesc": "Member has been removed from the house",
+      "leftHouseDesc": "You have left the house successfully"
+    },
+    "roleAdmin": "Co-admin",
+    "roleAdminDescription": "Can invite housemates and promote others to co-admin.",
+    "invite": {
+      "title": "Invite someone",
+      "intro": "Use email if you know their address. Use a code to hand it over in person or in a chat.",
+      "emailTitle": "Send by email",
+      "emailHint": "They get a link and a code in their inbox and join once they accept."
+    },
+    "roleChange": {
+      "title": "Confirm role change",
+      "summary": "Change {name} from {from} to {to}",
+      "effect": {
+        "admin": "They will be able to invite housemates and promote others to co-admin.",
+        "member": "They will no longer be able to invite housemates.",
+        "owner": "This action is irreversible. They will get full control of the house, and you will become a regular member: only the new owner can give ownership back."
+      },
+      "transferConfirm": "Transfer ownership"
+    },
+    "ownershipTransferredTitle": "Ownership transferred",
+    "ownershipTransferredDesc": "The selected member is now the house owner. Your role is now member.",
+    "joinCode": {
+      "title": "Share a code",
+      "explain": "They enter this 6-digit code after signing up. It works once and expires after 24 hours, so a forgotten code can't let a stranger in.",
+      "copy": "Copy",
+      "copied": "Code copied",
+      "copyFailed": "The code could not be copied",
+      "validUntil": "Single use, valid until {date}",
+      "none": "No active code. Generate one so someone can join with it.",
+      "error": "The code could not be loaded. Try again.",
+      "generate": "Generate code",
+      "regenerate": "New code",
+      "copyCode": "Copy code {code}"
+    },
+    "transferOwnershipAction": "Transfer ownership…",
+    "transferOwnershipHint": "You become a member. Only they can give it back.",
+    "removeMemberOwes": "{name} still owes {amount}. Removing them doesn't clear it: it stays in the house balance until someone records the payment.",
+    "removeMemberOwed": "{name} is still owed {amount}. Removing them doesn't clear it: it stays in the house balance until it's paid back.",
+    "roleUpdatedDesc": "{name}'s role is now {role}.",
+    "memberRemovedTitle": "Removed from the house",
+    "memberRemovedDesc": "{name} no longer has access to this house.",
+    "fullHintOwner": "Every place is taken. To invite someone, raise the maximum with Edit.",
+    "fullHintAdmin": "Every place is taken. Ask the owner to raise the maximum to invite someone.",
+    "capacityBelowMembers": "{count} people live here now. Keep at least {count} places, or remove someone first."
+  },
+  "debug": {
+    "noBillsFound": "No bills found. Debug info:",
+    "error": "That didn't go through",
+    "retryLoad": "Retry load",
+    "reinitHouseStore": "Reinit house store",
+    "currentHouse": "Current house",
+    "found": "Found",
+    "none": "None",
+    "houseId": "House ID",
+    "na": "N/A",
+    "serviceAvailable": "Service available",
+    "yes": "Yes",
+    "no": "No",
+    "serviceType": "Service type"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "noNotifications": "No notifications yet",
+    "clearAll": "Clear all",
+    "titleWithUnread": "Notifications ({count} unread) | Notifications ({count} unread)",
+    "justNow": "Just now",
+    "minutesAgo": "{count} min ago",
+    "hoursAgo": "{count}h ago",
+    "daysAgo": "{count}d ago"
+  },
+  "invitation": {
+    "title": "House invitation",
+    "subtitle": "You've been invited to join a house",
+    "loading": "Loading invitation",
+    "invalidToken": "This invite link has expired or was already used. Ask the person who invited you for a new link.",
+    "goToHouseM8": "Go to House M8",
+    "goToDashboard": "Go to dashboard",
+    "invalidInvitation": "Invalid invitation",
+    "loadError": "Couldn't load the invitation. Check your connection and try again.",
+    "accepted": "Invitation accepted",
+    "welcomeMessage": "Welcome to {houseName}. You're now a member of this house.",
+    "redirecting": "Redirecting you to the homepage...",
+    "createdAt": "Created",
+    "acceptInvitation": "Accept invitation",
+    "decline": "Decline",
+    "acceptError": "Couldn't accept the invitation. Check your connection and try again.",
+    "userInHouse": "You're already part of a house. Leave your current house first before accepting this invitation.",
+    "leaveCurrentHouseLink": "Leave your current house from your profile"
+  },
+  "accountSetup": {
+    "steps": {
+      "basicInformation": "Basic information",
+      "profilePicture": "Profile picture",
+      "additionalDetails": "Additional details"
+    },
+    "titles": {
+      "basicInformation": "Basic information",
+      "profilePicture": "Add a profile picture",
+      "additionalDetails": "Additional details",
+      "completeProfile": "Complete your profile"
+    },
+    "fields": {
+      "bio": "Bio",
+      "telephone": "Telephone",
+      "gender": "Gender",
+      "spokenLanguages": "Spoken languages",
+      "occupationType": "Occupation",
+      "studyField": "Field of study",
+      "jobTitle": "Job title",
+      "pets": "Pets",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok"
+    },
+    "placeholders": {
+      "bio": "Tell us a bit about yourself...",
+      "spokenLanguages": "e.g. English, Italian, Spanish",
+      "pets": "e.g. dog, cat, fish",
+      "instagram": "{'@'}username",
+      "twitter": "{'@'}username",
+      "linkedin": "linkedin.com/in/username",
+      "tiktok": "{'@'}username"
+    },
+    "occupationTypes": {
+      "student": "Student",
+      "worker": "Worker",
+      "other": "Other"
+    }
+  },
+  "reports": {
+    "title": "Reports",
+    "ownerDescription": "View and manage issue reports from your housemates",
+    "userDescription": "View and manage your issue reports",
+    "createReport": "New report",
+    "createFirstReport": "Create your first report",
+    "unknownUser": "Unknown user",
+    "images": "image | images",
+    "fullDescription": "Full description",
+    "attachedImages": "Attached images",
+    "readOn": "Read on",
+    "solvedOn": "Solved on",
+    "markAsSolved": "Mark as solved",
+    "noFilterResults": "No reports match this filter",
+    "tryDifferentFilter": "Try selecting a different filter to see more reports.",
+    "status": {
+      "notRead": "Not read",
+      "read": "Read",
+      "solved": "Solved"
+    },
+    "filters": {
+      "all": "All",
+      "notRead": "Not read",
+      "read": "Read",
+      "solved": "Solved",
+      "pending": "Pending",
+      "inProgress": "In progress",
+      "resolved": "Resolved"
+    },
+    "form": {
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the issue in detail. Include location, when it started, and any other relevant information...",
+      "characters": "characters",
+      "attachImages": "Attach images",
+      "optional": "optional",
+      "dragDropImages": "Drag & drop images here or click to browse",
+      "maxImages": "Maximum 10 images, 5MB each",
+      "imagesSelected": "images selected",
+      "submit": "Submit report"
+    },
+    "validation": {
+      "descriptionTooShort": "Description must be at least 10 characters"
+    },
+    "card": {
+      "reportAlt": "Report attachment"
+    },
+    "empty": {
+      "title": "No reports yet",
+      "ownerDescription": "No issue reports have been submitted by your housemates.",
+      "userDescription": "Something broken at home? Report it here so the owner sees it."
+    },
+    "subtitle": "Track and resolve house issues.",
+    "newReport": "New report",
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  "a11y": {
+    "close": "Close",
+    "buttons": {
+      "createExpense": "Add a new expense",
+      "settleDebt": "Pay {name} {amount}",
+      "settleCredit": "{name} paid you {amount}",
+      "uploadDocument": "Upload document",
+      "viewDocument": "View document",
+      "deleteDocument": "Delete document",
+      "signUp": "Sign up",
+      "signUpWithGoogle": "Sign up with Google",
+      "markSettled": "Mark as settled",
+      "addLanguage": "Add language",
+      "removeImage": "Remove image",
+      "memberActions": "Actions for {name}"
+    },
+    "filterBar": {
+      "reports": "Filter reports by status"
+    },
+    "carousel": {
+      "previous": "Previous image",
+      "next": "Next image",
+      "image": "Image {n} of {total}",
+      "open": "Open image in full view"
+    }
+  },
+  "wizard": {
+    "next": "Next",
+    "finish": "Finish"
+  },
+  "pricing": {
+    "title": "Choose your plan",
+    "subtitle": "Start free, upgrade when you need more",
+    "recommended": "Recommended",
+    "goToDashboard": "Go to dashboard",
+    "currentPlan": "Current plan",
+    "startPro": "Start Pro — Annual",
+    "startHousePlus": "Start House+",
+    "free": {
+      "name": "Free",
+      "feature1": "1 house / project",
+      "feature2": "Up to 6 roommates",
+      "feature3": "Unlimited expense splits",
+      "limitation1": "3 months history",
+      "limitation2": "No recurring bills automation"
+    },
+    "pro": {
+      "feature1": "Up to 3 houses",
+      "feature2": "Unlimited history",
+      "feature3": "Auto recurring bills",
+      "feature4": "Monthly PDF reports",
+      "feature5": "Bill due date reminders"
+    },
+    "housePlus": {
+      "feature1": "Unlimited houses",
+      "feature2": "AI shopping suggestions",
+      "feature3": "Google/Apple Calendar sync",
+      "feature4": "API access"
+    },
+    "billedYearly": "Billed {amount} per year",
+    "vatIncluded": "VAT included",
+    "orMonthlyAt": "or {amount}/month, VAT included",
+    "pricesError": "We could not load the prices. Please try again.",
+    "terms": {
+      "heading": "Before you subscribe",
+      "vat": "All prices include 22% VAT.",
+      "trial": "Your first subscription starts with a 14-day free trial.",
+      "renewal": "After the trial, the subscription renews automatically at the price shown, every month or every year, until you cancel.",
+      "cancel": "You can cancel at any time from Settings > Subscription, as easily as you subscribed.",
+      "adults": "Paid plans are for adults (18 or older)."
+    },
+    "waiver": {
+      "label": "I ask for the service to start immediately. I acknowledge that I will lose my right of withdrawal once the service has been fully provided.",
+      "hint": "Required to subscribe. You accept the Terms of Service at checkout.",
+      "termsLink": "Read the Terms",
+      "error": "Tick the box above to continue."
+    },
+    "included": "Included",
+    "notIncluded": "Not included"
+  },
+  "subscription": {
+    "requiresPlan": "Requires {plan} plan",
+    "upgrade": "Upgrade",
+    "upgradeTitle": "Upgrade to unlock",
+    "upgradeDescription": "This feature is available on paid plans",
+    "annual": "Annual",
+    "startAnnual": "Start annual",
+    "alreadyActive": "You already have an active subscription. Manage or change it from your settings.",
+    "manageLink": "Go to subscription settings"
+  },
+  "settings": {
+    "subscription": {
+      "title": "Subscription",
+      "currentPlan": "Current plan",
+      "manageBilling": "Manage billing",
+      "upgrade": "Upgrade plan",
+      "trialing": "14-day free trial active",
+      "cancel": {
+        "button": "Withdraw / cancel subscription",
+        "title": "Cancel your subscription?",
+        "intro": "This withdraws from the contract and cancels your paid plan.",
+        "immediate": "During the free trial or the first 14 days, access ends immediately. Nothing is charged during the trial; after it, you only pay for the service already provided up to withdrawal.",
+        "periodEnd": "In all other cases your access continues until the end of the period you already paid for, and the subscription does not renew.",
+        "email": "We will send you a confirmation email.",
+        "confirm": "Yes, cancel subscription",
+        "keep": "Keep my plan",
+        "doneTitle": "Subscription cancelled",
+        "doneImmediate": "Your subscription ended on {date}.",
+        "donePeriodEnd": "You keep your paid access until {date}. The subscription will not renew.",
+        "doneNoDate": "Your subscription has been cancelled and will not renew."
+      }
+    },
+    "appearance": {
+      "title": "Appearance",
+      "subtitle": "Choose how House M8 looks for you",
+      "theme": "Color theme",
+      "system": "System default",
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "join": {
+    "youreInvitedTo": "You're invited to",
+    "memberCount": "{n} housemate already inside | {n} housemates already inside",
+    "referralReward": "Join and get 1 month of Pro free",
+    "createAccount": "Create account to join",
+    "haveAccount": "I already have an account"
+  },
+  "gdpr": {
+    "settingsTitle": "Privacy & data",
+    "settingsSubtitle": "Manage your personal data and privacy preferences",
+    "exportSection": "Your data",
+    "exportTitle": "Export your data",
+    "exportDescription": "Download a copy of the data linked to your account as a JSON file: profile, houses, expenses, bills, invitations, subscription, sessions, consents and request history.",
+    "downloadJson": "Download JSON",
+    "docsTitle": "Legal documents",
+    "docsDescription": "Read our Privacy Policy and Terms of Service at any time.",
+    "privacyLink": "Privacy Policy →",
+    "termsLink": "Terms of Service →",
+    "consentSection": "Consents",
+    "consentAccepted": "Accepted ✓",
+    "consentAcceptedOn": "Accepted on {date} · version {version}",
+    "consentPending": "Pending",
+    "consentNotAcceptedYet": "Not yet accepted",
+    "consentMarketing": "Marketing emails (optional)",
+    "consentMarketingDescription": "Newsletter and product updates",
+    "dangerZone": "Danger zone",
+    "deleteTitle": "Delete account",
+    "deleteDescription": "Your account is scheduled for deletion and kept for {days} days, so you can change your mind. After that your data is anonymised.",
+    "deleteButton": "Delete account",
+    "deletePendingTitle": "Deletion in progress",
+    "deletePendingDescription": "Your account will be deleted on {date} ({days} days remaining). You can cancel before then.",
+    "cancelDeletion": "Cancel deletion",
+    "cancelDeletionFailed": "Cancellation failed — token may be expired.",
+    "consentVersionAccept": "Accept and continue",
+    "exportGenerating": "Generating export...",
+    "exportReady": "Your data export has been downloaded.",
+    "privacyPageTitle": "Privacy Policy",
+    "termsPageTitle": "Terms of Service",
+    "errors": {
+      "ownerMustTransfer": "You still own a house with other members. Transfer ownership before deleting your account.",
+      "billingCancelFailed": "We could not cancel your subscription, so your account was not scheduled for deletion. Please try again in a few minutes."
+    },
+    "consentPolicyLabel": "Privacy Policy & Terms",
+    "exportFailed": "We could not prepare your export. Please try again.",
+    "consent": {
+      "legend": "Before you continue",
+      "age": "I am {age} or older",
+      "terms": "I accept the {link}",
+      "termsLinkText": "Terms of Service",
+      "privacy": "I have read the {link}",
+      "privacyLinkText": "Privacy Policy",
+      "privacyHint": "Ticking this only confirms you've read it. It isn't consent to anything.",
+      "required": "Please tick all the boxes above to continue."
+    },
+    "consentModal": {
+      "titleFirst": "Before you start",
+      "titleUpdated": "We updated our terms",
+      "descriptionFirst": "To use House M8, confirm your age and accept the Terms of Service. Please also read the Privacy Policy.",
+      "descriptionUpdated": "Our Terms of Service and Privacy Policy changed (version {version}). Please review them and confirm to keep using House M8.",
+      "error": "We could not save your confirmation. Check your connection and try again.",
+      "signOut": "Sign out"
+    },
+    "sharing": {
+      "title": "Share extra profile details with my housemates",
+      "description": "Gender, occupation, languages, pets, phone, social links and extra photos. Your name and avatar are always visible to your housemates.",
+      "stateOn": "On: your housemates can see these details.",
+      "stateOff": "Off: none of these details are stored or shown.",
+      "granted": "Profile sharing is on.",
+      "withdrawn": "Profile sharing is off and the details were deleted.",
+      "confirmTitle": "Turn off profile sharing?",
+      "confirmIntro": "These details will be permanently deleted from your profile:",
+      "confirmKept": "Your name, avatar and email are not affected. You can turn sharing on again and re-enter the details later.",
+      "confirmButton": "Delete details and turn off",
+      "fields": {
+        "gender": "Gender",
+        "occupation": "Occupation, field of study or job title",
+        "languages": "Languages",
+        "pets": "Pets",
+        "contact": "Phone number and social links",
+        "pictures": "Extra profile pictures"
+      }
+    },
+    "deletion": {
+      "confirmTitle": "Delete your account?",
+      "confirmIntro": "Here is what happens. Nothing is erased for {days} days.",
+      "confirmButton": "Schedule deletion",
+      "transferLink": "Transfer ownership of {name}",
+      "cancelled": "Deletion cancelled. Your account, houses and subscription are back.",
+      "cancelledSubscriptionNotRestored": "Deletion cancelled and your houses are back. We could not resume your subscription: you can subscribe again from Settings.",
+      "consequences": {
+        "signIn": "For {days} days you can only sign in to cancel the deletion or download your data.",
+        "pseudonymized": "After that, your profile and personal data are erased or anonymised.",
+        "sharedRecords": "Shared records, such as expenses you paid or split, stay in your housemates' history with an anonymous name.",
+        "invoices": "Invoices and payment records are kept for 10 years, as required by tax law.",
+        "houses": "Houses where you are the only member are archived.",
+        "subscription": "Your subscription is cancelled at the end of the current period.",
+        "restore": "If you cancel within {days} days, everything above is restored."
+      }
+    },
+    "cancelDeletionDone": "Account deletion cancelled."
+  },
+  "onboarding": {
+    "wizard": {
+      "step1": {
+        "stepLabel": "Profile",
+        "title": "Complete your profile",
+        "subtitle": "Set your name. It's how your housemates will see you.",
+        "firstName": "First name",
+        "firstNamePlaceholder": "Your first name",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Your last name",
+        "errors": {
+          "generic": "Could not save your profile. Please try again."
+        },
+        "avatarPreview": "Your avatar",
+        "avatarHint": "Your avatar is drawn from your name. Try typing it."
+      },
+      "step2": {
+        "stepLabel": "Join a house",
+        "title": "Join a house",
+        "subtitle": "Enter the 6-digit code from your invitation to join an existing house, or skip to continue.",
+        "skip": "Skip for now",
+        "skipHint": "You can join or create a house later from the dashboard."
+      }
+    },
+    "invite": {
+      "digitLabel": "Digit {n} of 6",
+      "srProgress": "Enter all 6 digits to complete the invite code",
+      "errors": {
+        "invalidCode": "Invalid or expired code. Please check and try again.",
+        "codeLocked": "Too many failed attempts. Please try again in 15 minutes.",
+        "codeUsed": "This invitation code has already been used.",
+        "codeExpired": "This invitation code has expired.",
+        "alreadyMember": "You are already a member of this house.",
+        "generic": "Couldn't use that invitation code. Check the code with whoever sent it, then try again."
+      }
+    }
+  },
+  "emails": {
+    "memberInvite": {
+      "subject": "You have been invited to join {houseName}",
+      "title": "House invitation",
+      "body": "{inviterName} has invited you to join {houseName}.",
+      "optionLink": "Option 1 — Click the link",
+      "optionCode": "Option 2 — Enter the code manually",
+      "codeExpiry": "This code expires on {date}.",
+      "joinNow": "Join now",
+      "ignoreMessage": "If you did not expect this invitation, you can safely ignore this email."
+    }
+  },
+  "legal": {
+    "incompleteNotice": {
+      "title": "Draft pending legal review",
+      "body": "This document is a draft and is still pending legal review. Business details shown as TODO are placeholders, not real data."
+    },
+    "storage": {
+      "firstParty": "First party",
+      "purpose": {
+        "accessToken": "Keeps you signed in (authentication token, not readable by scripts).",
+        "refreshToken": "Renews your sign-in without asking for your password again.",
+        "oauthState": "Security check while signing in with Google (prevents forged requests).",
+        "authRedirect": "Remembers the page you wanted to open so we can take you back after sign-in.",
+        "locale": "Remembers the language you pick with the language switcher. It is set only when you choose a language, never automatically.",
+        "colorMode": "Remembers your light or dark theme choice."
+      },
+      "duration": {
+        "minutes15": "15 minutes",
+        "minutes10": "10 minutes",
+        "sessionOr7Days": "Browser session, or 7 days if you choose \"remember me\"",
+        "tab": "Until you close the tab (removed after use)",
+        "days365": "365 days",
+        "untilCleared": "Until you clear site data"
+      },
+      "category": {
+        "necessary": "Necessary",
+        "preferences": "Preferences"
+      },
+      "kind": {
+        "cookie": "Cookie",
+        "localStorage": "Local storage",
+        "sessionStorage": "Session storage"
+      }
+    },
+    "toc": {
+      "title": "On this page"
+    },
+    "nav": {
+      "label": "Legal documents"
+    },
+    "imprint": {
+      "title": "Provider details",
+      "vat": "VAT no.",
+      "rea": "REA",
+      "pec": "PEC",
+      "contact": "Contact",
+      "mailFallback": "via the privacy settings in the app"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Features",
+      "howItWorks": "How it works",
+      "pricing": "Pricing",
+      "tagline": "Shared living simplified",
+      "goToDashboard": "Go to dashboard",
+      "profile": "Profile",
+      "logIn": "Log in",
+      "signUpFree": "Sign up free",
+      "sectionsLabel": "Page sections"
+    },
+    "footer": {
+      "tagline": "Making shared living simple, transparent, and fair for everyone.",
+      "product": "Product",
+      "features": "Features",
+      "howItWorks": "How it works",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "github": "GitHub",
+      "legal": "Legal",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "connect": "Connect",
+      "a11y": {
+        "productLinks": "Product links",
+        "legalLinks": "Legal links",
+        "connectLinks": "Connect links"
+      },
+      "cookiePolicy": "Cookie Policy",
+      "accessibility": "Accessibility"
+    },
+    "hero": {
+      "headline": "Know what you owe.",
+      "headlineAccent": "Nobody has to chase.",
+      "subtitle": "House M8 keeps shared expenses, bills and balances current for everyone in the house. Add an expense once; the split, the reminders and who pays whom are done for you.",
+      "ctaAuthenticated": "Open dashboard",
+      "ctaGuest": "Get started free",
+      "ctaSecondary": "Explore features",
+      "ledger": {
+        "label": "Your balance",
+        "owe": "You owe Marco €47.00",
+        "oweDue": "before Friday",
+        "settle": "Pay back",
+        "owed": "Sarah owes you €82.50",
+        "owedNote": "groceries and internet",
+        "bill": "Electricity · €64.00",
+        "billDue": "due 28 Oct, split 4 ways"
+      }
+    },
+    "features": {
+      "title": "Everything you need to manage shared living",
+      "subtitle": "Designed specifically for roommates, partners, and friends living together.",
+      "problem": {
+        "title": "Shared houses shouldn't be this complicated",
+        "intro": "Before House M8, managing shared finances meant spreadsheets, passive-aggression, and a group chat that no one dared scroll back through.",
+        "maths": {
+          "title": "The maths never adds up",
+          "description": "Everyone paid something different and nobody can agree on the total."
+        },
+        "groupChat": {
+          "title": "The group chat is not the right tool",
+          "description": "Receipts buried under memes. Debts forgotten. Awkwardness ensured."
+        },
+        "latePayments": {
+          "title": "Late payments damage friendships",
+          "description": "One delayed payment becomes a month of tension."
+        },
+        "cta": "There is a better way. Here is how House M8 handles each of these."
+      },
+      "cards": {
+        "smartSplitting": {
+          "title": "Smart splitting",
+          "description": "Split bills by percentage, exact amounts, or shares. Whether someone has a bigger room or eats less pizza, handle the math instantly."
+        },
+        "realTimeBalances": {
+          "title": "Real-time balances",
+          "description": "Stop scrolling through group chats. See exactly who owes what instantly with a live dashboard that updates as soon as an expense is added."
+        },
+        "recurringBills": {
+          "title": "Recurring bills",
+          "description": "Set rent, internet, and utilities on autopilot. We'll remind everyone before the due date and automatically add it to the ledger."
+        },
+        "bulletinBoard": {
+          "title": "Bulletin board",
+          "description": "Keep house announcements, chore lists, and wifi passwords in one central place. No more sticky notes on the fridge."
+        }
+      },
+      "issues": {
+        "reporting": {
+          "title": "Issue reporting",
+          "description": "Report household issues like leaks, electrical problems, or broken appliances. Attach photos and get them tracked until resolved."
+        },
+        "maintenance": {
+          "title": "Maintenance tracking",
+          "description": "Submit repair requests with descriptions and photos. Track open issues and see when they are marked as solved."
+        },
+        "resolution": {
+          "title": "Resolution workflow",
+          "description": "Issues stay open until explicitly resolved. Owners and housemates share the same view so nothing falls through the cracks."
+        }
+      },
+      "ownerContact": {
+        "title": "Direct owner contact",
+        "description": "Report maintenance issues, billing problems, or contract concerns directly to property owners. Streamlined communication for faster resolutions."
+      }
+    },
+    "seo": {
+      "title": "House M8 - Manage shared living expenses",
+      "description": "Track expenses, split bills instantly, and manage every shared-house task in one place."
+    },
+    "cta": {
+      "title": "Ready to make roommate life easier?",
+      "subtitle": "Stop arguing about money. Track every expense, split bills fairly, and see live balances — all in one place built for shared living.",
+      "ctaAuthenticated": "Go to your dashboard",
+      "ctaGuest": "Create your free house today"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "Get your household up and running in minutes. No complex setup required.",
+      "steps": {
+        "createHouse": {
+          "title": "Create a house",
+          "description": "Sign up and name your household. It's your new digital home base."
+        },
+        "inviteRoommates": {
+          "title": "Invite roommates",
+          "description": "Send a simple link to your roommates. They join, and you're all connected."
+        },
+        "addExpenses": {
+          "title": "Add expenses",
+          "description": "Snap a photo of a receipt or type in an expense. We handle the math."
+        },
+        "settleUp": {
+          "title": "Pay back",
+          "description": "Record a payment when you pay someone back. Balances update instantly for everyone in the house."
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": {
+        "free": {
+          "question": "Is House M8 really free?",
+          "answer": "Yes. The core features are free forever with no credit card required. Create a house, invite your roommates, and start splitting expenses immediately at no cost."
+        },
+        "invite": {
+          "question": "How do I invite my roommates?",
+          "answer": "Create your house, go to Settings → Members, and share the invite link. Your roommates click the link and are in — no lengthy sign-up process required."
+        },
+        "currencies": {
+          "question": "What currencies are supported?",
+          "answer": "EUR and USD are supported. Each expense can be logged in either currency, and balances are shown in your preferred currency automatically."
+        },
+        "solo": {
+          "question": "Can I use it without my roommates signing up?",
+          "answer": "Yes. You can track expenses solo and invite others when ready. Pending members appear as placeholders until they accept the invitation."
+        },
+        "security": {
+          "question": "Is my data secure?",
+          "answer": "Yes. All data is encrypted in transit and at rest. We use JWT authentication and never share your data with third parties. Your financial information stays private."
+        },
+        "multipleHouses": {
+          "question": "Can I manage multiple houses?",
+          "answer": "Yes. The Pro plan supports up to 3 houses from one account. The House+ plan removes that limit entirely. Switch between houses instantly from the dashboard with all data kept fully separate."
+        }
+      }
+    },
+    "pricing": {
+      "title": "Simple, transparent pricing",
+      "subtitle": "Start free. Upgrade when your house is ready.",
+      "free": {
+        "badge": "Free forever",
+        "period": "per month",
+        "cta": "Get started free",
+        "features": {
+          "house": "1 house",
+          "splitting": "Expense splitting",
+          "balances": "Real-time balances",
+          "bulletin": "Bulletin board",
+          "history": "3 months of expense history"
+        }
+      },
+      "pro": {
+        "badge": "Recommended",
+        "period": "per month",
+        "cta": "Get started with Pro",
+        "features": {
+          "everythingFree": "Everything in Free",
+          "houses": "Up to 3 houses",
+          "fullHistory": "Full expense history",
+          "issues": "Issue reporting with photos",
+          "reminders": "Bills reminders"
+        },
+        "seePrices": "See current prices"
+      }
+    }
+  },
+  "cookiePolicy": {
+    "title": "Cookie Policy",
+    "lastUpdated": "Last updated: {date}",
+    "whatTitle": "What are cookies?",
+    "whatBody": "Cookies are small text files that a website stores on your device. Similar technologies, such as local storage and session storage, work in the same way. This policy covers both and refers to them together as \"cookies\".",
+    "usedTitle": "Cookies used by House M8",
+    "usedIntro": "House M8 only uses technical cookies and preference storage, all set by House M8 itself (first party). We do not use analytics, advertising or profiling cookies, and we do not load third-party trackers.",
+    "table": {
+      "caption": "Cookies and browser storage used by House M8",
+      "name": "Name",
+      "provider": "Provider",
+      "type": "Type",
+      "category": "Category",
+      "purpose": "Purpose",
+      "duration": "Duration"
+    },
+    "noConsentTitle": "Why there is no cookie banner",
+    "noConsentBody": "Technical cookies, and preference choices you make yourself (language, theme), do not require your prior consent. This follows article 122 of the Italian Privacy Code (Legislative Decree 196/2003) and the Italian Data Protection Authority (Garante) guidelines on cookies of 10 June 2021. If we ever add cookies that need consent, we will ask for it first and update this page.",
+    "thirdPartyTitle": "Third-party services",
+    "thirdPartyBody": "If you sign in with Google, you are redirected to the Google website. Google may set its own cookies on its own domain, under its own policy; House M8 does not control it.",
+    "manageTitle": "How to delete or block cookies",
+    "manageBody": "You can delete or block cookies from your browser settings. Blocking necessary cookies will prevent you from signing in. Official instructions:",
+    "browsers": {
+      "chrome": "Google Chrome",
+      "firefox": "Mozilla Firefox",
+      "safari": "Apple Safari",
+      "edge": "Microsoft Edge"
+    },
+    "clearTitle": "Resetting your preferences",
+    "clearBody": "Your language and theme choices are stored only in your browser, and the language only once you have picked one. Deleting the site data for House M8 in your browser removes them, and the defaults apply again.",
+    "contactTitle": "Contact",
+    "contactBody": "For questions about this policy, {email}. See also the {privacyLink}.",
+    "contactLead": "write to",
+    "contactFallback": "use the privacy settings in the app",
+    "privacyLinkText": "Privacy Policy",
+    "localeNote": "The language cookie (i18n_locale) is set only when you pick a language with the language switcher. Until then, no cookie is set for your language."
+  },
+  "pendingDeletion": {
+    "title": "Your account is scheduled for deletion",
+    "daysLeft": "Deletion happens today | 1 day left, until {date} | {n} days left, until {date}",
+    "scheduledPast": "Your account is scheduled for deletion and will be removed shortly.",
+    "scheduledSoon": "Your account and personal data will be permanently deleted {days} days after you asked. Until then you can still change your mind.",
+    "requestedOn": "You asked to delete your account on {date}.",
+    "whatHappens": "What happens until then",
+    "points": {
+      "hidden": "You are hidden from your housemates and you cannot use the app.",
+      "subscription": "Any paid subscription stops renewing at the end of the current period.",
+      "erased": "On the deletion date your personal data is erased or anonymised. Shared records, such as expenses, keep only an anonymous placeholder.",
+      "balances": "Open balances stay as they are until {date}, then your share is anonymised for your housemates.",
+      "balancesNoDate": "Open balances stay as they are until the deletion date, then your share is anonymised for your housemates."
+    },
+    "balances": {
+      "title": "Your balances",
+      "loading": "Loading your balances",
+      "none": "You have no open balances with housemates.",
+      "someone": "A housemate",
+      "owesYou": "{name} owes you {amount}",
+      "youOwe": "You owe {name} {amount}"
+    },
+    "actions": {
+      "cancel": "Keep my account",
+      "export": "Download my data",
+      "signOut": "Sign out"
+    },
+    "exported": "Your data was downloaded as {filename}",
+    "errors": {
+      "cancel": "We couldn't reach House M8, so your account is still scheduled for deletion. Check your connection and try again, or reload the page.",
+      "export": "We couldn't reach House M8, so your data wasn't prepared. Check your connection and try again, or reload the page.",
+      "signOut": "We couldn't reach House M8, so you're still signed in. Check your connection and try again, or reload the page."
+    },
+    "restored": {
+      "title": "Welcome back. Your account is active again.",
+      "houses": "{names} is active again. | {names} are active again.",
+      "housesFallback": "Your houses are active again.",
+      "subscriptionResumed": "Your subscription has been resumed.",
+      "subscriptionFailed": "We couldn't resume your subscription. You can subscribe again from {link}.",
+      "subscriptionLink": "Settings > Subscription",
+      "continue": "Go to dashboard"
+    }
+  },
+  "categories": {
+    "groceries": "Groceries",
+    "rent": "Rent",
+    "utilities": "Utilities",
+    "subscriptions": "Subscriptions",
+    "transport": "Transport",
+    "dining": "Dining out",
+    "household": "Household",
+    "health": "Health",
+    "entertainment": "Entertainment",
+    "travel": "Travel",
+    "gifts": "Gifts",
+    "other": "Other"
+  }
+}

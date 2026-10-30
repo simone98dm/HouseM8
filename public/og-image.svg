@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="900" cy="315" r="250" fill="rgba(255,255,255,0.06)" />
+
+  <!-- Brand mark (same geometry as public/favicon.svg, scaled) -->
+  <g transform="translate(656.8 77.5) scale(1.9)">
+    <path d="M56 110L128 46L200 110" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+    <g fill="none" stroke-width="20" stroke-linecap="round" transform="rotate(-90 128 160)">
+      <circle cx="128" cy="160" r="44" stroke="#fff" stroke-dasharray="62.15 214.31" />
+      <circle cx="128" cy="160" r="44" stroke="#93c5fd" stroke-dasharray="62.15 214.31" stroke-dashoffset="-92.15" />
+      <circle cx="128" cy="160" r="44" stroke="#fbbf24" stroke-dasharray="62.15 214.31" stroke-dashoffset="-184.3" />
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="96" y="290" font-family="system-ui,-apple-system,sans-serif" font-size="104" font-weight="800" fill="#ffffff" letter-spacing="-3">House M8</text>
+  <rect x="100" y="320" width="64" height="6" rx="3" fill="#fbbf24" />
+
+  <!-- Tagline -->
+  <text font-family="system-ui,-apple-system,sans-serif" font-size="34" font-weight="400" fill="rgba(255,255,255,0.85)">
+    <tspan x="100" y="384">Split expenses, track bills and</tspan>
+    <tspan x="100" y="428">settle up with your housemates.</tspan>
+  </text>
+
+  <!-- Feature pills -->
+  <g font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <rect x="100" y="476" width="140" height="44" rx="22" fill="rgba(255,255,255,0.14)" />
+    <text x="170" y="505">Expenses</text>
+    <rect x="252" y="476" width="96" height="44" rx="22" fill="rgba(255,255,255,0.14)" />
+    <text x="300" y="505">Bills</text>
+    <rect x="360" y="476" width="128" height="44" rx="22" fill="rgba(255,255,255,0.14)" />
+    <text x="424" y="505">Balance</text>
+  </g>
+</svg>

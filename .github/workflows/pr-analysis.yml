@@ -1,0 +1,196 @@
+name: PR Analysis
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  # Declaring a permissions block sets every scope NOT listed here to `none`.
+  # Without this line GITHUB_TOKEN has no package access at all and the
+  # @simone98dm/layer install 403s, regardless of the Actions-access grant on
+  # the package itself.
+  packages: read
+
+# A new push supersedes the previous run — no point finishing an analysis of code
+# that is already stale.
+concurrency:
+  group: pr-analysis-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+  # The committed .npmrc reads the GitHub Packages token from ${GITHUB_TOKEN},
+  # and yarn 1 aborts every command (even setup-node's `yarn cache dir`) when
+  # that placeholder is unset. GitHub does not export it on its own, so set it
+  # for the whole workflow. See the Install step for why PACKAGES_TOKEN wins.
+  GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+
+jobs:
+  # Lint, formatting, types and a standalone build. Fast, and the first thing a
+  # reviewer needs to know. Each step runs even if an earlier one failed, so a
+  # single PR surfaces every class of problem at once instead of one per push.
+  quality:
+    name: Lint, types & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+          # Makes setup-node write the GitHub Packages auth line into ~/.npmrc
+          # from NODE_AUTH_TOKEN (the committed .npmrc reads GITHUB_TOKEN, set above).
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@simone98dm'
+
+      # PACKAGES_TOKEN is a PAT with read:packages. The default GITHUB_TOKEN is
+      # scoped to THIS repo and cannot read a package published from another
+      # one, so it only works if simone98dm-layer explicitly grants house-m8-fe
+      # access under the package's "Manage Actions access" settings.
+      - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+        run: yarn install --frozen-lockfile
+
+      - name: ESLint
+        if: always()
+        run: yarn lint
+
+      # `yarn format` is the check-only variant (prettier --check .);
+      # `format:fix` is the writing one.
+      - name: Prettier
+        if: always()
+        run: yarn format
+
+      # Reporting-only for now. `yarn typecheck` was broken outright (it shelled
+      # out to a floating npx vue-tsc that could not resolve typescript), which
+      # is why it sits commented out in ci.yml. With vue-tsc installed it runs,
+      # and immediately reports ~16 pre-existing errors — mostly `possibly
+      # undefined` in test files, plus a real one in
+      # app/components/ui/Notification.vue whose template binds a `typeStyles`
+      # that setup never returns. Flip this to a hard gate once that backlog is
+      # cleared; leaving it blocking today would redden every PR on arrival.
+      - name: Typecheck
+        if: always()
+        continue-on-error: true
+        run: yarn typecheck
+
+      # `nuxt build --dotenv .env.production` needs the file to exist, and every
+      # .env* except .env.example is gitignored. The example's values are
+      # placeholders, which is fine: nothing connects to Postgres at build time.
+      - name: Create build env
+        if: always()
+        run: cp .env.example .env.production
+
+      # Separate from the Lighthouse job: a build break should read as a build
+      # break, not as a performance audit that timed out.
+      - name: Build
+        if: always()
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+        run: yarn build
+
+  coverage:
+    name: Test coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+          # Makes setup-node write the GitHub Packages auth line into ~/.npmrc
+          # from NODE_AUTH_TOKEN (the committed .npmrc reads GITHUB_TOKEN, set above).
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@simone98dm'
+
+      - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+        run: yarn install --frozen-lockfile
+
+      # continue-on-error: a red suite is exactly when the coverage comment is
+      # most useful. The job still fails at the end, after commenting.
+      - name: Run tests with coverage
+        id: tests
+        continue-on-error: true
+        run: yarn test:coverage
+
+      # always(): if install or the run dies, the PR should still say so rather
+      # than showing nothing at all.
+      - name: Comment coverage on PR
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          TESTS_OUTCOME: ${{ steps.tests.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const MARKER = '<!-- pr-analysis:coverage -->';
+            const testsPassed = process.env.TESTS_OUTCOME === 'success';
+
+            // Thresholds live in vitest.config.ts; keep this table in sync with it.
+            const THRESHOLDS = {
+              lines: 76,
+              statements: 74,
+              functions: 69,
+              branches: 66,
+            };
+
+            let body;
+            try {
+              const total = JSON.parse(
+                fs.readFileSync('./coverage/coverage-summary.json', 'utf8')
+              ).total;
+
+              const icon = (pct, min) => (pct >= min ? '🟢' : pct >= min - 10 ? '🟡' : '🔴');
+              const row = (label, key, m) =>
+                `| ${label} | ${icon(m.pct, THRESHOLDS[key])} ${m.pct.toFixed(2)}% | ${THRESHOLDS[key]}% | ${m.covered} / ${m.total} |`;
+
+              body = [
+                MARKER,
+                '## 🧪 Test coverage',
+                '',
+                testsPassed
+                  ? '✅ All tests passed and coverage is above its thresholds.'
+                  : '❌ **`yarn test:coverage` failed** — either a test is red or a coverage threshold in `vitest.config.ts` was breached. The table below still reports where coverage landed; check the job log for which one it was.',
+                '',
+                '| Metric | Coverage | Threshold | Covered / Total |',
+                '| --- | --- | --- | --- |',
+                row('Lines', 'lines', total.lines),
+                row('Statements', 'statements', total.statements),
+                row('Functions', 'functions', total.functions),
+                row('Branches', 'branches', total.branches),
+                '',
+                '🔴 well under threshold · 🟡 within 10 points · 🟢 at or above.',
+              ].join('\n');
+            } catch (error) {
+              body = [
+                MARKER,
+                '## 🧪 Test coverage',
+                '',
+                `⚠️ Could not read the coverage report: \`${error.message}\``,
+                'The test run probably crashed before writing it — check the job log.',
+              ].join('\n');
+            }
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number,
+            });
+            const existing = comments.find((c) => c.body.includes(MARKER));
+
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Fail if tests failed
+        if: steps.tests.outcome == 'failure'
+        run: exit 1

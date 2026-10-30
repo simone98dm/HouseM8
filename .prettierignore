@@ -1,0 +1,22 @@
+# Generated
+.nuxt/
+.output/
+dist/
+node_modules/
+
+# Lockfiles
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Docs
+CHANGELOG.md
+README.md
+
+# Data / reports
+*.sql
+lighthouse-report.html
+graphify-out/
+
+# Vendored from split-engine; keep byte-identical for re-syncs
+shared/split-engine

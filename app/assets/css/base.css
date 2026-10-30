@@ -1,0 +1,79 @@
+/* ─── Base element styles ─────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    /* Fluid root: 16px (mobile floor, keeps form inputs iOS-zoom-safe at 1rem)
+       → 18px on desktop. All --text-* tokens are rem, so the whole type scale
+       grows on large screens and shrinks on small ones proportionally. */
+    font-size: clamp(1rem, 0.89rem + 0.3vw, 1.125rem);
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family:
+      'Plus Jakarta Sans',
+      'Plus Jakarta Sans Fallback',
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      sans-serif;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Prevent iOS Safari auto-zoom */
+  input,
+  select,
+  textarea {
+    font-size: var(--fs-xl);
+    font-family: inherit;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  /* Selection */
+  ::selection {
+    background-color: var(--primary-subtle);
+    color: var(--fg);
+  }
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--fg-subtle);
+  }
+}

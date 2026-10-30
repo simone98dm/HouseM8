@@ -1,0 +1,61 @@
+/* ─── Page band ───────────────────────────────────────────────
+   One static, low-contrast motif per page (DESIGN.md §5b). A ~160px band sits
+   behind the page header and summary only: an SVG tile used as an alpha mask
+   over `--pattern-ink`, faded out by a second (gradient) mask. The gradient is
+   an alpha mask, never a painted background. Rendered by the app layout from
+   the route; hidden wherever contrast must win. */
+@layer components {
+  .page-band {
+    --band-fade: linear-gradient(to bottom, black 0%, transparent 100%);
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 160px;
+    z-index: 0;
+    pointer-events: none;
+    background-color: var(--pattern-ink);
+    -webkit-mask-image: var(--band-tile), var(--band-fade);
+    mask-image: var(--band-tile), var(--band-fade);
+    -webkit-mask-size: var(--band-size);
+    mask-size: var(--band-size);
+    -webkit-mask-repeat: repeat, no-repeat;
+    mask-repeat: repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .page-band--home {
+    --band-size: 96px 64px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='96'%20height='64'%20viewBox='0%200%2096%2064'%3E%3Cg%20fill='none'%20stroke='black'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M8%2040%2028%2022%2048%2040M14%2036v20h28V36M24%2056V46h8v10M60%2030h16v16H60zM68%2030v16M60%2038h16'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .page-band--expenses {
+    --band-size: 48px 44px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='48'%20height='44'%20viewBox='0%200%2048%2044'%3E%3Cg%20fill='none'%20stroke='black'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M0%208l6%206%206-6%206%206%206-6%206%206%206-6%206%206%206-6M10%2026h28M10%2034h18'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .page-band--bills {
+    --band-size: 20px 20px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='20'%20viewBox='0%200%2020%2020'%3E%3Ccircle%20cx='10'%20cy='10'%20r='1.25'%20fill='black'/%3E%3C/svg%3E");
+  }
+
+  .page-band--balance {
+    --band-size: 72px 48px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='72'%20height='48'%20viewBox='0%200%2072%2048'%3E%3Cg%20fill='none'%20stroke='black'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='24'%20cy='24'%20r='11'/%3E%3Ccircle%20cx='24'%20cy='24'%20r='5'/%3E%3Ccircle%20cx='42'%20cy='24'%20r='11'/%3E%3Ccircle%20cx='42'%20cy='24'%20r='5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .page-band--house {
+    --band-size: 104px 64px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='104'%20height='64'%20viewBox='0%200%20104%2064'%3E%3Cg%20fill='none'%20stroke='black'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M8%2056V10h30v46M32%2034h.01M62%2028a7%207%200%201%200%2014%200%207%207%200%201%200-14%200M76%2028h24M92%2028v7M98%2028v5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .page-band--reports {
+    --band-size: 16px 16px, 100% 100%;
+    --band-tile: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3E%3Cpath%20d='M0%20.5h16M.5%200v16'%20fill='none'%20stroke='black'%20stroke-width='1'/%3E%3C/svg%3E");
+  }
+
+  @media (prefers-contrast: more), (forced-colors: active), print {
+    .page-band {
+      display: none;
+    }
+  }
+}

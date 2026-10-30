@@ -1,0 +1,1870 @@
+{
+  "app": {
+    "name": "House M8"
+  },
+  "navigation": {
+    "home": "Home",
+    "expenses": "Spese",
+    "bills": "Bollette",
+    "balance": "Saldo",
+    "profile": "Profilo",
+    "house": "Casa",
+    "reports": "Segnalazioni",
+    "main": "Navigazione principale",
+    "mainMobile": "Navigazione principale, mobile",
+    "more": "Altro",
+    "switchToDark": "Passa al tema scuro",
+    "switchToLight": "Passa al tema chiaro",
+    "commander": "Comandante"
+  },
+  "seo": {
+    "description": "Un'app moderna per la gestione dei coinquilini per tracciare spese e bollette condivise con i tuoi compagni di casa",
+    "titles": {
+      "dashboard": "Dashboard",
+      "login": "Accedi",
+      "register": "Registrati",
+      "confirmEmail": "Conferma email",
+      "forgotPassword": "Password dimenticata",
+      "passwordReset": "Reimposta password",
+      "expenses": "Spese",
+      "balance": "Saldo",
+      "bills": "Bollette",
+      "billDetails": "Dettagli bolletta",
+      "houseDetails": "Dettagli casa",
+      "joinHouse": "Unisciti alla casa",
+      "userProfile": "Profilo utente",
+      "reports": "Segnalazioni",
+      "pricing": "Prezzi",
+      "privacy": "Privacy Policy",
+      "terms": "Termini di Servizio",
+      "cookies": "Cookie Policy",
+      "pendingDeletion": "Account in attesa di eliminazione",
+      "accessibility": "Dichiarazione di accessibilità"
+    },
+    "descriptions": {
+      "pricing": "Prezzi semplici e trasparenti per la vita condivisa. Inizia gratis, aggiorna quando hai bisogno.",
+      "privacy": "Privacy Policy di House M8 — come raccogliamo, usiamo e proteggiamo i tuoi dati.",
+      "terms": "Termini di Servizio di House M8 — le regole per l'utilizzo dell'app.",
+      "cookies": "Cookie Policy di House M8 — i cookie e l'archiviazione del browser utilizzati dall'app e come gestirli.",
+      "accessibility": "Dichiarazione di accessibilità di House M8: ambito, stato di conformità e come segnalare una barriera."
+    }
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Operazione non riuscita",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "add": "Aggiungi",
+    "create": "Crea",
+    "skipToContent": "Vai al contenuto",
+    "back": "Indietro",
+    "close": "Chiudi",
+    "confirm": "Conferma",
+    "retry": "Riprova",
+    "success": "Successo",
+    "optional": "Opzionale",
+    "more": "di più",
+    "goHome": "Vai alla home",
+    "select": "Seleziona...",
+    "viewDetails": "Dettagli",
+    "unknown": "Sconosciuto",
+    "next": "Avanti",
+    "finish": "Fine",
+    "areYouSure": "Sei sicuro?",
+    "codeGroupLabel": "Codice di verifica",
+    "remove": "Rimuovi",
+    "removeItem": "Rimuovi {label}",
+    "imagePreview": "Anteprima dell'immagine selezionata",
+    "clickToUpload": "Clicca per caricare o trascina e rilascia",
+    "pngJpgGifUpTo": "PNG, JPG, GIF fino a {size}",
+    "filesUpTo": "File fino a {size}",
+    "addItem": "Aggiungi",
+    "dropFilesHere": "Rilascia i file qui",
+    "uploadDocuments": "Carica documenti",
+    "dragDropFilesOrClick": "Trascina e rilascia i file o clicca per sfogliare",
+    "dragDropFileOrClick": "Trascina e rilascia un file o clicca per sfogliare",
+    "supportedFormats": "Formati supportati:",
+    "maxSize": "Dimensione massima:",
+    "selectedFiles": "File selezionati",
+    "uploadFile": "Carica file",
+    "uploadFiles": "Carica file",
+    "fileTooLarge": "Il file \"{fileName}\" supera la dimensione massima di {maxSize}",
+    "unsupportedFileType": "Il tipo di file \"{fileType}\" non è supportato",
+    "amountMustBeGreaterThanZero": "L'importo deve essere maggiore di 0",
+    "monthlyCostMustBeGreaterThanZero": "Il costo mensile deve essere maggiore di 0",
+    "pleaseSelectDueDate": "Seleziona una data di scadenza",
+    "pleaseSelectAtLeastOneUser": "Seleziona almeno un utente",
+    "failedToLoadExpenses": "Impossibile caricare le spese. Controlla la connessione e riprova.",
+    "failedToUpdateExpense": "Impossibile salvare la spesa. Controlla la connessione e riprova.",
+    "payNow": "Paga ora",
+    "viewAll": "Vedi tutto",
+    "description": "Descrizione",
+    "status": "Stato",
+    "amount": "Importo",
+    "date": "Data",
+    "invalidDate": "Data non valida",
+    "month": "mese",
+    "year": "anno",
+    "upload": "Carica",
+    "opensInNewTab": "si apre in una nuova scheda"
+  },
+  "auth": {
+    "login": {
+      "title": "Accedi",
+      "subtitle": "Le bollette e i saldi della tua casa, come li hai lasciati.",
+      "email": "Email",
+      "password": "Password",
+      "button": "Accedi",
+      "noAccount": "Non hai un account?",
+      "signUp": "Creane uno",
+      "emailConfirmed": "La tua email è confermata. Ora puoi accedere.",
+      "welcomeBack": "Ti diamo il bentornato",
+      "success": "Accesso effettuato con successo",
+      "orContinueWith": "Oppure continua con",
+      "googleButton": "Continua con Google",
+      "rememberMe": "Ricordami per 7 giorni",
+      "forgotPassword": "Password dimenticata?",
+      "passwordResetSuccess": "Password cambiata. Accedi con quella nuova.",
+      "emailRequired": "Inserisci il tuo indirizzo email per accedere.",
+      "passwordRequired": "Inserisci la tua password per accedere.",
+      "signingIn": "Accesso in corso…"
+    },
+    "signUp": {
+      "title": "Crea il tuo account",
+      "subtitle": "Inserisci la tua email. Ti mandiamo un link per confermarla, poi scegli la password.",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Conferma password",
+      "button": "Crea account",
+      "hasAccount": "Hai già un account?",
+      "signIn": "Accedi",
+      "orContinueWith": "Oppure continua con",
+      "googleButton": "Registrati con Google",
+      "success": "Account creato",
+      "welcomeMessage": "Il tuo account è stato creato. Controlla la tua email per confermare e iniziare.",
+      "consentIncomplete": "Conferma di avere almeno 14 anni e accetta Termini e Informativa sulla privacy per creare l'account.",
+      "googleConsentNote": "Con Google confermerai la tua età e accetterai Termini e Informativa sulla privacy subito dopo l'accesso.",
+      "emailRequired": "Inserisci il tuo indirizzo email per creare l'account.",
+      "sending": "Invio del link…"
+    },
+    "signOut": "Esci",
+    "welcome": "Benvenuto in House M8",
+    "signInSubtitle": "Accedi per gestire le tue spese condivise",
+    "user": "Utente",
+    "loggedIn": "Connesso",
+    "notLoggedIn": "Non connesso",
+    "errors": {
+      "invalidCredentials": "Email e password non corrispondono. Controllale entrambe o reimposta la password.",
+      "userExists": "L'utente esiste già",
+      "weakPassword": "La password è troppo debole",
+      "passwordMismatch": "Le password non corrispondono",
+      "genericError": "Autenticazione fallita",
+      "loginFailed": "Accesso fallito",
+      "registrationFailed": "Registrazione fallita",
+      "emailNotConfirmed": "Questa email non è ancora confermata. Apri il link che ti abbiamo mandato, o registrati di nuovo per riceverne uno nuovo.",
+      "tooManyAttempts": "Troppi tentativi in poco tempo. Aspetta qualche minuto e riprova.",
+      "network": "Impossibile raggiungere House M8. Controlla la connessione e riprova.",
+      "tryAgainLater": "Qualcosa non ha funzionato da parte nostra. Riprova tra poco.",
+      "invalidEmail": "Questo indirizzo email non sembra corretto. Controllalo e riprova.",
+      "resendFailed": "Impossibile inviare un nuovo link. Riprova tra poco.",
+      "googleFailed": "Impossibile avviare l'accesso con Google. Riprova, oppure usa la tua email."
+    },
+    "confirmation": {
+      "title": "Conferma della tua email",
+      "processing": "Verifica del link…",
+      "success": {
+        "title": "Email confermata",
+        "message": "Hai effettuato l'accesso. Ti portiamo su House M8.",
+        "button": "Continua"
+      },
+      "setPassword": {
+        "title": "Scegli una password",
+        "subtitle": "Ultimo passaggio. La userai con la tua email per accedere.",
+        "passwordLabel": "Password",
+        "button": "Salva e accedi",
+        "failed": "La password non è stata salvata. Controlla la connessione e riprova."
+      },
+      "missing": {
+        "title": "Questo link è incompleto",
+        "message": "Manca una parte del link, succede spesso quando lo si copia a mano. Aprilo direttamente dall'email, oppure chiedine uno nuovo qui."
+      },
+      "invalid": {
+        "title": "Questo link non funziona più",
+        "message": "I link di conferma valgono una sola volta e scadono dopo un po'. Inserisci la tua email e te ne mandiamo uno nuovo."
+      },
+      "network": {
+        "title": "Non siamo riusciti a verificare il link",
+        "message": "La connessione potrebbe essersi interrotta. Controllala e riprova con lo stesso link."
+      },
+      "rateLimited": {
+        "title": "Troppi tentativi",
+        "message": "Aspetta qualche minuto e riprova con lo stesso link."
+      },
+      "failed": {
+        "title": "Qualcosa non ha funzionato da parte nostra",
+        "message": "Il tuo link potrebbe essere ancora valido. Riprova tra poco."
+      },
+      "tryAgain": "Riprova",
+      "signIn": "Accedi"
+    },
+    "register": {
+      "emailSent": {
+        "title": "Controlla la tua email",
+        "message": "Abbiamo inviato un link a {email}. Aprilo per scegliere la password e completare la registrazione.",
+        "spamHint": "Non arriva dopo qualche minuto? Controlla la cartella spam.",
+        "differentEmail": "Usa un'altra email"
+      },
+      "closed": {
+        "title": "Registrazioni chiuse",
+        "message": "Le nuove registrazioni sono sospese per ora. Se hai già un account, accedi.",
+        "button": "Accedi"
+      }
+    },
+    "forgotPassword": {
+      "title": "Password dimenticata?",
+      "subtitle": "Inserisci la tua email e ti invieremo un link per reimpostare la password.",
+      "email": "Email",
+      "button": "Invia link di reimpostazione",
+      "rememberPassword": "Ricordi la password?",
+      "backToLogin": "Torna al login",
+      "sent": {
+        "title": "Controlla la tua email",
+        "message": "Se esiste un account per {email}, gli abbiamo inviato un link per reimpostare la password.",
+        "button": "Torna all'accesso",
+        "spamHint": "Non arriva dopo qualche minuto? Controlla la cartella spam.",
+        "differentEmail": "Usa un'altra email"
+      },
+      "errors": {
+        "network": "Impossibile raggiungere il server. Controlla la connessione e riprova."
+      },
+      "emailRequired": "Inserisci il tuo indirizzo email per ricevere il link di reimpostazione.",
+      "sending": "Invio del link…"
+    },
+    "passwordReset": {
+      "title": "Reimposta password",
+      "subtitle": "Scegli una nuova password per il tuo account.",
+      "newPassword": "Nuova password",
+      "passwordHint": "Almeno {min} caratteri.",
+      "button": "Reimposta password",
+      "missingToken": {
+        "title": "Questo link è incompleto",
+        "message": "Manca una parte del link di reimpostazione. Aprilo direttamente dall'email, oppure chiedine uno nuovo.",
+        "requestButton": "Richiedi un nuovo link"
+      },
+      "invalidToken": {
+        "title": "Questo link non funziona più",
+        "message": "I link di reimpostazione valgono una sola volta e scadono dopo un po'. Chiedine uno nuovo e usa l'email più recente.",
+        "requestButton": "Richiedi un nuovo link",
+        "loginButton": "Accedi"
+      },
+      "success": {
+        "title": "Password cambiata",
+        "message": "La tua nuova password è pronta.",
+        "button": "Accedi"
+      },
+      "errors": {
+        "network": "Impossibile raggiungere il server. Controlla la connessione e riprova."
+      },
+      "showPassword": "Mostra password",
+      "saving": "Salvataggio…"
+    },
+    "joiningHouse": "Stai entrando in {house}. Accedi o crea un account per accettare l'invito.",
+    "resend": {
+      "email": "Email usata per registrarti",
+      "emailRequired": "Inserisci l'email che hai usato per registrarti.",
+      "button": "Invia di nuovo il link",
+      "sending": "Invio…",
+      "sent": "Se {email} è in attesa di conferma, un nuovo link è in arrivo. Puoi chiederne un altro tra 15 minuti."
+    }
+  },
+  "home": {
+    "title": "Dashboard",
+    "welcome": "Ti diamo il bentornato",
+    "noHouse": {
+      "title": "Nessuna casa",
+      "message": "Non fai ancora parte di nessuna casa. Creane una o unisciti a una per iniziare.",
+      "createHouse": "Crea casa",
+      "joinHouse": "Unisciti a casa"
+    },
+    "recentExpenses": "Spese recenti",
+    "upcomingBills": "Bollette in arrivo",
+    "quickActions": "Azioni rapide",
+    "addExpense": "Aggiungi spesa",
+    "viewAll": "Vedi tutto",
+    "housemateCount": "{n} coinquilino | {n} coinquilini",
+    "haveInviteLink": "Hai un link di invito?",
+    "inviteLinkHint": "Incolla il link completo o solo il suo codice.",
+    "inviteInvalid": "Non sembra un link di invito. Controllalo e riprova.",
+    "noHouseFound": "Nessuna casa trovata",
+    "createOrJoinHouse": "Crea una casa, oppure unisciti a quella a cui sei stato invitato.",
+    "createHouse": "Crea casa",
+    "joinHouse": "Unisciti a casa",
+    "viewHouseBalance": "Visualizza bilancio casa",
+    "due": "Scadenza",
+    "createdBy": "Creato da",
+    "you": "Tu",
+    "viewBalance": "Visualizza saldo",
+    "overview": "Panoramica casa",
+    "paidThisMonth": "Pagato questo mese",
+    "noPendingExpenses": "Nessuna spesa in sospeso",
+    "noUpcomingBills": "Nessuna bolletta in arrivo",
+    "viewAllExpenses": "Visualizza tutte le spese",
+    "ouchIOwe": "Devo pagare",
+    "paydayComing": "Pagamento in arrivo",
+    "recentActivity": "Attività recente",
+    "dashboardOverview": "Panoramica dashboard",
+    "dashboardSubtitle": "La vittoria premia i preparati.",
+    "yourMonth": {
+      "title": "Il tuo mese",
+      "next": "Prossima:",
+      "balanceUnavailable": "Impossibile caricare il saldo. Ricarica la pagina per riprovare.",
+      "facts": {
+        "total": "La tua parte questo mese",
+        "bills": "Bollette",
+        "shared": "Spese divise"
+      }
+    },
+    "status": {
+      "label": "Stato della casa",
+      "allInOrder": "Tutto in ordine",
+      "needAttention": "{n} cosa richiede attenzione | {n} cose richiedono attenzione",
+      "overdueBills": "{n} bolletta scaduta | {n} bollette scadute",
+      "openReports": "{n} segnalazione aperta | {n} segnalazioni aperte",
+      "dueSoonBills": "{n} bolletta in scadenza questa settimana | {n} bollette in scadenza questa settimana",
+      "unsettled": "{amount} ancora da rimborsare"
+    }
+  },
+  "balance": {
+    "headline": {
+      "owe": "Devi {amount} a {name}",
+      "oweBy": "Devi {amount} a {name} entro {date}",
+      "oweOverdue": "Devi {amount} a {name}, scaduto dal {date}",
+      "andMore": "{base} e un altro | {base} e altri {n}",
+      "owedOne": "{name} ti deve {amount}",
+      "owedOneBy": "{name} ti deve {amount} entro {date}",
+      "owedOneOverdue": "{name} ti deve {amount}, scaduto dal {date}",
+      "owedMany": "{n} coinquilini ti devono {amount}",
+      "settled": "Sei in pari con tutti",
+      "settleUp": "Rimborsa",
+      "view": "Vedi il saldo"
+    },
+    "youOwe": "Devi dei soldi a {name}",
+    "owesYou": "{name} ti deve dei soldi",
+    "you": "Tu",
+    "isOwed": "Deve ricevere",
+    "owes": "Deve",
+    "youAreOwed": "Devi ricevere",
+    "youOweTotal": "Devi",
+    "squareWith": "Tu e {name} siete in pari.",
+    "squareAll": "Sei in pari con tutti.",
+    "comingToYou": "In arrivo per te",
+    "comingToYouCount": "{count} da ricevere",
+    "markReceived": "Segna come ricevuto",
+    "recordedReceived": "Registrato: {amount} ricevuti da {name}",
+    "everyoneBalance": "Saldo di tutti",
+    "markPaidFailed": "Impossibile registrare il pagamento. Controlla la connessione e riprova.",
+    "markPaidFailedCause": "Di solito è un problema di connessione. Non è stato registrato nulla. Controlla e riprova.",
+    "planChanged": "Chi paga chi è cambiato",
+    "planChangedCause": "Qualcuno ha appena registrato un pagamento o una spesa. Controlla chi paga chi adesso e riprova.",
+    "recent": {
+      "title": "Pagamenti recenti",
+      "empty": "Nessun pagamento registrato.",
+      "youPaid": "Hai pagato {amount} a {name}",
+      "paidYou": "{name} ti ha pagato {amount}",
+      "paidOther": "{from} ha pagato {amount} a {to}",
+      "undone": "Annullato",
+      "showUndone": "Mostra annullati ({n})"
+    },
+    "recordedPaid": "Registrati {amount} pagati a {name}",
+    "dueBy": "Entro {date}",
+    "dueOverdue": "Scaduto dal {date}",
+    "undo": "Annulla",
+    "recordUndone": "Registrazione del pagamento annullata",
+    "undoExpired": "Sono passate più di 24 ore: questo pagamento non si può più annullare.",
+    "undoAlready": "Questa registrazione è già stata annullata.",
+    "undoFailed": "Non siamo riusciti ad annullare la registrazione. Riprova.",
+    "howThisWorksSummary": "Come viene calcolato?",
+    "pays": "paga",
+    "noBalanceData": "Impossibile caricare il saldo. Controlla la connessione e riprova.",
+    "myDebts": "I miei debiti",
+    "myDebtsCount": "{count} da rimborsare",
+    "noDebts": "Nessun debito",
+    "noDebtsDesc": "Sei in pari con tutti i coinquilini",
+    "allSettled": "Tutto saldato",
+    "even": "Pari",
+    "markPaid": "Segna come pagato",
+    "howThisWorks": "Come funziona:",
+    "howThisWorksDesc": "Usiamo il minor numero di pagamenti possibile per azzerare i saldi, così non devono pagarsi tutti a vicenda.",
+    "allSettledDesc": "Al momento nessuno deve niente a nessuno.",
+    "noBalanceDataDesc": "Di solito è un problema di connessione, oppure non è ancora selezionata una casa. Controlla e riprova."
+  },
+  "bills": {
+    "title": "Bollette",
+    "loadFailedCause": "Impossibile caricare le bollette. Di solito è un problema di connessione: controllala e riprova.",
+    "addBill": "Aggiungi bolletta",
+    "overdue": "Scaduta",
+    "dueSoon": "In scadenza",
+    "dueRelative": {
+      "today": "oggi",
+      "tomorrow": "domani",
+      "inDays": "tra {n} giorno | tra {n} giorni",
+      "overdueDays": "scaduta da {n} giorno | scaduta da {n} giorni"
+    },
+    "advance": "Segna pagata e avanza",
+    "activeBills": "Bollette attive",
+    "deleteDocumentConfirm": "Sei sicuro di voler eliminare questo documento?",
+    "failedToDeleteDocument": "Impossibile eliminare il documento. Controlla la connessione e riprova.",
+    "noBills": {
+      "title": "Ancora nessuna bolletta",
+      "message": "Aggiungi la tua prima bolletta ricorrente"
+    },
+    "periods": {
+      "1": "1 mese",
+      "2": "2 mesi",
+      "6": "6 mesi",
+      "12": "1 anno"
+    },
+    "form": {
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Inserisci descrizione bolletta",
+      "costPerPeriod": "Costo per periodo ({currency})",
+      "costPlaceholder": "0,00",
+      "paymentPeriod": "Periodo di pagamento",
+      "nextDueDate": "Prossima scadenza",
+      "active": "Attiva",
+      "activeDescription": "Deseleziona per disabilitare questa bolletta",
+      "createBill": "Aggiungi bolletta",
+      "errors": {
+        "description": "Aggiungi una descrizione.",
+        "cost": "Inserisci un costo maggiore di 0.",
+        "nextDueDate": "Scegli la prossima scadenza."
+      }
+    },
+    "edit": {
+      "title": "Modifica bolletta",
+      "updateBill": "Aggiorna bolletta"
+    },
+    "details": {
+      "notFound": "Bolletta non trovata",
+      "backToBills": "Torna alle bollette",
+      "perMonth": "al mese",
+      "perYear": "all'anno",
+      "perSixMonths": "ogni 6 mesi",
+      "monthly": "Mensile",
+      "billManager": "Gestore bolletta",
+      "totalPayments": "Pagamenti totali",
+      "totalAmountPaid": "Importo totale pagato",
+      "lastUpdated": "Ultimo aggiornamento",
+      "costPerPeriod": "Costo per periodo",
+      "monthlyCost": "Costo mensile",
+      "annualCost": "Costo annuale",
+      "semiAnnualCost": "Costo semestrale",
+      "biAnnualCost": "Costo biennale",
+      "totalCost": "Costo totale",
+      "paymentPeriod": "Periodo di pagamento",
+      "renewalCycle": "Ciclo di rinnovo",
+      "autoRenews": "Rinnovo automatico il giorno {month} di ogni mese",
+      "autoRenewsEvery": "Rinnovo automatico ogni {period} il giorno {day}",
+      "advanceDueDate": "Anticipa scadenza",
+      "advanceDueDateLabel": "Anticipa scadenza di {description} al prossimo periodo di pagamento",
+      "advanceConfirmTitle": "Anticipare la scadenza?",
+      "advanceConfirmMessage": "Questo sposta la scadenza dal {from} al {to}. Non può essere annullato automaticamente.",
+      "advanceConfirmButton": "Anticipa",
+      "costPeriods": {
+        "1": "al mese",
+        "2": "ogni 2 mesi",
+        "6": "ogni 6 mesi",
+        "12": "all'anno"
+      },
+      "contractDetails": "Dettagli contratto",
+      "contractStarted": "Contratto iniziato",
+      "ago": "{time} fa",
+      "createdBy": "Creato da",
+      "nextDueDate": "Prossima scadenza",
+      "daysRemaining": "{days} giorni rimanenti",
+      "documents": "Documenti",
+      "noDocuments": "Nessun documento",
+      "uploadDocument": "Carica documento",
+      "addDocument": "Aggiungi documento",
+      "active": "Attiva",
+      "inactive": "Inattiva",
+      "contactDetails": "Dettagli di contatto",
+      "contractHistory": "Storico contratto",
+      "document": "Documento",
+      "uploadedBy": "Caricato il",
+      "uploadInstructions": "Carica contratti, fatture o altri documenti relativi alla bolletta",
+      "uploadButton": "Carica documento",
+      "selectFile": "Seleziona file",
+      "supportedFormats": "Supportati: PDF, DOC, DOCX, JPG, PNG (max 10MB)",
+      "deleteDocumentConfirm": "Sei sicuro di voler eliminare questo documento? Questa azione non può essere annullata.",
+      "documentCount": "{count} documento | {count} documenti",
+      "deleteDocumentTitle": "Elimina documento"
+    },
+    "monthly": "mensile",
+    "due": "Scadenza",
+    "createdBy": "Creato da",
+    "notifications": {
+      "billCreatedDesc": "La bolletta '{description}' è stata aggiunta alla casa",
+      "billUpdatedDesc": "I dettagli della bolletta sono stati aggiornati",
+      "billDeletedDesc": "La bolletta è stata rimossa dalla casa"
+    },
+    "delete": {
+      "title": "Elimina bolletta",
+      "warning": "Azione permanente",
+      "description": "Questa azione non può essere annullata",
+      "confirmMessage": "Sei sicuro di voler eliminare '{description}'? Tutti i documenti associati e la cronologia dei pagamenti verranno rimossi permanentemente."
+    },
+    "recurringTitle": "Bollette ricorrenti",
+    "table": {
+      "bill": "Bolletta",
+      "amount": "Importo",
+      "nextDueDate": "Prossima scadenza",
+      "action": "Azione"
+    },
+    "summary": {
+      "nextDue": "Prossima bolletta",
+      "nextDueDetail": "La tua quota della bolletta da {total}",
+      "monthlyPhrase": "{total} al mese per tutte le bollette",
+      "nextDueWhen": "scade {date}"
+    },
+    "card": {
+      "perMonth": "al mese",
+      "every": "Ogni {period} mesi"
+    },
+    "notFoundDesc": "La bolletta che stai cercando non esiste o non hai i permessi per vederla.",
+    "duration": {
+      "days": "{count} giorno | {count} giorni",
+      "months": "{count} mese | {count} mesi",
+      "years": "{count} anno | {count} anni"
+    }
+  },
+  "expenses": {
+    "monthlyReport": "Report mensile",
+    "downloadReport": "Scarica PDF",
+    "reportProOnly": "Funzionalità Pro — aggiorna per scaricare",
+    "filterTitle": "Filtra spese",
+    "title": "Spese",
+    "addExpense": "Aggiungi spesa",
+    "recentExpenses": "Spese recenti",
+    "recurring": "Ricorrente",
+    "createdBy": "Creato da",
+    "yourShare": "La tua quota",
+    "paid": "Pagato",
+    "pending": "In attesa",
+    "settled": "Pagato",
+    "markPaid": "Segna come pagato",
+    "delete": "Elimina",
+    "deleteConfirm": "Sei sicuro di voler eliminare questa spesa?",
+    "noExpenses": {
+      "title": "Ancora nessuna spesa",
+      "message": "Aggiungi la tua prima spesa condivisa"
+    },
+    "form": {
+      "title": "Aggiungi spesa",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Per cosa è stata questa spesa?",
+      "amount": "Importo ({currency})",
+      "paidBy": "Pagato da",
+      "repeats": "Si ripete?",
+      "repeatsHelper": "I costi ricorrenti (affitto, wifi) diventano bollette; i costi singoli sono spese.",
+      "errors": {
+        "description": "Aggiungi una descrizione.",
+        "amount": "Inserisci un importo maggiore di 0.",
+        "members": "Scegli almeno una persona con cui dividere la spesa.",
+        "includeYou": "Se ha pagato qualcun altro, includi anche te nella divisione.",
+        "nextDueDate": "Scegli la prossima scadenza."
+      },
+      "amountPlaceholder": "0,00",
+      "splitBetween": "Dividi tra",
+      "members": "Dividi tra",
+      "selectMembers": "Seleziona i membri della casa",
+      "createExpense": "Aggiungi",
+      "you": "Tu",
+      "billTitle": "Aggiungi bolletta",
+      "billDescriptionPlaceholder": "Per cosa è questa bolletta?",
+      "detailsEdit": "Modifica",
+      "detailsDone": "Fatto",
+      "paidSummary": "Pagato da {payer} · diviso con {split}",
+      "splitEveryone": "tutti",
+      "splitSome": "{count} su {total}",
+      "categories": "Categorie (facoltative)",
+      "categoriesPlaceholder": "Inizia a scrivere, es. alimentari",
+      "categoriesHint": "Fino a 3.",
+      "categoriesFull": "3 su 3 — rimuovine una per aggiungerne un’altra.",
+      "categoriesNoMatch": "Nessuna categoria corrispondente",
+      "categoriesResults": "Nessun suggerimento | {n} suggerimento | {n} suggerimenti"
+    },
+    "splitBetween": "Dividi tra {count} membri",
+    "youOwe": "Devi",
+    "owesYou": "ti deve",
+    "unpaid": "Non pagato",
+    "status": {
+      "pending": "In attesa",
+      "settled": "Saldata"
+    },
+    "filter": {
+      "all": "Tutte",
+      "pending": "In attesa",
+      "settled": "Saldate"
+    },
+    "noExpensesFound": "Nessuna spesa trovata",
+    "startByAdding": "Inizia aggiungendo la tua prima spesa",
+    "noFilteredExpenses": "Nessuna spesa nel filtro «{filter}»",
+    "debugInfo": "Nessuna spesa trovata. Info debug:",
+    "totalAmount": "Totale",
+    "shareBreakdown": "Ripartizione quote",
+    "shares": "quote",
+    "notifications": {
+      "expenseCreatedDesc": "La spesa '{title}' è stata aggiunta e condivisa con i membri della casa",
+      "expenseUpdatedDesc": "I dettagli della spesa sono stati aggiornati",
+      "expenseDeletedDesc": "La spesa è stata rimossa dalla casa",
+      "expenseSharePaidDesc": "La tua quota è stata segnata come pagata"
+    },
+    "date": "Data",
+    "description": "Descrizione",
+    "paidBy": "Pagato da",
+    "amount": "Importo",
+    "statusTitle": "Stato",
+    "searchPlaceholder": "Cerca spese...",
+    "summary": {
+      "line": "Devi ancora {owe} · ti devono {owed}",
+      "oweOnly": "Devi ancora {owe}",
+      "owedOnly": "Ti devono {owed}",
+      "square": "Niente da rimborsare per ora."
+    },
+    "card": {
+      "yourShare": "La tua quota",
+      "settled": "Saldato",
+      "viewDetails": "Vedi dettagli",
+      "viewDetailsLabel": "Visualizza dettagli per {description}",
+      "paidBy": "{name} ha pagato",
+      "youPaidAmount": "Hai pagato {amount}",
+      "owedToYou": "ti devono {amount}",
+      "ofTotal": "di {amount}",
+      "notInSplit": "Non sei nella divisione"
+    },
+    "viewModal": {
+      "title": "Dettagli spesa",
+      "created": "Creato",
+      "totalAmount": "Importo totale",
+      "currency": "Valuta",
+      "splitDetails": "Dettagli divisione",
+      "deleteExpense": "Elimina spesa"
+    },
+    "day": {
+      "today": "Oggi",
+      "yesterday": "Ieri"
+    }
+  },
+  "user": {
+    "noDetails": "{name} non ha condiviso altri dettagli.",
+    "title": "Profilo utente",
+    "notFound": "Utente non trovato",
+    "notFoundDesc": "L'utente che stai cercando non esiste o non fa parte della tua casa.",
+    "failedToLoadTitle": "Impossibile caricare questo profilo. Controlla la connessione e riprova.",
+    "failedToLoadDesc": "Si è verificato un errore durante il caricamento del profilo utente.",
+    "unknownUser": "Utente sconosciuto",
+    "goBack": "Torna indietro",
+    "houseStatistics": "Statistiche casa",
+    "expensesCreated": "Spese create",
+    "totalPaid": "Totale pagato",
+    "totalOwed": "Totale dovuto",
+    "recentExpenses": "Spese recenti",
+    "lastFive": "Ultime 5",
+    "creator": "Creatore",
+    "yourShare": "La tua quota:",
+    "contactInformation": "Informazioni di contatto",
+    "email": "Email",
+    "phone": "Telefono",
+    "joinedHouse": "Ingresso in casa",
+    "personalInformation": "Informazioni personali",
+    "profilePictures": "Foto profilo",
+    "gender": "Genere",
+    "occupation": "Occupazione",
+    "languages": "Lingue",
+    "pets": "Animali",
+    "yes": "Sì",
+    "no": "No",
+    "socialMedia": "Social media"
+  },
+  "profile": {
+    "title": "Profilo",
+    "editProfile": "Modifica profilo",
+    "personalInformation": "Dettagli profilo",
+    "memberSince": "Membro dal {date}",
+    "currentHouse": {
+      "title": "Casa attuale",
+      "admin": "Co-amministratore",
+      "name": "Casa",
+      "role": "Ruolo",
+      "joinedHouse": "Ingresso in casa",
+      "owner": "Proprietario",
+      "member": "Membro",
+      "members": "{count} membri",
+      "leaveHouse": "Esci dalla casa"
+    },
+    "noHouse": {
+      "title": "Nessuna casa",
+      "message": "Non fai ancora parte di nessuna casa",
+      "createHouse": "Crea casa",
+      "joinHouse": "Unisciti a casa"
+    },
+    "pictures": {
+      "title": "Foto profilo",
+      "description": "Aggiungi fino a {max} foto al tuo profilo",
+      "uploadError": "Impossibile caricare la foto. Usa un JPG, PNG o WebP sotto i 5 MB, poi riprova.",
+      "deleteError": "Impossibile eliminare la foto. Controlla la connessione e riprova.",
+      "maxSizeError": "La dimensione della foto deve essere inferiore a 5MB",
+      "formatError": "Sono ammessi solo i formati JPEG, PNG e WebP"
+    },
+    "bio": {
+      "title": "Chi sono",
+      "label": "Bio",
+      "placeholder": "Racconta qualcosa di te..."
+    },
+    "personal": {
+      "identity": "Nome e accesso",
+      "firstName": "Nome",
+      "firstNamePlaceholder": "Il tuo nome",
+      "lastName": "Cognome",
+      "lastNamePlaceholder": "Il tuo cognome",
+      "email": "Email",
+      "emailPlaceholder": "tu{'@'}esempio.com",
+      "emailHint": "È l'indirizzo con cui accedi.",
+      "emailLockedHint": "È l'indirizzo con cui accedi. Non può essere modificato da questo modulo.",
+      "emailTaken": "Questo indirizzo email è già in uso.",
+      "title": "Informazioni personali",
+      "gender": "Genere",
+      "genders": {
+        "male": "Maschio",
+        "female": "Femmina",
+        "other": "Altro",
+        "preferNotToSay": "Preferisco non dire"
+      },
+      "pets": "Animali domestici",
+      "petsPlaceholder": "Raccontaci dei tuoi animali domestici",
+      "occupationType": "Occupazione",
+      "occupationTypes": {
+        "student": "Studente",
+        "worker": "Lavoratore",
+        "other": "Altro"
+      },
+      "studyField": "Campo di studio",
+      "studyFieldPlaceholder": "Informatica, medicina, ecc.",
+      "jobTitle": "Titolo di lavoro",
+      "jobTitlePlaceholder": "Ingegnere software, insegnante, ecc.",
+      "languages": "Lingue",
+      "addLanguage": "Aggiungi lingua",
+      "languagesPlaceholder": "Inserisci una lingua",
+      "preferredCurrency": "Valuta preferita",
+      "noInformation": "Nessuna informazione personale aggiunta ancora",
+      "clickEditToAdd": "Clicca Modifica per aggiungere i tuoi dettagli personali",
+      "contactAndSocial": "Contatto e social media"
+    },
+    "social": {
+      "title": "Contatti",
+      "telephone": "Numero di telefono",
+      "telephonePlaceholder": "+39 123 456 7890",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok",
+      "emptyState": {
+        "title": "Nessuna informazione di contatto aggiunta",
+        "description": "Clicca Modifica per aggiungere i tuoi dettagli di contatto"
+      },
+      "display": {
+        "phone": "Telefono",
+        "instagram": "Instagram",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "tiktok": "TikTok"
+      }
+    },
+    "about": {
+      "title": "Informazioni su House M8",
+      "version": "Versione 1.0.0",
+      "description": "Un'app moderna per la gestione dei coinquilini per tracciare spese e bollette.",
+      "help": "Aiuto e supporto"
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "language": "Lingua",
+      "current": "Lingua attuale"
+    },
+    "stats": {
+      "expenses": "Spese",
+      "paid": "Pagate",
+      "owed": "Dovute",
+      "balance": "Saldo"
+    },
+    "notifications": {
+      "profileUpdatedDesc": "I dettagli del tuo profilo sono stati salvati"
+    },
+    "sharing": {
+      "title": "Dettagli extra per i tuoi coinquilini",
+      "purpose": "Facoltativo. Aiuta i tuoi coinquilini a conoscerti un po' meglio.",
+      "optIn": "Condividi dettagli extra del profilo con i miei coinquilini",
+      "optInHint": "Ti permette di aggiungere genere, occupazione, lingue, animali, telefono e social. Puoi disattivarlo quando vuoi dalle impostazioni privacy.",
+      "privacyLink": "Leggi come li usiamo",
+      "error": "Impossibile attivare la condivisione del profilo. Riprova.",
+      "active": "Stai condividendo questi dettagli con i tuoi coinquilini.",
+      "manage": "Gestisci nelle impostazioni privacy"
+    }
+  },
+  "house": {
+    "create": {
+      "title": "Crea casa",
+      "name": "Nome casa",
+      "namePlaceholder": "es. Appartamento via Roma",
+      "address": "Indirizzo (opzionale)",
+      "addressPlaceholder": "Via Roma 123, Città",
+      "success": "Casa creata con successo",
+      "error": "Impossibile creare la casa. Controlla la connessione e riprova.",
+      "cta": "Crea casa",
+      "errors": {
+        "name": "Dai un nome alla casa.",
+        "memberCount": "Scegli tra {min} e {max} coinquilini."
+      }
+    },
+    "join": {
+      "title": "Unisciti a casa",
+      "code": "Codice casa",
+      "codePlaceholder": "Inserisci il codice casa",
+      "join": "Unisciti a casa"
+    },
+    "leave": {
+      "title": "Lascia casa",
+      "message": "Sei sicuro di voler lasciare questa casa?",
+      "warning": "Questa azione non può essere annullata.",
+      "leave": "Lascia casa",
+      "pendingBalance": "Hai un saldo in sospeso di {amount}. Rimborsa quanto devi prima di uscire.",
+      "ownerWarning": "Sei il proprietario della casa. Trasferisci la proprietà a un altro membro prima di uscire.",
+      "settleFirst": "Rimborsa prima",
+      "transferFirst": "Trasferisci la proprietà prima",
+      "confirmed": "Hai lasciato la casa con successo",
+      "selectNewOwner": "Scegli chi diventerà il nuovo proprietario:",
+      "transferAndLeave": "Trasferisci ed esci",
+      "soleOwnerWarning": "Sei l'unico membro della casa, quindi non c'è nessuno a cui trasferire la proprietà. Archivia la casa."
+    }
+  },
+  "errors": {
+    "generic": "Si è verificato un errore",
+    "network": "Errore di rete",
+    "notFound": "Non trovato",
+    "unauthorized": "Non autorizzato",
+    "forbidden": "Vietato",
+    "validation": "Errore di validazione",
+    "tryAgain": "Riprova",
+    "noHouseSelected": "Nessuna casa selezionata",
+    "serviceNotAvailable": "Servizio non disponibile",
+    "userNotAuthenticated": "Utente non autenticato",
+    "failedToLoad": "Impossibile caricare questa pagina. Controlla la connessione e riprova.",
+    "failedToSave": "Impossibile salvare le modifiche. Controlla la connessione e riprova.",
+    "failedToDelete": "Impossibile eliminarlo. Controlla la connessione e riprova.",
+    "failedToLoadBills": "Impossibile caricare le bollette. Controlla la connessione e riprova.",
+    "errorLoadingBills": "Si è verificato un errore durante il caricamento delle bollette",
+    "authenticationRequired": "Autenticazione richiesta",
+    "failedToCreateExpense": "Impossibile aggiungere la spesa. Controlla la connessione e riprova.",
+    "failedToCreateBill": "Impossibile aggiungere la bolletta. Controlla la connessione e riprova.",
+    "failedToCreateHouse": "Impossibile creare la casa. Controlla la connessione e riprova.",
+    "failedToUpdateHouse": "Impossibile salvare i dati della casa. Controlla la connessione e riprova.",
+    "failedToJoinHouse": "Impossibile entrare nella casa. Controlla la connessione e riprova.",
+    "failedToLeaveHouse": "Impossibile lasciare la casa. Controlla la connessione e riprova.",
+    "failedToAddMember": "Impossibile aggiungere il coinquilino. Controlla la connessione e riprova.",
+    "failedToRemoveMember": "Impossibile rimuovere il coinquilino. Controlla la connessione e riprova.",
+    "failedToUpdateExpense": "Impossibile salvare la spesa. Controlla la connessione e riprova.",
+    "failedToDeleteExpense": "Impossibile eliminare la spesa. Controlla la connessione e riprova.",
+    "failedToUpdateBill": "Impossibile salvare la bolletta. Controlla la connessione e riprova.",
+    "failedToDeleteBill": "Impossibile eliminare la bolletta. Controlla la connessione e riprova.",
+    "failedToUpdateProfile": "Impossibile salvare il profilo. Controlla la connessione e riprova.",
+    "failedToCreateNote": "Impossibile pubblicare la nota. Controlla la connessione e riprova.",
+    "failedToDeleteNote": "Impossibile eliminare la nota. Controlla la connessione e riprova.",
+    "connectionLost": "Connessione persa",
+    "sessionExpired": "Sessione scaduta",
+    "insufficientPermissions": "Permessi insufficienti",
+    "anErrorOccurred": "Si è verificato un errore",
+    "noActiveHouse": "Nessuna casa attiva",
+    "noCurrentHouseSelected": "Nessuna casa corrente selezionata",
+    "invalidState": "Stato non valido",
+    "failedToFetchCurrentHouse": "Impossibile caricare la tua casa. Controlla la connessione e riprova.",
+    "failedToFetchMembers": "Impossibile caricare i coinquilini. Controlla la connessione e riprova.",
+    "uncategorized": "Non categorizzato",
+    "uploadNotAvailable": "La funzionalità di caricamento non è ancora disponibile. Riprova più tardi.",
+    "uploadFailed": "Impossibile caricare il documento. Controlla la connessione e riprova.",
+    "deleteNotAvailable": "La funzionalità di eliminazione non è ancora disponibile. Riprova più tardi.",
+    "deleteFailed": "Impossibile eliminare il documento. Controlla la connessione e riprova.",
+    "failedToSwitchHouse": "Impossibile cambiare casa. Controlla la connessione e riprova.",
+    "failedToCreateReport": "Impossibile inviare la segnalazione. Controlla la connessione e riprova.",
+    "failedToUpdateReport": "Impossibile aggiornare la segnalazione. Controlla la connessione e riprova.",
+    "failedToDeleteReport": "Impossibile eliminare la segnalazione. Controlla la connessione e riprova.",
+    "sessionExpiredMessage": "La sessione è scaduta. Effettua nuovamente l'accesso.",
+    "accessDenied": "Accesso negato",
+    "accessDeniedMessage": "Non hai i permessi per eseguire questa azione.",
+    "serverError": "Errore del server",
+    "serverErrorMessage": "Qualcosa non ha funzionato da parte nostra. Riprova tra un minuto; se continua, ricarica la pagina.",
+    "tooManyRequests": "Troppi tentativi",
+    "tooManyRequestsMessage": "Troppi tentativi. Attendi qualche minuto e riprova.",
+    "checkoutFailed": "Impossibile aprire il pagamento. Controlla la connessione e riprova.",
+    "portalFailed": "Impossibile aprire il portale di fatturazione. Controlla la connessione e riprova.",
+    "failedToAdvanceBill": "Impossibile spostare la scadenza. Controlla la connessione e riprova.",
+    "downloadReportFailed": "Impossibile scaricare il report. Controlla la connessione e riprova.",
+    "consentGrantFailed": "Impossibile salvare il tuo consenso. Riprova.",
+    "consentWithdrawFailed": "Impossibile revocare il tuo consenso. Riprova.",
+    "consentAcceptFailed": "Impossibile salvare la tua accettazione. Riprova.",
+    "withdrawFailed": "Non è stato possibile annullare l'abbonamento. Riprova."
+  },
+  "success": {
+    "saved": "Salvato con successo",
+    "deleted": "Eliminato con successo",
+    "created": "Creato con successo",
+    "updated": "Aggiornato con successo",
+    "houseCreated": "Casa creata con successo",
+    "houseUpdated": "Casa aggiornata con successo",
+    "houseLeft": "Casa abbandonata con successo",
+    "memberAdded": "Membro aggiunto con successo",
+    "memberRemoved": "Membro rimosso con successo",
+    "expenseCreated": "Spesa creata con successo",
+    "expenseUpdated": "Spesa aggiornata con successo",
+    "expenseDeleted": "Spesa eliminata con successo",
+    "billCreated": "Bolletta creata. Aprila per aggiungere il contratto e altri documenti.",
+    "billUpdated": "Bolletta aggiornata con successo",
+    "billDeleted": "Bolletta eliminata con successo",
+    "profileUpdated": "Profilo aggiornato con successo",
+    "bulletinNoteCreated": "Nota pubblicata con successo",
+    "bulletinNoteDeleted": "Nota eliminata con successo",
+    "joinedHouse": "Casa unita con successo",
+    "settingsUpdated": "Impostazioni aggiornate con successo",
+    "houseSwitched": "Passato a {name}",
+    "reportSubmitted": "Segnalazione inviata con successo",
+    "reportSolved": "Segnalazione contrassegnata come risolta",
+    "reportDeleted": "Segnalazione eliminata con successo",
+    "billAdvanced": "Bolletta avanzata alla prossima scadenza",
+    "openBill": "Apri bolletta"
+  },
+  "currency": {
+    "label": "Valuta",
+    "description": "Tutte le spese e bollette utilizzeranno questa valuta",
+    "usd": "Dollaro USA ($)",
+    "eur": "Euro (€)",
+    "selectCurrency": "Seleziona valuta"
+  },
+  "bulletin": {
+    "title": "Bacheca",
+    "newNote": "Nuova nota",
+    "noNotes": "Nessuna nota",
+    "addOne": "Aggiungine una",
+    "modal": {
+      "title": "La mia nota sulla bacheca",
+      "message": "Messaggio",
+      "messagePlaceholder": "Inserisci il tuo messaggio...",
+      "dismissDate": "Data di rimozione",
+      "dismissDateOptional": "Data di rimozione (opzionale)",
+      "dismissDateHelp": "Lascia vuoto per mantenere la nota fino alla cancellazione manuale",
+      "cancel": "Annulla",
+      "post": "Pubblica nota",
+      "errors": {
+        "message": "Scrivi un messaggio per la bacheca."
+      }
+    },
+    "deleteConfirm": "Sei sicuro di voler eliminare questa nota?",
+    "until": "Fino al {date}",
+    "permanent": "Permanente",
+    "deleteNote": "Elimina nota",
+    "deleteNoteBy": "Elimina la nota di {author}",
+    "justNow": "Proprio ora"
+  },
+  "houseProfile": {
+    "keyFacts": {
+      "title": "Dati principali",
+      "members": "Coinquilini",
+      "membersValue": "{taken} su {max}",
+      "created": "Creata il"
+    },
+    "about": {
+      "title": "Informazioni sulla casa",
+      "label": "Descrizione",
+      "counter": "{n} / {max}",
+      "empty": "Ancora nessuna descrizione.",
+      "ownerHint": "Aggiungi le regole della casa, il wifi o quello che i coinquilini devono sapere."
+    },
+    "money": {
+      "title": "Situazione economica",
+      "month": "La tua quota questo mese",
+      "balance": "Il tuo saldo",
+      "settled": "Sei in pari",
+      "owe": "Devi {amount}",
+      "owed": "Ti devono {amount}",
+      "balanceUnavailable": "Saldo non disponibile",
+      "viewExpenses": "Vedi le spese",
+      "viewBalance": "Vedi il saldo"
+    },
+    "danger": {
+      "title": "Zona pericolosa",
+      "leaveExplain": "Lascia questa casa. Perdi l'accesso a spese e bollette. Prima restituisci quello che devi.",
+      "ownerExplain": "Da proprietario non puoi lasciare la casa. Trasferisci la proprietà dal menu dei coinquilini, oppure archivia la casa per tutti.",
+      "leave": "Lascia la casa",
+      "archive": "Archivia la casa"
+    },
+    "archive": {
+      "title": "Archiviare questa casa?",
+      "message": "La casa viene chiusa per tutti: i coinquilini perdono l'accesso e non si possono aggiungere nuove spese o bollette. Dall'app non si può annullare.",
+      "confirm": "Archivia la casa",
+      "error": "Non è stato possibile archiviare la casa. Controlla la connessione e riprova."
+    },
+    "title": "Profilo casa",
+    "edit": "Modifica",
+    "save": "Salva modifiche",
+    "changeRoleTo": "Cambia ruolo in {role}",
+    "summary": {
+      "places": "{taken} posti su {max} occupati",
+      "square": "siete tutti pari",
+      "unsettled": "{amount} da rimborsare",
+      "billDue": "{name} in scadenza {date}"
+    },
+    "houseName": "Nome casa",
+    "location": "Posizione",
+    "currency": "Valuta",
+    "owner": "Proprietario casa",
+    "members": "Coinquilini",
+    "memberCount": "Numero massimo di coinquilini",
+    "bills": "Bollette",
+    "viewBills": "Visualizza tutte le bollette",
+    "noBills": "Nessuna bolletta trovata",
+    "memberSince": "Membro dal",
+    "phone": "Telefono",
+    "notProvided": "Non fornito",
+    "editSuccess": "Casa aggiornata con successo",
+    "editError": "Impossibile salvare i dati della casa. Controlla la connessione e riprova.",
+    "loadError": "Impossibile caricare i dati della casa. Controlla la connessione e riprova.",
+    "accessDenied": "Non hai accesso per visualizzare questa casa",
+    "loadErrorTitle": "Impossibile caricare questa casa",
+    "accessDeniedTitle": "Nessun accesso a questa casa",
+    "changeRole": "Cambia ruolo",
+    "roleUpdated": "Ruolo cambiato",
+    "roleUpdateError": "Impossibile cambiare il ruolo. Controlla la connessione e riprova.",
+    "confirmRoleChange": "Cambiare il ruolo in {role} per {name}?",
+    "transferOwnershipTitle": "Trasferisci proprietà",
+    "transferOwnershipMessage": "Stai per rendere {name} il nuovo proprietario di questa casa. Poiché una casa può avere un solo proprietario, diventerai un membro normale. Questa azione non può essere annullata a meno che il nuovo proprietario non la trasferisca nuovamente a te.",
+    "transferOwnershipConfirm": "Sì, trasferisci la proprietà",
+    "roleOwner": "Proprietario",
+    "roleMember": "Membro",
+    "inviteByEmailLabel": "Indirizzo email",
+    "inviteByEmailSubmit": "Invia invito",
+    "inviteSentTitle": "Invito inviato",
+    "inviteSentDesc": "Abbiamo inviato un link e un codice per entrare nella casa all'indirizzo indicato. Entrerà nella casa dopo aver accettato.",
+    "removeFromHouse": "Rimuovi dalla casa",
+    "removeMemberTitle": "Rimuovi dalla casa",
+    "removeMemberMessage": "{name} perderà immediatamente l'accesso a questa casa. Questa azione non può essere annullata: dovrà ricevere un nuovo invito per rientrare.",
+    "removeMemberConfirm": "Rimuovi dalla casa",
+    "notifications": {
+      "houseCreatedDesc": "La tua casa '{name}' è stata creata e ora puoi invitare i membri",
+      "houseUpdatedDesc": "I dettagli della casa sono stati salvati",
+      "memberAddedDesc": "Il nuovo membro è stato aggiunto alla casa",
+      "memberRemovedDesc": "Il membro è stato rimosso dalla casa",
+      "leftHouseDesc": "Hai lasciato la casa con successo"
+    },
+    "roleAdmin": "Co-amministratore",
+    "roleAdminDescription": "Può invitare coinquilini e promuovere altri a co-amministratore.",
+    "invite": {
+      "title": "Invita qualcuno",
+      "intro": "Usa l'email se conosci il suo indirizzo. Usa un codice per darglielo di persona o in chat.",
+      "emailTitle": "Invia per email",
+      "emailHint": "Riceve un link e un codice via email ed entra in casa dopo aver accettato."
+    },
+    "roleChange": {
+      "title": "Conferma il cambio di ruolo",
+      "summary": "Cambia {name} da {from} a {to}",
+      "effect": {
+        "admin": "Potrà invitare coinquilini e promuovere altri a co-amministratore.",
+        "member": "Non potrà più invitare coinquilini.",
+        "owner": "Questa operazione è irreversibile. Otterrà il pieno controllo della casa e tu diventerai un membro normale: solo il nuovo proprietario potrà restituirti la proprietà."
+      },
+      "transferConfirm": "Trasferisci la proprietà"
+    },
+    "ownershipTransferredTitle": "Proprietà trasferita",
+    "ownershipTransferredDesc": "Il membro selezionato è ora il proprietario della casa. Il tuo ruolo è ora membro.",
+    "joinCode": {
+      "title": "Condividi un codice",
+      "explain": "Chi riceve questo codice di 6 cifre lo inserisce dopo la registrazione. Vale una sola volta e scade dopo 24 ore, così un codice dimenticato non fa entrare un estraneo.",
+      "copy": "Copia",
+      "copied": "Codice copiato",
+      "copyFailed": "Impossibile copiare il codice",
+      "validUntil": "Monouso, valido fino al {date}",
+      "none": "Nessun codice attivo. Generane uno per far entrare qualcuno.",
+      "error": "Impossibile caricare il codice. Riprova.",
+      "generate": "Genera codice",
+      "regenerate": "Nuovo codice",
+      "copyCode": "Copia il codice {code}"
+    },
+    "transferOwnershipAction": "Trasferisci la proprietà…",
+    "transferOwnershipHint": "Diventi un membro. Solo il nuovo proprietario può restituirtela.",
+    "removeMemberOwes": "{name} deve ancora {amount}. La rimozione non cancella il debito: resta nel saldo della casa finché qualcuno non registra il pagamento.",
+    "removeMemberOwed": "{name} deve ancora ricevere {amount}. La rimozione non cancella il credito: resta nel saldo della casa finché non viene rimborsato.",
+    "roleUpdatedDesc": "Il ruolo di {name} ora è {role}.",
+    "memberRemovedTitle": "Rimosso dalla casa",
+    "memberRemovedDesc": "{name} non ha più accesso a questa casa.",
+    "fullHintOwner": "Tutti i posti sono occupati. Per invitare qualcuno, aumenta il massimo da Modifica.",
+    "fullHintAdmin": "Tutti i posti sono occupati. Chiedi al proprietario di aumentare il massimo per invitare qualcuno.",
+    "capacityBelowMembers": "Ora in casa ci sono {count} persone. Lascia almeno {count} posti, oppure rimuovi prima qualcuno."
+  },
+  "debug": {
+    "noBillsFound": "Nessuna bolletta trovata. Info debug:",
+    "error": "Operazione non riuscita",
+    "retryLoad": "Riprova caricamento",
+    "reinitHouseStore": "Reinizializza store casa",
+    "currentHouse": "Casa attuale",
+    "found": "Trovata",
+    "none": "Nessuna",
+    "houseId": "ID casa",
+    "na": "N/D",
+    "serviceAvailable": "Servizio disponibile",
+    "yes": "Sì",
+    "no": "No",
+    "serviceType": "Tipo servizio"
+  },
+  "notifications": {
+    "title": "Notifiche",
+    "noNotifications": "Nessuna notifica ancora",
+    "clearAll": "Cancella tutto",
+    "titleWithUnread": "Notifiche ({count} non letta) | Notifiche ({count} non lette)",
+    "justNow": "Adesso",
+    "minutesAgo": "{count} min fa",
+    "hoursAgo": "{count}h fa",
+    "daysAgo": "{count}g fa"
+  },
+  "invitation": {
+    "title": "Invito alla casa",
+    "subtitle": "Sei stato invitato a unirti a una casa",
+    "loading": "Caricamento invito",
+    "invalidToken": "Questo link di invito è scaduto o è già stato usato. Chiedi a chi ti ha invitato un nuovo link.",
+    "goToHouseM8": "Vai a House M8",
+    "goToDashboard": "Vai alla dashboard",
+    "invalidInvitation": "Invito non valido",
+    "loadError": "Impossibile caricare l'invito. Controlla la connessione e riprova.",
+    "accepted": "Invito accettato",
+    "welcomeMessage": "Benvenuto in {houseName}. Ora sei un membro di questa casa.",
+    "redirecting": "Ti stiamo reindirizzando alla homepage...",
+    "createdAt": "Creato",
+    "acceptInvitation": "Accetta invito",
+    "decline": "Rifiuta",
+    "acceptError": "Impossibile accettare l'invito. Controlla la connessione e riprova.",
+    "userInHouse": "Sei già parte di una casa. Esci dalla casa attuale prima di accettare questo invito.",
+    "leaveCurrentHouseLink": "Esci dalla tua casa attuale dal profilo"
+  },
+  "accountSetup": {
+    "steps": {
+      "basicInformation": "Informazioni base",
+      "profilePicture": "Foto profilo",
+      "additionalDetails": "Dettagli aggiuntivi"
+    },
+    "titles": {
+      "basicInformation": "Informazioni base",
+      "profilePicture": "Aggiungi una foto profilo",
+      "additionalDetails": "Dettagli aggiuntivi",
+      "completeProfile": "Completa il tuo profilo"
+    },
+    "fields": {
+      "bio": "Biografia",
+      "telephone": "Telefono",
+      "gender": "Genere",
+      "spokenLanguages": "Lingue parlate",
+      "occupationType": "Occupazione",
+      "studyField": "Campo di studio",
+      "jobTitle": "Titolo di lavoro",
+      "pets": "Animali",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok"
+    },
+    "placeholders": {
+      "bio": "Raccontaci un po' di te...",
+      "spokenLanguages": "es. italiano, inglese, spagnolo",
+      "pets": "es. cane, gatto, pesce",
+      "instagram": "{'@'}nomeutente",
+      "twitter": "{'@'}nomeutente",
+      "linkedin": "linkedin.com/in/nomeutente",
+      "tiktok": "{'@'}nomeutente"
+    },
+    "occupationTypes": {
+      "student": "Studente",
+      "worker": "Lavoratore",
+      "other": "Altro"
+    }
+  },
+  "reports": {
+    "title": "Segnalazioni",
+    "ownerDescription": "Visualizza e gestisci le segnalazioni dei tuoi coinquilini",
+    "userDescription": "Visualizza e gestisci le tue segnalazioni",
+    "createReport": "Nuova segnalazione",
+    "createFirstReport": "Crea la tua prima segnalazione",
+    "unknownUser": "Utente sconosciuto",
+    "images": "immagine | immagini",
+    "fullDescription": "Descrizione completa",
+    "attachedImages": "Immagini allegate",
+    "readOn": "Letto il",
+    "solvedOn": "Risolto il",
+    "markAsSolved": "Segna come risolto",
+    "noFilterResults": "Nessuna segnalazione corrisponde a questo filtro",
+    "tryDifferentFilter": "Prova a selezionare un filtro diverso per vedere più segnalazioni.",
+    "status": {
+      "notRead": "Non letto",
+      "read": "Letto",
+      "solved": "Risolto"
+    },
+    "filters": {
+      "all": "Tutti",
+      "notRead": "Non letti",
+      "read": "Letti",
+      "solved": "Risolti",
+      "pending": "In attesa",
+      "inProgress": "In corso",
+      "resolved": "Risolto"
+    },
+    "form": {
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Descrivi il problema in dettaglio. Includi la posizione, quando è iniziato e altre informazioni rilevanti...",
+      "characters": "caratteri",
+      "attachImages": "Allega immagini",
+      "optional": "opzionale",
+      "dragDropImages": "Trascina e rilascia le immagini qui o clicca per sfogliare",
+      "maxImages": "Massimo 10 immagini, 5MB ciascuna",
+      "imagesSelected": "immagini selezionate",
+      "submit": "Invia segnalazione"
+    },
+    "validation": {
+      "descriptionTooShort": "La descrizione deve essere di almeno 10 caratteri"
+    },
+    "card": {
+      "reportAlt": "Allegato segnalazione"
+    },
+    "empty": {
+      "title": "Nessuna segnalazione",
+      "ownerDescription": "Nessuna segnalazione è stata inviata dai tuoi coinquilini.",
+      "userDescription": "Qualcosa non va in casa? Segnalalo qui, così il proprietario lo vede."
+    },
+    "subtitle": "Traccia e risolvi i problemi della casa.",
+    "newReport": "Nuova segnalazione",
+    "priority": {
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Bassa"
+    }
+  },
+  "a11y": {
+    "close": "Chiudi",
+    "buttons": {
+      "createExpense": "Aggiungi una nuova spesa",
+      "settleDebt": "Paga {name} {amount}",
+      "settleCredit": "{name} ti ha pagato {amount}",
+      "uploadDocument": "Carica documento",
+      "viewDocument": "Visualizza documento",
+      "deleteDocument": "Elimina documento",
+      "signUp": "Registrati",
+      "signUpWithGoogle": "Registrati con Google",
+      "markSettled": "Segna come saldato",
+      "addLanguage": "Aggiungi lingua",
+      "removeImage": "Rimuovi immagine",
+      "memberActions": "Azioni per {name}"
+    },
+    "filterBar": {
+      "reports": "Filtra segnalazioni per stato"
+    },
+    "carousel": {
+      "previous": "Immagine precedente",
+      "next": "Immagine successiva",
+      "image": "Immagine {n} di {total}",
+      "open": "Apri immagine a schermo intero"
+    }
+  },
+  "wizard": {
+    "next": "Prossimo",
+    "finish": "Fine"
+  },
+  "pricing": {
+    "title": "Scegli il tuo piano",
+    "subtitle": "Inizia gratis, aggiorna quando hai bisogno di più",
+    "recommended": "Consigliato",
+    "goToDashboard": "Vai alla dashboard",
+    "currentPlan": "Piano attuale",
+    "startPro": "Inizia Pro — Annuale",
+    "startHousePlus": "Inizia House+",
+    "free": {
+      "name": "Gratuito",
+      "feature1": "1 casa / progetto",
+      "feature2": "Fino a 6 coinquilini",
+      "feature3": "Divisioni spese illimitate",
+      "limitation1": "3 mesi di storico",
+      "limitation2": "Nessuna automazione bollette"
+    },
+    "pro": {
+      "feature1": "Fino a 3 case",
+      "feature2": "Storico illimitato",
+      "feature3": "Bollette ricorrenti automatiche",
+      "feature4": "Report PDF mensili",
+      "feature5": "Promemoria scadenza bollette"
+    },
+    "housePlus": {
+      "feature1": "Case illimitate",
+      "feature2": "Suggerimenti acquisti AI",
+      "feature3": "Sincronizzazione Google/Apple Calendar",
+      "feature4": "Accesso API"
+    },
+    "billedYearly": "Fatturato {amount} all'anno",
+    "vatIncluded": "IVA inclusa",
+    "orMonthlyAt": "oppure {amount}/mese, IVA inclusa",
+    "pricesError": "Non è stato possibile caricare i prezzi. Riprova.",
+    "terms": {
+      "heading": "Prima di abbonarti",
+      "vat": "Tutti i prezzi includono IVA al 22%.",
+      "trial": "Il primo abbonamento inizia con 14 giorni di prova gratuita.",
+      "renewal": "Dopo la prova l'abbonamento si rinnova automaticamente al prezzo indicato, ogni mese o ogni anno, finché non lo disdici.",
+      "cancel": "Puoi disdire in qualsiasi momento da Impostazioni > Abbonamento, con la stessa facilità con cui ti sei abbonato.",
+      "adults": "I piani a pagamento sono riservati ai maggiorenni (18 anni o più)."
+    },
+    "waiver": {
+      "label": "Chiedo che il servizio inizi immediatamente. Prendo atto che perderò il diritto di recesso quando il servizio sarà stato completamente eseguito.",
+      "hint": "Obbligatorio per abbonarti. Accetterai i Termini di Servizio al momento del pagamento.",
+      "termsLink": "Leggi i Termini",
+      "error": "Seleziona la casella qui sopra per continuare."
+    },
+    "included": "Incluso",
+    "notIncluded": "Non incluso"
+  },
+  "subscription": {
+    "requiresPlan": "Richiede piano {plan}",
+    "upgrade": "Aggiorna",
+    "upgradeTitle": "Aggiorna per sbloccare",
+    "upgradeDescription": "Questa funzione è disponibile sui piani a pagamento",
+    "annual": "Annuale",
+    "startAnnual": "Inizia annuale",
+    "alreadyActive": "Hai già un abbonamento attivo. Gestiscilo o modificalo dalle impostazioni.",
+    "manageLink": "Vai alle impostazioni abbonamento"
+  },
+  "settings": {
+    "subscription": {
+      "title": "Abbonamento",
+      "currentPlan": "Piano attuale",
+      "manageBilling": "Gestisci fatturazione",
+      "upgrade": "Aggiorna piano",
+      "trialing": "Prova gratuita di 14 giorni attiva",
+      "cancel": {
+        "button": "Recedi / disdici l'abbonamento",
+        "title": "Annullare l'abbonamento?",
+        "intro": "Recedi dal contratto e disdici il piano a pagamento.",
+        "immediate": "Durante la prova gratuita o nei primi 14 giorni l'accesso termina subito. Durante la prova non ti viene addebitato nulla; dopo, paghi soltanto la parte di servizio già fornita fino al recesso.",
+        "periodEnd": "Negli altri casi l'accesso resta attivo fino alla fine del periodo già pagato e l'abbonamento non si rinnova.",
+        "email": "Ti invieremo un'email di conferma.",
+        "confirm": "Sì, annulla l'abbonamento",
+        "keep": "Mantieni il mio piano",
+        "doneTitle": "Abbonamento annullato",
+        "doneImmediate": "Il tuo abbonamento è terminato il {date}.",
+        "donePeriodEnd": "Mantieni l'accesso a pagamento fino al {date}. L'abbonamento non si rinnoverà.",
+        "doneNoDate": "Il tuo abbonamento è stato disdetto e non si rinnoverà."
+      }
+    },
+    "appearance": {
+      "title": "Aspetto",
+      "subtitle": "Scegli come appare House M8",
+      "theme": "Tema colori",
+      "system": "Predefinito di sistema",
+      "light": "Chiaro",
+      "dark": "Scuro"
+    }
+  },
+  "join": {
+    "youreInvitedTo": "Sei invitato a",
+    "memberCount": "{n} coinquilino già dentro | {n} coinquilini già dentro",
+    "referralReward": "Unisciti e ottieni 1 mese di Pro gratis",
+    "createAccount": "Crea un account per unirti",
+    "haveAccount": "Ho già un account"
+  },
+  "gdpr": {
+    "settingsTitle": "Privacy e dati",
+    "settingsSubtitle": "Gestisci i tuoi dati personali e le preferenze sulla privacy",
+    "exportSection": "I tuoi dati",
+    "exportTitle": "Esporta i tuoi dati",
+    "exportDescription": "Scarica in un file JSON una copia dei dati collegati al tuo account: profilo, case, spese, bollette, inviti, abbonamento, sessioni, consensi e storico delle richieste.",
+    "downloadJson": "Scarica JSON",
+    "docsTitle": "Documenti legali",
+    "docsDescription": "Consulta la nostra Informativa sulla privacy e i Termini di Servizio in qualsiasi momento.",
+    "privacyLink": "Informativa sulla privacy →",
+    "termsLink": "Termini di Servizio →",
+    "consentSection": "Consensi",
+    "consentAccepted": "Accettati ✓",
+    "consentAcceptedOn": "Accettati il {date} · versione {version}",
+    "consentPending": "In sospeso",
+    "consentNotAcceptedYet": "Non ancora accettati",
+    "consentMarketing": "Email di marketing (opzionale)",
+    "consentMarketingDescription": "Newsletter e aggiornamenti prodotto",
+    "dangerZone": "Zona pericolosa",
+    "deleteTitle": "Elimina account",
+    "deleteDescription": "L'eliminazione viene programmata e l'account resta conservato per {days} giorni, così puoi ripensarci. Dopo, i tuoi dati vengono anonimizzati.",
+    "deleteButton": "Elimina account",
+    "deletePendingTitle": "Eliminazione in corso",
+    "deletePendingDescription": "Il tuo account verrà eliminato il {date} ({days} giorni rimanenti). Puoi annullare entro quella data.",
+    "cancelDeletion": "Annulla eliminazione",
+    "cancelDeletionFailed": "Annullamento non riuscito — il token potrebbe essere scaduto.",
+    "consentVersionAccept": "Accetta e continua",
+    "exportGenerating": "Generazione export in corso...",
+    "exportReady": "L'esportazione dei tuoi dati è stata scaricata.",
+    "privacyPageTitle": "Informativa sulla privacy",
+    "termsPageTitle": "Termini di Servizio",
+    "errors": {
+      "ownerMustTransfer": "Sei ancora proprietario di una casa con altri membri. Trasferisci la proprietà prima di eliminare l'account.",
+      "billingCancelFailed": "Non siamo riusciti ad annullare il tuo abbonamento, quindi l'eliminazione dell'account non è stata programmata. Riprova tra qualche minuto."
+    },
+    "consentPolicyLabel": "Informativa sulla privacy e Termini di Servizio",
+    "exportFailed": "Non siamo riusciti a preparare l'esportazione. Riprova.",
+    "consent": {
+      "legend": "Prima di continuare",
+      "age": "Ho {age} anni o più",
+      "terms": "Accetto i {link}",
+      "termsLinkText": "Termini di Servizio",
+      "privacy": "Ho letto l'{link}",
+      "privacyLinkText": "Informativa sulla privacy",
+      "privacyHint": "Spuntarla conferma solo che l'hai letta. Non è un consenso.",
+      "required": "Spunta tutte le caselle qui sopra per continuare."
+    },
+    "consentModal": {
+      "titleFirst": "Prima di iniziare",
+      "titleUpdated": "Abbiamo aggiornato i termini",
+      "descriptionFirst": "Per usare House M8 conferma la tua età e accetta i Termini di Servizio. Leggi anche l'Informativa sulla privacy.",
+      "descriptionUpdated": "I Termini di Servizio e l'Informativa sulla privacy sono cambiati (versione {version}). Rileggili e conferma per continuare a usare House M8.",
+      "error": "Non siamo riusciti a salvare la conferma. Controlla la connessione e riprova.",
+      "signOut": "Esci"
+    },
+    "sharing": {
+      "title": "Condividi dettagli extra del profilo con i miei coinquilini",
+      "description": "Genere, occupazione, lingue, animali, telefono, social e foto aggiuntive. Nome e avatar sono sempre visibili ai tuoi coinquilini.",
+      "stateOn": "Attivo: i tuoi coinquilini vedono questi dettagli.",
+      "stateOff": "Disattivo: nessuno di questi dettagli viene salvato o mostrato.",
+      "granted": "La condivisione del profilo è attiva.",
+      "withdrawn": "La condivisione del profilo è disattivata e i dettagli sono stati eliminati.",
+      "confirmTitle": "Disattivare la condivisione del profilo?",
+      "confirmIntro": "Questi dettagli verranno eliminati definitivamente dal tuo profilo:",
+      "confirmKept": "Nome, avatar ed email non cambiano. Potrai riattivare la condivisione e reinserire i dettagli più avanti.",
+      "confirmButton": "Elimina i dettagli e disattiva",
+      "fields": {
+        "gender": "Genere",
+        "occupation": "Occupazione, campo di studi o professione",
+        "languages": "Lingue",
+        "pets": "Animali",
+        "contact": "Numero di telefono e profili social",
+        "pictures": "Foto profilo aggiuntive"
+      }
+    },
+    "deletion": {
+      "confirmTitle": "Eliminare il tuo account?",
+      "confirmIntro": "Ecco cosa succede. Per {days} giorni non viene cancellato nulla.",
+      "confirmButton": "Programma l'eliminazione",
+      "transferLink": "Trasferisci la proprietà di {name}",
+      "cancelled": "Eliminazione annullata. Account, case e abbonamento sono di nuovo attivi.",
+      "cancelledSubscriptionNotRestored": "Eliminazione annullata e case ripristinate. Non siamo riusciti a riattivare l'abbonamento: puoi sottoscriverlo di nuovo dalle Impostazioni.",
+      "consequences": {
+        "signIn": "Per {days} giorni puoi accedere solo per annullare l'eliminazione o scaricare i tuoi dati.",
+        "pseudonymized": "Poi il tuo profilo e i dati personali vengono cancellati o anonimizzati.",
+        "sharedRecords": "I dati condivisi, come le spese che hai pagato o diviso, restano nello storico dei coinquilini con un nome anonimo.",
+        "invoices": "Fatture e registri dei pagamenti si conservano per 10 anni, come richiede la legge fiscale.",
+        "houses": "Le case di cui sei l'unico membro vengono archiviate.",
+        "subscription": "L'abbonamento viene annullato alla fine del periodo in corso.",
+        "restore": "Se annulli entro {days} giorni, tutto viene ripristinato."
+      }
+    },
+    "cancelDeletionDone": "Eliminazione dell'account annullata."
+  },
+  "onboarding": {
+    "wizard": {
+      "step1": {
+        "stepLabel": "Profilo",
+        "title": "Completa il tuo profilo",
+        "subtitle": "Inserisci il tuo nome. È così che ti vedranno i tuoi coinquilini.",
+        "firstName": "Nome",
+        "firstNamePlaceholder": "Il tuo nome",
+        "lastName": "Cognome",
+        "lastNamePlaceholder": "Il tuo cognome",
+        "errors": {
+          "generic": "Impossibile salvare il profilo. Riprova."
+        },
+        "avatarPreview": "Il tuo avatar",
+        "avatarHint": "Il tuo avatar nasce dal tuo nome. Prova a scriverlo."
+      },
+      "step2": {
+        "stepLabel": "Unisciti a una casa",
+        "title": "Unisciti a una casa",
+        "subtitle": "Inserisci il codice a 6 cifre del tuo invito per unirti a una casa esistente, oppure salta per continuare.",
+        "skip": "Salta per ora",
+        "skipHint": "Puoi unirti o creare una casa in seguito dalla dashboard."
+      }
+    },
+    "invite": {
+      "digitLabel": "Cifra {n} di 6",
+      "srProgress": "Inserisci tutte le 6 cifre per completare il codice invito",
+      "errors": {
+        "invalidCode": "Codice non valido o scaduto. Controlla e riprova.",
+        "codeLocked": "Troppi tentativi falliti. Riprova tra 15 minuti.",
+        "codeUsed": "Questo codice invito è già stato utilizzato.",
+        "codeExpired": "Questo codice invito è scaduto.",
+        "alreadyMember": "Sei già membro di questa casa.",
+        "generic": "Impossibile usare quel codice invito. Verifica il codice con chi te l'ha inviato, poi riprova."
+      }
+    }
+  },
+  "emails": {
+    "memberInvite": {
+      "subject": "Sei stato invitato a unirti a {houseName}",
+      "title": "Invito alla casa",
+      "body": "{inviterName} ti ha invitato a unirti a {houseName}.",
+      "optionLink": "Opzione 1 — Clicca il link",
+      "optionCode": "Opzione 2 — Inserisci il codice manualmente",
+      "codeExpiry": "Questo codice scade il {date}.",
+      "joinNow": "Unisciti ora",
+      "ignoreMessage": "Se non ti aspettavi questo invito, puoi ignorare questa email."
+    }
+  },
+  "legal": {
+    "incompleteNotice": {
+      "title": "Bozza in attesa di revisione legale",
+      "body": "Questo documento è una bozza in attesa di revisione legale. I dati aziendali indicati come TODO sono segnaposto, non dati reali."
+    },
+    "storage": {
+      "firstParty": "Prima parte",
+      "purpose": {
+        "accessToken": "Mantiene la tua sessione autenticata (token di autenticazione, non leggibile dagli script).",
+        "refreshToken": "Rinnova la sessione senza richiederti di nuovo la password.",
+        "oauthState": "Controllo di sicurezza durante l'accesso con Google (previene richieste contraffatte).",
+        "authRedirect": "Ricorda la pagina che volevi aprire per riportarti lì dopo l'accesso.",
+        "locale": "Ricorda la lingua scelta con il selettore della lingua. Viene impostato solo quando scegli una lingua, mai in automatico.",
+        "colorMode": "Ricorda la scelta del tema chiaro o scuro."
+      },
+      "duration": {
+        "minutes15": "15 minuti",
+        "minutes10": "10 minuti",
+        "sessionOr7Days": "Sessione del browser, oppure 7 giorni se scegli \"ricordami\"",
+        "tab": "Fino alla chiusura della scheda (rimosso dopo l'uso)",
+        "days365": "365 giorni",
+        "untilCleared": "Finché non cancelli i dati del sito"
+      },
+      "category": {
+        "necessary": "Necessario",
+        "preferences": "Preferenze"
+      },
+      "kind": {
+        "cookie": "Cookie",
+        "localStorage": "Local storage",
+        "sessionStorage": "Session storage"
+      }
+    },
+    "toc": {
+      "title": "In questa pagina"
+    },
+    "nav": {
+      "label": "Documenti legali"
+    },
+    "imprint": {
+      "title": "Dati del fornitore",
+      "vat": "P.IVA",
+      "rea": "REA",
+      "pec": "PEC",
+      "contact": "Contatti",
+      "mailFallback": "tramite le impostazioni privacy dell'app"
+    }
+  },
+  "landing": {
+    "nav": {
+      "features": "Funzionalità",
+      "howItWorks": "Come funziona",
+      "pricing": "Prezzi",
+      "tagline": "La convivenza semplificata",
+      "goToDashboard": "Vai alla dashboard",
+      "profile": "Profilo",
+      "logIn": "Accedi",
+      "signUpFree": "Registrati gratis",
+      "sectionsLabel": "Sezioni della pagina"
+    },
+    "footer": {
+      "tagline": "Rendiamo la convivenza semplice, trasparente ed equa per tutti.",
+      "product": "Prodotto",
+      "features": "Funzionalità",
+      "howItWorks": "Come funziona",
+      "pricing": "Prezzi",
+      "faq": "FAQ",
+      "github": "GitHub",
+      "legal": "Note legali",
+      "privacyPolicy": "Informativa sulla privacy",
+      "termsOfService": "Termini di Servizio",
+      "connect": "Contatti",
+      "a11y": {
+        "productLinks": "Link prodotto",
+        "legalLinks": "Link note legali",
+        "connectLinks": "Link contatti"
+      },
+      "cookiePolicy": "Cookie Policy",
+      "accessibility": "Accessibilità"
+    },
+    "hero": {
+      "headline": "Sai sempre quanto devi.",
+      "headlineAccent": "Nessuno deve rincorrere nessuno.",
+      "subtitle": "House M8 tiene aggiornati spese, bollette e saldi per tutti in casa. Aggiungi una spesa una volta sola: divisione, promemoria e chi paga chi sono già pronti.",
+      "ctaAuthenticated": "Apri la dashboard",
+      "ctaGuest": "Inizia gratis",
+      "ctaSecondary": "Scopri le funzionalità",
+      "ledger": {
+        "label": "Il tuo saldo",
+        "owe": "Devi 47,00 € a Marco",
+        "oweDue": "entro venerdì",
+        "settle": "Rimborsa",
+        "owed": "Sarah ti deve 82,50 €",
+        "owedNote": "spesa e internet",
+        "bill": "Luce · 64,00 €",
+        "billDue": "scade il 28 ott, divisa in 4"
+      }
+    },
+    "features": {
+      "title": "Tutto ciò che serve per gestire la convivenza",
+      "subtitle": "Pensato per coinquilini, partner e amici che vivono insieme.",
+      "problem": {
+        "title": "Condividere casa non dovrebbe essere così complicato",
+        "intro": "Prima di House M8, gestire le finanze condivise significava fogli di calcolo, passivo-aggressività e una chat di gruppo che nessuno osava riscorrere.",
+        "maths": {
+          "title": "I conti non tornano mai",
+          "description": "Ognuno ha pagato una cifra diversa e nessuno concorda sul totale."
+        },
+        "groupChat": {
+          "title": "La chat di gruppo non è lo strumento giusto",
+          "description": "Scontrini sepolti tra i meme. Debiti dimenticati. Imbarazzo garantito."
+        },
+        "latePayments": {
+          "title": "I pagamenti in ritardo rovinano le amicizie",
+          "description": "Un pagamento rimandato diventa un mese di tensione."
+        },
+        "cta": "C'è un modo migliore. Ecco come House M8 gestisce ognuno di questi casi."
+      },
+      "cards": {
+        "smartSplitting": {
+          "title": "Divisione intelligente",
+          "description": "Dividi le bollette per percentuale, importi esatti o quote. Che qualcuno abbia la stanza più grande o mangi meno pizza, i calcoli sono immediati."
+        },
+        "realTimeBalances": {
+          "title": "Saldi in tempo reale",
+          "description": "Basta scorrere le chat di gruppo. Vedi subito chi deve cosa con una dashboard che si aggiorna appena viene aggiunta una spesa."
+        },
+        "recurringBills": {
+          "title": "Bollette ricorrenti",
+          "description": "Metti affitto, internet e utenze in automatico. Ricordiamo a tutti la scadenza e le aggiungiamo al registro."
+        },
+        "bulletinBoard": {
+          "title": "Bacheca",
+          "description": "Tieni avvisi di casa, turni delle pulizie e password del wifi in un unico posto. Basta post-it sul frigo."
+        }
+      },
+      "issues": {
+        "reporting": {
+          "title": "Segnalazione problemi",
+          "description": "Segnala problemi domestici come perdite, guasti elettrici o elettrodomestici rotti. Allega foto e seguine la risoluzione."
+        },
+        "maintenance": {
+          "title": "Gestione manutenzioni",
+          "description": "Invia richieste di riparazione con descrizioni e foto. Monitora i problemi aperti e scopri quando vengono risolti."
+        },
+        "resolution": {
+          "title": "Flusso di risoluzione",
+          "description": "I problemi restano aperti finché non sono risolti esplicitamente. Proprietari e coinquilini vedono le stesse informazioni."
+        }
+      },
+      "ownerContact": {
+        "title": "Contatto diretto col proprietario",
+        "description": "Segnala manutenzioni, problemi di fatturazione o dubbi contrattuali direttamente al proprietario. Comunicazione semplice per risolvere prima."
+      }
+    },
+    "seo": {
+      "title": "House M8 - Gestisci le spese della casa condivisa",
+      "description": "Traccia le spese, dividi le bollette all'istante e gestisci ogni attività della casa condivisa in un unico posto."
+    },
+    "cta": {
+      "title": "Pronto a semplificare la vita da coinquilini?",
+      "subtitle": "Basta litigare per i soldi. Traccia ogni spesa, dividi le bollette in modo equo e vedi i saldi in tempo reale — tutto in un unico posto pensato per la convivenza.",
+      "ctaAuthenticated": "Vai alla tua dashboard",
+      "ctaGuest": "Crea oggi la tua casa gratis"
+    },
+    "howItWorks": {
+      "title": "Come funziona",
+      "subtitle": "Metti in piedi la tua casa in pochi minuti. Nessuna configurazione complessa.",
+      "steps": {
+        "createHouse": {
+          "title": "Crea una casa",
+          "description": "Registrati e dai un nome alla tua casa. È la tua nuova base digitale."
+        },
+        "inviteRoommates": {
+          "title": "Invita i coinquilini",
+          "description": "Manda un semplice link ai tuoi coinquilini. Si uniscono e siete tutti collegati."
+        },
+        "addExpenses": {
+          "title": "Aggiungi le spese",
+          "description": "Scatta una foto allo scontrino o inserisci una spesa. Ai calcoli pensiamo noi."
+        },
+        "settleUp": {
+          "title": "Rimborsa",
+          "description": "Registra il rimborso quando restituisci i soldi. I saldi si aggiornano subito per tutti."
+        }
+      }
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": {
+        "free": {
+          "question": "House M8 è davvero gratuito?",
+          "answer": "Sì. Le funzionalità principali sono gratuite per sempre, senza carta di credito. Crea una casa, invita i coinquilini e inizia subito a dividere le spese senza costi."
+        },
+        "invite": {
+          "question": "Come invito i miei coinquilini?",
+          "answer": "Crea la tua casa, vai su Impostazioni → Membri e condividi il link di invito. I tuoi coinquilini cliccano il link ed entrano — nessuna registrazione lunga."
+        },
+        "currencies": {
+          "question": "Quali valute sono supportate?",
+          "answer": "Sono supportati euro e dollaro. Ogni spesa può essere registrata in entrambe le valute e i saldi vengono mostrati automaticamente nella valuta preferita."
+        },
+        "solo": {
+          "question": "Posso usarlo senza che i miei coinquilini si registrino?",
+          "answer": "Sì. Puoi tracciare le spese da solo e invitare gli altri quando vuoi. I membri in attesa appaiono come segnaposto finché non accettano l'invito."
+        },
+        "security": {
+          "question": "I miei dati sono al sicuro?",
+          "answer": "Sì. Tutti i dati sono cifrati in transito e a riposo. Usiamo autenticazione JWT e non condividiamo mai i tuoi dati con terze parti. Le tue informazioni finanziarie restano private."
+        },
+        "multipleHouses": {
+          "question": "Posso gestire più case?",
+          "answer": "Sì. Il piano Pro supporta fino a 3 case da un solo account. Il piano House+ rimuove del tutto questo limite. Passa da una casa all'altra istantaneamente dalla dashboard, con i dati sempre separati."
+        }
+      }
+    },
+    "pricing": {
+      "title": "Prezzi semplici e trasparenti",
+      "subtitle": "Inizia gratis. Passa a un piano superiore quando la tua casa è pronta.",
+      "free": {
+        "badge": "Gratis per sempre",
+        "period": "al mese",
+        "cta": "Inizia gratis",
+        "features": {
+          "house": "1 casa",
+          "splitting": "Divisione delle spese",
+          "balances": "Saldi in tempo reale",
+          "bulletin": "Bacheca",
+          "history": "3 mesi di storico spese"
+        }
+      },
+      "pro": {
+        "badge": "Consigliato",
+        "period": "al mese",
+        "cta": "Inizia con Pro",
+        "features": {
+          "everythingFree": "Tutto quello incluso in Free",
+          "houses": "Fino a 3 case",
+          "fullHistory": "Storico spese completo",
+          "issues": "Segnalazione problemi con foto",
+          "reminders": "Promemoria bollette"
+        },
+        "seePrices": "Vedi i prezzi attuali"
+      }
+    }
+  },
+  "cookiePolicy": {
+    "title": "Cookie Policy",
+    "lastUpdated": "Ultimo aggiornamento: {date}",
+    "whatTitle": "Che cosa sono i cookie?",
+    "whatBody": "I cookie sono piccoli file di testo che un sito salva sul tuo dispositivo. Tecnologie simili, come local storage e session storage, funzionano allo stesso modo. Questa informativa riguarda entrambi e li indica insieme come \"cookie\".",
+    "usedTitle": "Cookie utilizzati da House M8",
+    "usedIntro": "House M8 utilizza esclusivamente cookie tecnici e archiviazione di preferenze, tutti installati da House M8 stesso (prima parte). Non utilizziamo cookie di analisi, pubblicitari o di profilazione e non carichiamo tracker di terze parti.",
+    "table": {
+      "caption": "Cookie e archiviazione del browser utilizzati da House M8",
+      "name": "Nome",
+      "provider": "Fornitore",
+      "type": "Tipo",
+      "category": "Categoria",
+      "purpose": "Finalità",
+      "duration": "Durata"
+    },
+    "noConsentTitle": "Perché non c'è un banner cookie",
+    "noConsentBody": "I cookie tecnici e le preferenze che scegli tu stesso (lingua, tema) non richiedono il tuo consenso preventivo. Lo prevedono l'art. 122 del Codice Privacy (D.Lgs. 196/2003) e le Linee guida cookie del Garante per la protezione dei dati personali del 10 giugno 2021. Se in futuro introdurremo cookie che richiedono consenso, lo chiederemo prima e aggiorneremo questa pagina.",
+    "thirdPartyTitle": "Servizi di terze parti",
+    "thirdPartyBody": "Se accedi con Google, vieni reindirizzato al sito di Google. Questo servizio può installare cookie propri sul proprio dominio, secondo la propria informativa; House M8 non lo controlla.",
+    "manageTitle": "Come eliminare o bloccare i cookie",
+    "manageBody": "Puoi eliminare o bloccare i cookie dalle impostazioni del browser. Bloccare i cookie necessari ti impedirà di accedere. Istruzioni ufficiali:",
+    "browsers": {
+      "chrome": "Google Chrome",
+      "firefox": "Mozilla Firefox",
+      "safari": "Apple Safari",
+      "edge": "Microsoft Edge"
+    },
+    "clearTitle": "Reimpostare le preferenze",
+    "clearBody": "Le tue scelte di lingua e tema sono salvate solo nel tuo browser, e la lingua solo dopo che ne hai scelta una. Eliminando i dati del sito House M8 dal browser vengono rimosse e tornano i valori predefiniti.",
+    "contactTitle": "Contatti",
+    "contactBody": "Per domande su questa informativa {email}. Vedi anche la {privacyLink}.",
+    "contactLead": "scrivi a",
+    "contactFallback": "usa le impostazioni privacy dell'app",
+    "privacyLinkText": "Informativa sulla privacy",
+    "localeNote": "Il cookie della lingua (i18n_locale) viene impostato solo quando scegli una lingua con il selettore della lingua. Fino ad allora non viene impostato alcun cookie per la lingua."
+  },
+  "pendingDeletion": {
+    "title": "Il tuo account è in attesa di eliminazione",
+    "daysLeft": "L'eliminazione avviene oggi | Manca 1 giorno, fino al {date} | Mancano {n} giorni, fino al {date}",
+    "scheduledPast": "Il tuo account è in attesa di eliminazione e verrà rimosso a breve.",
+    "scheduledSoon": "Il tuo account e i tuoi dati personali saranno eliminati definitivamente {days} giorni dopo la richiesta. Fino ad allora puoi ancora cambiare idea.",
+    "requestedOn": "Hai chiesto di eliminare il tuo account il {date}.",
+    "whatHappens": "Cosa succede nel frattempo",
+    "points": {
+      "hidden": "Non sei più visibile ai tuoi coinquilini e non puoi usare l'app.",
+      "subscription": "L'eventuale abbonamento a pagamento non si rinnova alla fine del periodo in corso.",
+      "erased": "Alla data di eliminazione i tuoi dati personali vengono cancellati o resi anonimi. I dati condivisi, come le spese, conservano solo un segnaposto anonimo.",
+      "balances": "I saldi aperti restano invariati fino al {date}, poi la tua quota viene resa anonima per i tuoi coinquilini.",
+      "balancesNoDate": "I saldi aperti restano invariati fino alla data di eliminazione, poi la tua quota viene resa anonima per i tuoi coinquilini."
+    },
+    "balances": {
+      "title": "I tuoi saldi",
+      "loading": "Caricamento dei tuoi saldi",
+      "none": "Non hai saldi aperti con i coinquilini.",
+      "someone": "Un coinquilino",
+      "owesYou": "{name} ti deve {amount}",
+      "youOwe": "Devi {amount} a {name}"
+    },
+    "actions": {
+      "cancel": "Mantieni il mio account",
+      "export": "Scarica i miei dati",
+      "signOut": "Esci"
+    },
+    "exported": "I tuoi dati sono stati scaricati come {filename}",
+    "errors": {
+      "cancel": "Non siamo riusciti a raggiungere House M8, quindi il tuo account è ancora in attesa di eliminazione. Controlla la connessione e riprova, oppure ricarica la pagina.",
+      "export": "Non siamo riusciti a raggiungere House M8, quindi i tuoi dati non sono stati preparati. Controlla la connessione e riprova, oppure ricarica la pagina.",
+      "signOut": "Non siamo riusciti a raggiungere House M8, quindi la tua sessione è ancora attiva. Controlla la connessione e riprova, oppure ricarica la pagina."
+    },
+    "restored": {
+      "title": "Ci sei di nuovo. Il tuo account è attivo.",
+      "houses": "{names} è di nuovo attiva. | {names} sono di nuovo attive.",
+      "housesFallback": "Le tue case sono di nuovo attive.",
+      "subscriptionResumed": "Il tuo abbonamento è stato ripreso.",
+      "subscriptionFailed": "Non siamo riusciti a riprendere il tuo abbonamento. Puoi sottoscriverlo di nuovo da {link}.",
+      "subscriptionLink": "Impostazioni > Abbonamento",
+      "continue": "Vai alla dashboard"
+    }
+  },
+  "categories": {
+    "groceries": "Alimentari",
+    "rent": "Affitto",
+    "utilities": "Utenze",
+    "subscriptions": "Abbonamenti",
+    "transport": "Trasporti",
+    "dining": "Ristoranti",
+    "household": "Casa",
+    "health": "Salute",
+    "entertainment": "Svago",
+    "travel": "Viaggi",
+    "gifts": "Regali",
+    "other": "Altro"
+  }
+}

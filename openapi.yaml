@@ -1,0 +1,2616 @@
+openapi: 3.0.3
+info:
+  title: House M8 API
+  description: |
+    House M8 is a flatmate management application that helps roommates manage shared expenses, bills, and house information.
+
+    ## Authentication
+    The API uses JWT tokens stored in HTTP-only cookies:
+    - `house_m8_access_token` — short-lived access token (15 minutes)
+    - `house_m8_refresh_token` — long-lived refresh token (7 days)
+
+    ## Authorization
+    Most endpoints require authentication. Endpoints marked with `security: []` are public.
+    House-scoped operations additionally verify membership or ownership.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: Authentication
+    description: Sign in, register, OAuth, password reset
+  - name: Users
+    description: User profile and pictures
+  - name: Houses
+    description: House management and membership
+  - name: Invitations
+    description: House invitation links
+  - name: Balance
+    description: House financial balance overview
+  - name: Expenses
+    description: Shared expenses and settlement
+  - name: Bills
+    description: Recurring bills and documents
+  - name: Reports
+    description: Maintenance reports and issues
+  - name: Bulletin Notes
+    description: House bulletin board notes
+  - name: Feature Flags
+    description: Runtime feature flag values
+  - name: Stripe
+    description: Subscription billing via Stripe
+  - name: Cron
+    description: Internal scheduled jobs (x-cron-secret auth)
+  - name: GDPR
+    description: Data export and account deletion (30-day grace period)
+
+paths:
+  # ─── AUTHENTICATION ──────────────────────────────────────────────────────────
+
+  /api/auth/signin:
+    post:
+      tags: [Authentication]
+      summary: Sign in with email and password
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                rememberMe:
+                  type: boolean
+      responses:
+        '200':
+          description: Signed in — auth cookies set
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register a new account
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, firstName, lastName]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '200':
+          description: Account created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  access_token:
+                    type: string
+                  refresh_token:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/auth/confirm:
+    post:
+      tags: [Authentication]
+      summary: Confirm OAuth session (exchange provider tokens for app session)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [access_token, refresh_token]
+              properties:
+                access_token:
+                  type: string
+                refresh_token:
+                  type: string
+                expires_in:
+                  type: integer
+                token_type:
+                  type: string
+                scope:
+                  type: string
+                provider:
+                  type: string
+      responses:
+        '200':
+          description: Session confirmed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
+
+  /api/auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token using the refresh cookie
+      security: []
+      responses:
+        '200':
+          description: Token refreshed — new access cookie set
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/signout:
+    post:
+      tags: [Authentication]
+      summary: Sign out and clear auth cookies
+      responses:
+        '200':
+          description: Signed out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/auth/password-reset/request:
+    post:
+      tags: [Authentication]
+      summary: Request a password-reset email
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Reset email sent (always 200 to avoid email enumeration)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+  /api/auth/password-reset/confirm:
+    post:
+      tags: [Authentication]
+      summary: Set a new password using the reset token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token, newPassword]
+              properties:
+                token:
+                  type: string
+                newPassword:
+                  type: string
+                  minLength: 6
+      responses:
+        '200':
+          description: Password updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/auth/google:
+    get:
+      tags: [Authentication]
+      summary: Redirect to Google OAuth authorization page
+      security: []
+      responses:
+        '302':
+          description: Redirect to Google
+
+  /api/auth/google/callback:
+    get:
+      tags: [Authentication]
+      summary: Google OAuth callback — exchanges authorization code for session
+      security: []
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: error
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to /?oauth_completed=true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/auth/oauth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh a third-party provider OAuth access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [provider, userId]
+              properties:
+                provider:
+                  type: string
+                  example: google
+                userId:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  access_token:
+                    type: string
+                  expires_in:
+                    type: integer
+                  token_type:
+                    type: string
+
+  # ─── USERS ───────────────────────────────────────────────────────────────────
+
+  /api/users/me:
+    get:
+      tags: [Users]
+      summary: Get authenticated user profile
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      tags: [Users]
+      summary: Update authenticated user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                avatar_url:
+                  type: string
+                birthdate:
+                  type: string
+                  format: date
+                bio:
+                  type: string
+                is_smoker:
+                  type: boolean
+                gender:
+                  type: string
+                birthplace:
+                  type: string
+                nationality:
+                  type: string
+                occupation_type:
+                  type: string
+                study_field:
+                  type: string
+                job_title:
+                  type: string
+                languages:
+                  type: array
+                  items:
+                    type: string
+                pets:
+                  type: array
+                  items:
+                    type: string
+                telephone:
+                  type: string
+                instagram:
+                  type: string
+                twitter:
+                  type: string
+                tiktok:
+                  type: string
+                linkedin:
+                  type: string
+      responses:
+        '200':
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/users/me/pictures:
+    post:
+      tags: [Users]
+      summary: Upload a profile picture (JPEG/PNG/WebP, max 5 MB)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [picture]
+              properties:
+                picture:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Picture uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      pictureUrl:
+                        type: string
+                      user:
+                        $ref: '#/components/schemas/User'
+
+  /api/users/me/pictures/{index}:
+    delete:
+      tags: [Users]
+      summary: Delete a profile picture by index
+      parameters:
+        - name: index
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        '200':
+          description: Picture deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
+                      deletedPictureUrl:
+                        type: string
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/users/{id}:
+    get:
+      tags: [Users]
+      summary: Get a user by ID (must share a house)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ─── HOUSES ──────────────────────────────────────────────────────────────────
+
+  /api/houses:
+    get:
+      tags: [Houses]
+      summary: Get current house for authenticated user
+      parameters:
+        - name: current
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['true']
+          description: Pass "true" to return only the current active house
+      responses:
+        '200':
+          description: House data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/House'
+                    nullable: true
+    post:
+      tags: [Houses]
+      summary: Create a new house
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  example: My Apartment
+                address:
+                  type: string
+                  example: 123 Main St
+                currency:
+                  type: string
+                  enum: [USD, EUR, GBP]
+                  default: EUR
+      responses:
+        '200':
+          description: House created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/House'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/houses/{id}:
+    get:
+      tags: [Houses]
+      summary: Get a house by ID
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      responses:
+        '200':
+          description: House details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/House'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Houses]
+      summary: Update house details (owner only)
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: string
+                currency:
+                  type: string
+                  enum: [USD, EUR, GBP]
+      responses:
+        '200':
+          description: Updated house
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/House'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/houses/{id}/members:
+    get:
+      tags: [Houses]
+      summary: List house members
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      responses:
+        '200':
+          description: Members list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HouseMember'
+    post:
+      tags: [Houses]
+      summary: Add a member by email (members only)
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Member added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/HouseMember'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/houses/{id}/members/{user_id}:
+    delete:
+      tags: [Houses]
+      summary: Remove a member from a house (owner only)
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Member removed
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/houses/{id}/leave:
+    post:
+      tags: [Houses]
+      summary: Leave a house
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      responses:
+        '200':
+          description: Left house
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/houses/{id}/invitation/generate:
+    post:
+      tags: [Houses]
+      summary: Generate an invitation link (owner only)
+      parameters:
+        - $ref: '#/components/parameters/HouseId'
+      responses:
+        '200':
+          description: Invitation token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                      expires_at:
+                        type: string
+                        format: date-time
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # ─── INVITATIONS ─────────────────────────────────────────────────────────────
+
+  /api/feature-flags:
+    get:
+      tags: [Feature Flags]
+      summary: Get all runtime feature flag values
+      security: []
+      responses:
+        '200':
+          description: Feature flags map
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: boolean
+
+  /api/invitation/{token}:
+    get:
+      tags: [Invitations]
+      summary: Get invitation details by token
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invitation info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      house:
+                        $ref: '#/components/schemas/House'
+                      invitation:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                          expires_at:
+                            type: string
+                            format: date-time
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/invitation/{token}/preview:
+    get:
+      tags: [Invitations]
+      summary: Preview invitation details without authenticating
+      security: []
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: House preview
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      house_name:
+                        type: string
+                      member_count:
+                        type: integer
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/invitation/{token}/accept:
+    post:
+      tags: [Invitations]
+      summary: Accept an invitation and join the house
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invitation accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      house_id:
+                        type: string
+                        format: uuid
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ─── BALANCE ─────────────────────────────────────────────────────────────────
+
+  /api/balance/{house_id}:
+    get:
+      tags: [Balance]
+      summary: Get house balance overview (members only)
+      parameters:
+        - name: house_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: House balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/HouseBalance'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # ─── EXPENSES ────────────────────────────────────────────────────────────────
+
+  /api/expenses:
+    get:
+      tags: [Expenses]
+      summary: List expenses for a house (paginated)
+      parameters:
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, settled]
+      responses:
+        '200':
+          description: Expenses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Expense'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      tags: [Expenses]
+      summary: Create a shared expense
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [house_id, description, total_amount, user_ids]
+              properties:
+                house_id:
+                  type: string
+                  format: uuid
+                description:
+                  type: string
+                total_amount:
+                  type: number
+                  format: float
+                  minimum: 0.01
+                currency:
+                  type: string
+                due_date:
+                  # DATE column; a full date-time is also accepted on input.
+                  type: string
+                  format: date
+                recurring:
+                  type: boolean
+                  default: false
+                recurring_period:
+                  type: string
+                  enum: [weekly, monthly, yearly]
+                categories:
+                  type: array
+                  maxItems: 3
+                  uniqueItems: true
+                  items:
+                    type: string
+                    enum:
+                      [
+                        groceries,
+                        rent,
+                        utilities,
+                        subscriptions,
+                        transport,
+                        dining,
+                        household,
+                        health,
+                        entertainment,
+                        travel,
+                        gifts,
+                        other,
+                      ]
+                payer_id:
+                  type: string
+                  format: uuid
+                  description: Member who paid (stored as created_by); defaults to the caller. 400 if not a house member.
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                  minItems: 1
+                  description: User IDs to split with
+      responses:
+        '200':
+          description: Expense created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Expense'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/expenses/monthly-report:
+    get:
+      tags: [Expenses]
+      summary: Download monthly expense report as PDF (pro plan required)
+      parameters:
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 2020
+            maximum: 2100
+        - name: month
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 12
+      responses:
+        '200':
+          description: PDF report
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/expenses/summary:
+    get:
+      tags: [Expenses]
+      summary: Get expense summary for current user in a house
+      parameters:
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      total_owed:
+                        type: number
+                      total_paid:
+                        type: number
+                      outstanding_balance:
+                        type: number
+
+  /api/expenses/{id}:
+    get:
+      tags: [Expenses]
+      summary: Get an expense by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Expense details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Expense'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags: [Expenses]
+      summary: Delete an expense (creator only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Expense deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/expenses/shares/{id}/pay:
+    post:
+      tags: [Expenses]
+      summary: Mark an expense share as paid
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Expense share ID
+      responses:
+        '200':
+          description: Share marked as paid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                      share:
+                        $ref: '#/components/schemas/ExpenseShare'
+
+  /api/expenses/shares/{id}/unpay:
+    post:
+      tags: [Expenses]
+      summary: Mark an expense share as unpaid
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Expense share ID
+      responses:
+        '200':
+          description: Share marked as unpaid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                      share:
+                        $ref: '#/components/schemas/ExpenseShare'
+
+  # ─── BILLS ───────────────────────────────────────────────────────────────────
+
+  /api/bills:
+    get:
+      tags: [Bills]
+      summary: List bills for a house
+      parameters:
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Bills
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Bill'
+    post:
+      tags: [Bills]
+      summary: Create a bill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [house_id, description, monthly_cost, next_due_date]
+              properties:
+                house_id:
+                  type: string
+                  format: uuid
+                description:
+                  type: string
+                monthly_cost:
+                  type: number
+                  format: float
+                  minimum: 0.01
+                payment_period:
+                  type: integer
+                  description: Payment interval in months
+                next_due_date:
+                  type: string
+                  format: date
+                categories:
+                  type: array
+                  maxItems: 3
+                  uniqueItems: true
+                  items:
+                    type: string
+                    enum:
+                      [
+                        groceries,
+                        rent,
+                        utilities,
+                        subscriptions,
+                        transport,
+                        dining,
+                        household,
+                        health,
+                        entertainment,
+                        travel,
+                        gifts,
+                        other,
+                      ]
+      responses:
+        '200':
+          description: Bill created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Bill'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/bills/{id}/advance:
+    post:
+      tags: [Bills]
+      summary: Advance a bill's due date to the next period (creator only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Bill advanced
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Bill'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/bills/{id}:
+    get:
+      tags: [Bills]
+      summary: Get a bill with its documents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Bill details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Bill'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Bills]
+      summary: Update a bill
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                monthly_cost:
+                  type: number
+                  format: float
+                payment_period:
+                  type: integer
+                next_due_date:
+                  type: string
+                  format: date
+                active:
+                  type: boolean
+                categories:
+                  type: array
+                  maxItems: 3
+                  uniqueItems: true
+                  items:
+                    type: string
+                    enum:
+                      [
+                        groceries,
+                        rent,
+                        utilities,
+                        subscriptions,
+                        transport,
+                        dining,
+                        household,
+                        health,
+                        entertainment,
+                        travel,
+                        gifts,
+                        other,
+                      ]
+      responses:
+        '200':
+          description: Updated bill
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Bill'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      tags: [Bills]
+      summary: Delete a bill (creator only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Bill deleted
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # ─── REPORTS ─────────────────────────────────────────────────────────────────
+
+  /api/reports:
+    post:
+      tags: [Reports]
+      summary: Create a maintenance report (non-owner members only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [house_id, description]
+              properties:
+                house_id:
+                  type: string
+                  format: uuid
+                description:
+                  type: string
+                  minLength: 10
+      responses:
+        '200':
+          description: Report created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Report'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/reports/user:
+    get:
+      tags: [Reports]
+      summary: List reports created by authenticated user
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [not_read, read, solved]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: User reports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Report'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+  /api/reports/owner:
+    get:
+      tags: [Reports]
+      summary: List reports for houses owned by authenticated user
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [not_read, read, solved]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: Owner reports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Report'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+  /api/reports/{id}:
+    get:
+      tags: [Reports]
+      summary: Get a report by ID (creator or house owner)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Report details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Report'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags: [Reports]
+      summary: Delete a report (creator only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Report deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/reports/{id}/images:
+    post:
+      tags: [Reports]
+      summary: Upload images to a report (creator only, max 10 × 5 MB)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [images]
+              properties:
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  maxItems: 10
+                  description: JPEG, PNG or WebP — max 5 MB each
+      responses:
+        '200':
+          description: Images uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReportImage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/reports/{id}/read:
+    patch:
+      tags: [Reports]
+      summary: Mark a report as read (house owner only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Report marked as read
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Report'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/reports/{id}/solved:
+    patch:
+      tags: [Reports]
+      summary: Mark a report as solved (house owner only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Report marked as solved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Report'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # ─── BULLETIN NOTES ──────────────────────────────────────────────────────────
+
+  /api/bulletin-notes:
+    get:
+      tags: [Bulletin Notes]
+      summary: List bulletin notes for a house
+      parameters:
+        - name: house_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Bulletin notes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BulletinNote'
+    post:
+      tags: [Bulletin Notes]
+      summary: Create a bulletin note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [house_id, message]
+              properties:
+                house_id:
+                  type: string
+                  format: uuid
+                message:
+                  type: string
+                  maxLength: 1000
+                dismiss_date:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Note created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulletinNote'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/bulletin-notes/{id}:
+    delete:
+      tags: [Bulletin Notes]
+      summary: Delete a bulletin note (creator only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Note deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/bulletin-notes/cleanup:
+    post:
+      tags: [Bulletin Notes]
+      summary: Remove all expired bulletin notes
+      responses:
+        '200':
+          description: Cleanup completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+  # ─── STRIPE ──────────────────────────────────────────────────────────────────
+
+  /api/stripe/subscription:
+    get:
+      tags: [Stripe]
+      summary: Get current user's subscription status
+      responses:
+        '200':
+          description: Subscription
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/stripe/checkout:
+    post:
+      tags: [Stripe]
+      summary: Create a Stripe Checkout session for a subscription plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [price_key]
+              properties:
+                price_key:
+                  type: string
+                  enum:
+                    [
+                      pro_monthly,
+                      pro_annual,
+                      house_plus_monthly,
+                      house_plus_annual,
+                    ]
+      responses:
+        '200':
+          description: Checkout URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/stripe/portal:
+    post:
+      tags: [Stripe]
+      summary: Create a Stripe Billing Portal session
+      responses:
+        '200':
+          description: Portal URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/stripe/webhook:
+    post:
+      tags: [Stripe]
+      summary: Stripe webhook receiver (Stripe-Signature header required)
+      security: []
+      parameters:
+        - name: stripe-signature
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Webhook received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  received:
+                    type: boolean
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  # ─── CRON ────────────────────────────────────────────────────────────────────
+
+  /api/cron/bills-reminder:
+    get:
+      tags: [Cron]
+      summary: Send bill payment reminder emails (x-cron-secret required)
+      security: []
+      parameters:
+        - name: x-cron-secret
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reminders sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  processed:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/cron/monthly-reports:
+    get:
+      tags: [Cron]
+      summary: Generate monthly expense reports for all active houses (x-cron-secret required)
+      security: []
+      parameters:
+        - name: x-cron-secret
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Report generation summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  period:
+                    type: string
+                    example: '2025-4'
+                  generated:
+                    type: integer
+                  failed:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ─── GDPR ────────────────────────────────────────────────────────────────────
+
+  /api/gdpr/export:
+    get:
+      tags: [GDPR]
+      summary: Download all personal data as a JSON file
+      description: Allowed while the account is pending deletion.
+      responses:
+        '200':
+          description: JSON attachment (`house-m8-export-<YYYY-MM-DD>.json`)
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          description: Too many export requests
+
+  /api/gdpr/delete-account:
+    post:
+      tags: [GDPR]
+      summary: Request account deletion (30-day grace period)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [confirm]
+              properties:
+                confirm:
+                  type: boolean
+                  enum: [true]
+      responses:
+        '200':
+          description: Deletion scheduled; a cancel link is emailed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  scheduled_for:
+                    type: string
+                    format: date-time
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Owner must transfer houses with other members first
+
+  /api/gdpr/cancel-delete:
+    post:
+      tags: [GDPR]
+      summary: Cancel a pending deletion
+      description: The emailed link sends `token`; the in-app button sends none. Allowed while pending.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Deletion cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      restored_house_ids:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                      subscription_restored:
+                        type: boolean
+                        nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/gdpr/pending-summary:
+    get:
+      tags: [GDPR]
+      summary: Per-house balances shown while deletion is pending
+      description: >
+        One entry per non-archived house of the caller. Housemates carry only
+        id, name and avatar (never email). `net_cents` is from the caller's
+        point of view: >0 the housemate owes the caller, <0 the caller owes.
+        Allowed while pending.
+      responses:
+        '200':
+          description: Pending summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      houses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            name:
+                              type: string
+                            currency:
+                              type: string
+                            counterparts:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  user:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      first_name:
+                                        type: string
+                                      last_name:
+                                        type: string
+                                      avatar_url:
+                                        type: string
+                                        nullable: true
+                                  net_cents:
+                                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: Could not load balances
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: house_m8_access_token
+
+  parameters:
+    HouseId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: House UUID
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        avatar_url:
+          type: string
+          nullable: true
+        birthdate:
+          type: string
+          format: date
+          nullable: true
+        bio:
+          type: string
+          nullable: true
+        is_smoker:
+          type: boolean
+          nullable: true
+        gender:
+          type: string
+          nullable: true
+        birthplace:
+          type: string
+          nullable: true
+        nationality:
+          type: string
+          nullable: true
+        occupation_type:
+          type: string
+          nullable: true
+        study_field:
+          type: string
+          nullable: true
+        job_title:
+          type: string
+          nullable: true
+        languages:
+          type: array
+          items:
+            type: string
+          nullable: true
+        pets:
+          type: array
+          items:
+            type: string
+          nullable: true
+        telephone:
+          type: string
+          nullable: true
+        instagram:
+          type: string
+          nullable: true
+        twitter:
+          type: string
+          nullable: true
+        tiktok:
+          type: string
+          nullable: true
+        linkedin:
+          type: string
+          nullable: true
+        profile_pictures:
+          type: array
+          items:
+            type: string
+            format: uri
+          nullable: true
+        is_first_access:
+          type: boolean
+        preferred_currency:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+
+    House:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        address:
+          type: string
+          nullable: true
+        currency:
+          type: string
+          enum: [USD, EUR, GBP]
+        max_members:
+          type: integer
+        owner_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/HouseMember'
+          nullable: true
+
+    HouseMember:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        house_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        role:
+          type: string
+          enum: [owner, member]
+        joined_at:
+          type: string
+          format: date-time
+        left_at:
+          type: string
+          format: date-time
+          nullable: true
+        user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+
+    Expense:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        house_id:
+          type: string
+          format: uuid
+        created_by:
+          type: string
+          format: uuid
+        description:
+          type: string
+        total_amount:
+          type: number
+          format: float
+        currency:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        due_date:
+          type: string
+          format: date-time
+          nullable: true
+        recurring:
+          type: boolean
+        recurring_period:
+          type: string
+          enum: [weekly, monthly, yearly]
+          nullable: true
+        categories:
+          type: array
+          maxItems: 3
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              [
+                groceries,
+                rent,
+                utilities,
+                subscriptions,
+                transport,
+                dining,
+                household,
+                health,
+                entertainment,
+                travel,
+                gifts,
+                other,
+              ]
+        creator:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        expense_shares:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseShare'
+          nullable: true
+
+    ExpenseShare:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        expense_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        amount_due:
+          type: number
+          format: float
+        is_paid:
+          type: boolean
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+        users:
+          $ref: '#/components/schemas/User'
+          nullable: true
+
+    Bill:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        house_id:
+          type: string
+          format: uuid
+        description:
+          type: string
+        monthly_cost:
+          type: number
+          format: float
+        payment_period:
+          type: integer
+          nullable: true
+          description: Payment interval in months
+        next_due_date:
+          type: string
+          format: date
+        created_by:
+          type: string
+          format: uuid
+        active:
+          type: boolean
+        categories:
+          type: array
+          maxItems: 3
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              [
+                groceries,
+                rent,
+                utilities,
+                subscriptions,
+                transport,
+                dining,
+                household,
+                health,
+                entertainment,
+                travel,
+                gifts,
+                other,
+              ]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        creator:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillDocument'
+          nullable: true
+
+    BillDocument:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        bill_id:
+          type: string
+          format: uuid
+        filename:
+          type: string
+        url:
+          type: string
+          format: uri
+        uploaded_by:
+          type: string
+          format: uuid
+        uploaded_at:
+          type: string
+          format: date-time
+
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        house_id:
+          type: string
+          format: uuid
+        house_name:
+          type: string
+          nullable: true
+        created_by:
+          type: string
+          format: uuid
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        read_at:
+          type: string
+          format: date-time
+          nullable: true
+        solved_at:
+          type: string
+          format: date-time
+          nullable: true
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportImage'
+          nullable: true
+        user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+
+    ReportImage:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        report_id:
+          type: string
+          format: uuid
+        filename:
+          type: string
+        url:
+          type: string
+          format: uri
+        uploaded_at:
+          type: string
+          format: date-time
+
+    BulletinNote:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        house_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        message:
+          type: string
+        dismiss_date:
+          type: string
+          format: date
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+
+    UserBalance:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        total_owed:
+          type: number
+          format: float
+        total_owed_to_user:
+          type: number
+          format: float
+        net_balance:
+          type: number
+          format: float
+        pending_expenses_count:
+          type: integer
+
+    UserToUserBalance:
+      type: object
+      properties:
+        from_user_id:
+          type: string
+          format: uuid
+        to_user_id:
+          type: string
+          format: uuid
+        from_user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        to_user:
+          $ref: '#/components/schemas/User'
+          nullable: true
+        amount:
+          type: number
+          format: float
+        expense_count:
+          type: integer
+
+    HouseBalance:
+      type: object
+      properties:
+        house_id:
+          type: string
+          format: uuid
+        total_expenses:
+          type: number
+          format: float
+        total_paid:
+          type: number
+          format: float
+        total_pending:
+          type: number
+          format: float
+        user_balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserBalance'
+        user_to_user_balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserToUserBalance'
+
+    Subscription:
+      type: object
+      properties:
+        plan:
+          type: string
+          enum: [free, pro, house_plus]
+        status:
+          type: string
+          enum: [active, trialing, past_due, canceled, incomplete]
+        billing_period:
+          type: string
+          enum: [monthly, annual]
+          nullable: true
+        trial_ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        current_period_end:
+          type: string
+          format: date-time
+          nullable: true
+        stripe_customer_id:
+          type: string
+          nullable: true
+        stripe_subscription_id:
+          type: string
+          nullable: true
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+
+    Error:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        statusMessage:
+          type: string
+        message:
+          type: string
+
+  responses:
+    BadRequest:
+      description: Bad request — invalid input
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            statusCode: 400
+            statusMessage: Bad Request
+            message: Invalid input parameters
+
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            statusCode: 401
+            statusMessage: Unauthorized
+            message: Authentication required
+
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            statusCode: 403
+            statusMessage: Forbidden
+            message: You don't have permission to perform this action
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            statusCode: 404
+            statusMessage: Not Found
+            message: Resource not found

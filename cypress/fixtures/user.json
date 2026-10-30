@@ -1,0 +1,13 @@
+{
+  "data": {
+    "id": "11111111-1111-1111-1111-111111111111",
+    "email": "mario.rossi@example.com",
+    "name": "Mario Rossi",
+    "firstName": "Mario",
+    "lastName": "Rossi",
+    "currency": "EUR",
+    "preferred_currency": "EUR",
+    "consent_version": "1.0",
+    "project_id": "proj-0001"
+  }
+}

@@ -1,0 +1,270 @@
+/* ============================================================
+   House M8 — Style entry point (Tailwind CSS 4)
+   Plus Jakarta Sans · Tailwind + semantic design tokens
+
+   Order matters: fonts → Tailwind → theme → tokens → base → components →
+   layout → features → animations. Design rules live in /DESIGN.md.
+   ============================================================ */
+
+@import './fonts.css';
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* Class-based dark mode (@nuxtjs/color-mode sets `.dark` on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Semantic colours ────────────────────────────────────────
+   These read the CSS custom properties in tokens.css, which flip under
+   `.dark`, so `bg-surface text-fg border-line` needs no `dark:` twin.
+   Prefer these over the palette scales below in all new work. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-hover: var(--surface-hover);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-line-control: var(--border-control);
+  --color-brand: var(--primary);
+  --color-brand-hover: var(--primary-hover);
+  --color-brand-subtle: var(--primary-subtle);
+  --color-brand-on: var(--primary-fg);
+  --color-ok: var(--success);
+  --color-ok-fg: var(--success-fg);
+  --color-ok-subtle: var(--success-subtle);
+  --color-warn: var(--warning);
+  --color-warn-fg: var(--warning-fg);
+  --color-warn-subtle: var(--warning-subtle);
+  --color-danger: var(--danger);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-on-status: var(--on-status);
+  --color-cat-groceries-subtle: var(--cat-groceries-subtle);
+  --color-cat-groceries-fg: var(--cat-groceries-fg);
+  --color-cat-rent-subtle: var(--cat-rent-subtle);
+  --color-cat-rent-fg: var(--cat-rent-fg);
+  --color-cat-utilities-subtle: var(--cat-utilities-subtle);
+  --color-cat-utilities-fg: var(--cat-utilities-fg);
+  --color-cat-subscriptions-subtle: var(--cat-subscriptions-subtle);
+  --color-cat-subscriptions-fg: var(--cat-subscriptions-fg);
+  --color-cat-transport-subtle: var(--cat-transport-subtle);
+  --color-cat-transport-fg: var(--cat-transport-fg);
+  --color-cat-dining-subtle: var(--cat-dining-subtle);
+  --color-cat-dining-fg: var(--cat-dining-fg);
+  --color-cat-household-subtle: var(--cat-household-subtle);
+  --color-cat-household-fg: var(--cat-household-fg);
+  --color-cat-health-subtle: var(--cat-health-subtle);
+  --color-cat-health-fg: var(--cat-health-fg);
+  --color-cat-entertainment-subtle: var(--cat-entertainment-subtle);
+  --color-cat-entertainment-fg: var(--cat-entertainment-fg);
+  --color-cat-travel-subtle: var(--cat-travel-subtle);
+  --color-cat-travel-fg: var(--cat-travel-fg);
+  --color-cat-gifts-subtle: var(--cat-gifts-subtle);
+  --color-cat-gifts-fg: var(--cat-gifts-fg);
+  --color-cat-other-subtle: var(--cat-other-subtle);
+  --color-cat-other-fg: var(--cat-other-fg);
+}
+
+/* ─── Shape and depth ─────────────────────────────────────────
+   `static` so the variables are always emitted: component <style> blocks
+   read them with var() and Tailwind cannot see those uses.
+   Shadows are overridden under `.dark` in tokens.css. */
+@theme static {
+  --radius-control: 10px;
+  --radius-card: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+}
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', sans-serif;
+
+  /* Plus Jakarta Sans ships no 900 face; `font-black` resolves to the
+     heaviest real weight instead of a synthesized one. */
+  --font-weight-black: 800;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-xs--letter-spacing: 0.02em;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-sm--letter-spacing: 0.01em;
+  --text-base: 1rem;
+  --text-base--line-height: 1.65;
+  --text-base--letter-spacing: 0em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-xl--letter-spacing: -0.01em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.35;
+  --text-2xl--letter-spacing: -0.02em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.25;
+  --text-3xl--letter-spacing: -0.025em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.15;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.05;
+  --text-5xl--letter-spacing: -0.03em;
+
+  --animate-fade-in: fadeIn 200ms ease-out;
+  --animate-scale-in: scaleIn 200ms ease-out;
+  --animate-expand-width: expandWidth 600ms ease-out both;
+
+  /* ─── Legacy palette scales ───────────────────────────────
+     Carried over from the Tailwind 3 config so existing classes keep
+     their values. Being replaced by the semantic colours above
+     (docs/ui-review/FIX-PLAN.md, T4.2). Do not add uses. */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+
+  --color-surface-lowest: #ffffff;
+  --color-surface-low: #eef2fe;
+  --color-surface-container: #e7edfb;
+
+  --color-gray-50: #f5f5f7;
+  --color-gray-100: #e8e8ea;
+  --color-gray-200: #d1d1d3;
+  --color-gray-300: #b0b0b3;
+  --color-gray-400: #8e8e92;
+  --color-gray-500: #6e6e73;
+  --color-gray-600: #4e4e53;
+  --color-gray-700: #3a3a3f;
+  --color-gray-800: #2c2c2e;
+  --color-gray-900: #1d1d1f;
+  --color-gray-950: #0f0f11;
+
+  --color-purple-50: #f5f3ff;
+  --color-purple-100: #ede9fe;
+  --color-purple-200: #ddd6fe;
+  --color-purple-300: #c4b5fd;
+  --color-purple-400: #a78bfa;
+  --color-purple-500: #8b5cf6;
+  --color-purple-600: #7c3aed;
+  --color-purple-700: #6d28d9;
+  --color-purple-800: #5b21b6;
+  --color-purple-900: #4c1d95;
+  --color-purple-950: #2e1065;
+
+  --color-secondary-50: #f0f3f8;
+  --color-secondary-100: #dee4ef;
+  --color-secondary-200: #bccce3;
+  --color-secondary-300: #93add2;
+  --color-secondary-400: #7a94bc;
+  --color-secondary-500: #5f78a3;
+  --color-secondary-600: #4e638a;
+  --color-secondary-700: #3f5070;
+  --color-secondary-800: #354459;
+  --color-secondary-900: #2e3b4c;
+  --color-secondary-950: #1d2530;
+
+  --color-tertiary-50: #f0f0ff;
+  --color-tertiary-100: #e0e0ff;
+  --color-tertiary-200: #c4c3ff;
+  --color-tertiary-300: #a09eff;
+  --color-tertiary-400: #7b78f0;
+  --color-tertiary-500: #5b54d6;
+  --color-tertiary-600: #3e39c6;
+  --color-tertiary-700: #2f2a9e;
+  --color-tertiary-800: #231e7b;
+  --color-tertiary-900: #17135c;
+  --color-tertiary-950: #0d0b3d;
+
+  --color-accent-50: #f0f9ff;
+  --color-accent-100: #e0f2fe;
+  --color-accent-200: #bae6fd;
+  --color-accent-300: #7dd3fc;
+  --color-accent-400: #38bdf8;
+  --color-accent-500: #0ea5e9;
+  --color-accent-600: #0284c7;
+  --color-accent-700: #0369a1;
+  --color-accent-800: #075985;
+  --color-accent-900: #0c4a6e;
+  --color-accent-950: #082f49;
+
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-900: #14532d;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-900: #78350f;
+
+  --color-error-50: #fff0f0;
+  --color-error-100: #ffdada;
+  --color-error-200: #ffb3b3;
+  --color-error-400: #f87171;
+  --color-error-500: #d32f2f;
+  --color-error-600: #ba1a1a;
+  --color-error-700: #9b1616;
+  --color-error-900: #7a1212;
+
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+}
+
+/* ─── Project utilities ───────────────────────────────────── */
+@utility text-numeric {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* 10px. Legacy step below the 12px floor; scheduled for removal (T1.3). */
+@utility fs-2xs {
+  font-size: var(--fs-2xs);
+}
+
+@import './tokens.css';
+@import './base.css';
+
+@import './components/badge.css';
+@import './components/avatar.css';
+@import './components/empty-state.css';
+@import './components/state-card.css';
+@import './components/page-band.css';
+@import './components/table.css';
+@import './components/transitions.css';
+
+@import './layout/app.css';
+
+@import './features/dashboard.css';
+
+@import './animations.css';
