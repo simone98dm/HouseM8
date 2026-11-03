@@ -27,7 +27,6 @@ export class PostgresReportRepository implements IReportRepository {
           h.name as house_name,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url
@@ -107,7 +106,6 @@ export class PostgresReportRepository implements IReportRepository {
           h.name as house_name,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url
@@ -192,7 +190,6 @@ export class PostgresReportRepository implements IReportRepository {
           h.name as house_name,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url

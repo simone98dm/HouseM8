@@ -19,6 +19,7 @@ vi.mock('~~/server/repositories/factory', () => ({ getRepositories: vi.fn() }));
 vi.mock('~~/server/utils/repository-auth', () => ({
   verifyAuthCompat: vi.fn().mockResolvedValue({ id: 'u-1' }),
   ensureHouseMember: vi.fn().mockResolvedValue(undefined),
+  ensureBillCreator: vi.fn().mockResolvedValue(undefined),
 }));
 vi.mock('~~/server/utils/logger', () => ({
   logger: { error: vi.fn(), info: vi.fn() },

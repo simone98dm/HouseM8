@@ -173,6 +173,7 @@ export const wrapEmailTemplate = (
 /**
  * Replace template variables with actual values.
  *
+ * Single pass, so a value containing `{{other}}` is never expanded again.
  * Values are HTML-escaped and substituted through a replacer function: passing
  * the value as a replacement *string* would let `$&`, `$1` and friends inside
  * it expand as replacement patterns, which is a second injection route that
@@ -182,8 +183,6 @@ export const replaceTemplateVars = (
   template: string,
   vars: Record<string, string>,
 ): string =>
-  Object.entries(vars).reduce((result, [key, value]) => {
-    const regex = new RegExp(`{{${key}}}`, 'g');
-    const escaped = escapeHtml(value);
-    return result.replace(regex, () => escaped);
-  }, template);
+  template.replace(/{{(\w+)}}/g, (match, key: string) =>
+    Object.hasOwn(vars, key) ? escapeHtml(vars[key]!) : match,
+  );

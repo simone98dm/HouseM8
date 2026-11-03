@@ -90,7 +90,9 @@ export async function verifyToken(
 ): Promise<TokenPayload | null> {
   try {
     const secret = getJWTSecret();
-    const { payload } = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, secret, {
+      algorithms: ['HS256'],
+    });
 
     if (
       typeof payload.userId !== 'string' ||

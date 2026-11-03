@@ -54,7 +54,9 @@ export const hashIp = (ip: string): string => {
 /**
  * Client address for rate limiting and the audit trail. On Vercel it is the
  * first x-forwarded-for hop / x-real-ip set by the platform, which this trusts
- * to overwrite those headers; off-proxy deployments use the socket peer.
+ * to overwrite those headers. That trust holds ONLY behind Vercel: a client
+ * can forge x-forwarded-for anywhere else, so deploying elsewhere requires
+ * revisiting this (e.g. read x-vercel-forwarded-for or a trusted-proxy list).
  */
 export const getClientIp = (event: H3Event): string | undefined =>
   getRequestIP(event, { xForwardedFor: true }) ??

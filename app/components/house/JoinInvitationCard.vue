@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { House } from '~/types';
+import type { InvitationHouse } from '~/types';
 
 /**
  * HouseJoinInvitationCard — the "you're invited" card on the join page.
@@ -14,7 +14,7 @@ interface Preview {
 }
 
 interface Props {
-  house?: House | null;
+  house?: InvitationHouse | null;
   preview?: Preview | null;
   error?: string;
   isAuthenticated: boolean;

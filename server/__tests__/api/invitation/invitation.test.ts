@@ -72,8 +72,63 @@ describe('GET /api/invitation/[token]', () => {
       await import('../../../api/invitation/[token].get');
     const result = await handler(mockEvent);
 
-    expect(result.data.house).toEqual(mockHouse);
+    expect(result.data.house).toMatchObject(mockHouse);
     expect(result.data.invitation.id).toBe('inv-1');
+  });
+
+  it('returns only id, name, address, created_at for the house', async () => {
+    vi.mocked(getRepositories).mockReturnValue({
+      houses: {
+        getInvitationByToken: vi
+          .fn()
+          .mockResolvedValue({ data: mockInvitation, error: null }),
+        getById: vi.fn().mockResolvedValue({
+          data: {
+            id: 'h-1',
+            name: 'My House',
+            address: '1 Main St',
+            created_at: '2026-01-01',
+            owner_id: 'u-owner',
+            description: 'secret',
+            max_members: 5,
+            status: 'active',
+          },
+          error: null,
+        }),
+        getCurrentForUser: vi
+          .fn()
+          .mockResolvedValue({ data: null, error: null }),
+      },
+    } as unknown as ReturnType<typeof getRepositories>);
+    const { default: handler } =
+      await import('../../../api/invitation/[token].get');
+    const result = await handler(mockEvent);
+
+    expect(Object.keys(result.data.house).sort()).toEqual([
+      'address',
+      'created_at',
+      'id',
+      'name',
+    ]);
+  });
+
+  it('throws 410 when the invitation code was already used', async () => {
+    vi.mocked(getRepositories).mockReturnValue({
+      houses: {
+        getInvitationByToken: vi.fn().mockResolvedValue({
+          data: { ...mockInvitation, used: false, code_used_at: '2026-01-01' },
+          error: null,
+        }),
+        getById: vi.fn().mockResolvedValue({ data: mockHouse, error: null }),
+        getCurrentForUser: vi
+          .fn()
+          .mockResolvedValue({ data: null, error: null }),
+      },
+    } as unknown as ReturnType<typeof getRepositories>);
+    const { default: handler } =
+      await import('../../../api/invitation/[token].get');
+
+    await expect(handler(mockEvent)).rejects.toMatchObject({ statusCode: 410 });
   });
 
   it('throws 400 when token param is missing', async () => {
@@ -233,6 +288,23 @@ describe('POST /api/invitation/[token]/accept', () => {
     });
   });
 
+  it.each([
+    ['INVITER_REVOKED', 410],
+    ['HOUSE_ARCHIVED', 410],
+  ])('maps %s from acceptInvitation to %i', async (error, statusCode) => {
+    const repos = vi.mocked(getRepositories)() as unknown as {
+      houses: { acceptInvitation: ReturnType<typeof vi.fn> };
+    };
+    repos.houses.acceptInvitation.mockResolvedValue({ data: null, error });
+
+    const { default: handler } =
+      await import('../../../api/invitation/[token]/accept.post');
+    await expect(handler(mockEvent)).rejects.toMatchObject({
+      statusCode,
+      message: 'Invitation is no longer valid',
+    });
+  });
+
   it('throws 409 when user already belongs to another house', async () => {
     vi.mocked(getRepositories).mockReturnValue({
       houses: {
@@ -329,6 +401,60 @@ describe('POST /api/invitation/[token]/accept', () => {
     const { default: handler } =
       await import('../../../api/invitation/[token]/accept.post');
     await expect(handler(mockEvent)).rejects.toMatchObject({ statusCode: 410 });
+  });
+
+  it('throws 410 when code_used_at is set even if used is false', async () => {
+    const acceptInvitation = vi.fn();
+    vi.mocked(getRepositories).mockReturnValue({
+      houses: {
+        getInvitationByToken: vi.fn().mockResolvedValue({
+          data: {
+            ...mockInvitation,
+            used: false,
+            code_used_at: '2026-01-01T00:00:00Z',
+          },
+          error: null,
+        }),
+        isMember: vi.fn().mockResolvedValue(false),
+        getCurrentForUser: vi
+          .fn()
+          .mockResolvedValue({ data: null, error: null }),
+        acceptInvitation,
+      },
+    } as unknown as ReturnType<typeof getRepositories>);
+
+    const { default: handler } =
+      await import('../../../api/invitation/[token]/accept.post');
+    await expect(handler(mockEvent)).rejects.toMatchObject({
+      statusCode: 410,
+      message: 'Invitation has already been used',
+    });
+    expect(acceptInvitation).not.toHaveBeenCalled();
+  });
+
+  it('throws 410 when the repository reports an invalid or used invitation', async () => {
+    vi.mocked(getRepositories).mockReturnValue({
+      houses: {
+        getInvitationByToken: vi
+          .fn()
+          .mockResolvedValue({ data: mockInvitation, error: null }),
+        isMember: vi.fn().mockResolvedValue(false),
+        getCurrentForUser: vi
+          .fn()
+          .mockResolvedValue({ data: null, error: null }),
+        acceptInvitation: vi.fn().mockResolvedValue({
+          data: null,
+          error: 'Invalid or already used invitation',
+        }),
+      },
+    } as unknown as ReturnType<typeof getRepositories>);
+
+    const { default: handler } =
+      await import('../../../api/invitation/[token]/accept.post');
+    await expect(handler(mockEvent)).rejects.toMatchObject({
+      statusCode: 410,
+      message: 'Invitation is no longer valid',
+    });
   });
 
   it('throws 500 when acceptInvitation fails', async () => {

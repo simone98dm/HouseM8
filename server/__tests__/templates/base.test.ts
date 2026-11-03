@@ -43,6 +43,20 @@ describe('replaceTemplateVars', () => {
     expect(result).toContain('&lt;a href=&quot;https://evil.example&quot;');
   });
 
+  it('leaves inherited object keys untouched', () => {
+    // Act
+    const result = replaceTemplateVars('{{constructor}}', {});
+
+    // Assert
+    expect(result).toBe('{{constructor}}');
+  });
+
+  it('does not expand placeholders that appear inside values', () => {
+    const result = replaceTemplateVars('{{a}} {{b}}', { a: '{{b}}', b: 'X' });
+
+    expect(result).toBe('{{b}} X');
+  });
+
   it('does not expand replacement patterns present in the value', () => {
     // Arrange — `$&` is the whole matched substring in String.replace
     const template = '<p>{{userName}}</p>';

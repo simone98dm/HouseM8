@@ -24,8 +24,9 @@ env:
   # The committed .npmrc reads the GitHub Packages token from ${GITHUB_TOKEN},
   # and yarn 1 aborts every command (even setup-node's `yarn cache dir`) when
   # that placeholder is unset. GitHub does not export it on its own, so set it
-  # for the whole workflow. See the Install step for why PACKAGES_TOKEN wins.
-  GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+  # for the whole workflow, with the low-privilege default token. The
+  # PACKAGES_TOKEN PAT is only exposed to the Install step (see there).
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   # Lint, formatting, types and a standalone build. Fast, and the first thing a
@@ -53,6 +54,8 @@ jobs:
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+          # .npmrc reads ${GITHUB_TOKEN}; resolve it to the PAT only here.
+          GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
         run: yarn install --frozen-lockfile
 
       - name: ESLint
@@ -111,6 +114,8 @@ jobs:
       - name: Install dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+          # .npmrc reads ${GITHUB_TOKEN}; resolve it to the PAT only here.
+          GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
         run: yarn install --frozen-lockfile
 
       # continue-on-error: a red suite is exactly when the coverage comment is

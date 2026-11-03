@@ -144,6 +144,22 @@ describe('createExpenseSchema — due_date', () => {
     });
   });
 
+  it('rejects user_ids with duplicates', async () => {
+    const { createExpenseSchema } =
+      await import('../../../api/expenses/index.post');
+    const id = '22222222-2222-4222-8222-222222222222';
+    expect(
+      createExpenseSchema.safeParse({ ...schemaValidBody, user_ids: [id, id] })
+        .success,
+    ).toBe(false);
+    expect(
+      createExpenseSchema.safeParse({
+        ...schemaValidBody,
+        user_ids: [id, '33333333-3333-4333-8333-333333333333'],
+      }).success,
+    ).toBe(true);
+  });
+
   it('still rejects an impossible calendar date', async () => {
     await expect(parse('2026-13-45')).resolves.toMatchObject({
       success: false,

@@ -1,6 +1,7 @@
 import type {
   House,
   HouseMember,
+  InvitationHouse,
   ApiResponse,
   Invitation,
   JoinCode,
@@ -229,7 +230,7 @@ export const useHouses = () => {
     token: string,
   ): Promise<
     ApiResponse<{
-      house: House;
+      house: InvitationHouse;
       invitation: Partial<Invitation>;
       user_in_house: boolean;
     }>
@@ -237,7 +238,7 @@ export const useHouses = () => {
     try {
       const result = await api.fetch<{
         data: {
-          house: House;
+          house: InvitationHouse;
           invitation: Partial<Invitation>;
           user_in_house: boolean;
         };

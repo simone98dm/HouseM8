@@ -173,6 +173,10 @@ User submits form
 
 ---
 
+## Deployment
+
+- Client IPs (`getClientIp`, used for rate limiting and `hashIp`) trust `X-Forwarded-For`, which only holds behind Vercel; revisit it before deploying elsewhere.
+
 ## Feature Flags
 
 Flags live in [ConfigCat](https://app.configcat.com) and are evaluated server-side only (`@configcat/sdk/node`, LazyLoad, 60s cache).

@@ -80,6 +80,11 @@ describe('rate-limit middleware', () => {
     expect(keys()).toEqual([`ip:invitation-preview:${IP}`]);
   });
 
+  it('throttles the public invitation lookup per IP (GET opt-in)', async () => {
+    await run('/api/invitation/3f2b8c1e-5d4a-4b6e-9c7a-1a2b3c4d5e6f', 'GET');
+    expect(keys()).toEqual([`ip:invitation-lookup:${IP}`]);
+  });
+
   it('refuses the preview with 429 past its cap', async () => {
     vi.mocked(hitRateLimit).mockResolvedValue(31);
     await expect(

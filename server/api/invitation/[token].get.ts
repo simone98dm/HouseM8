@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Check if invitation was already used
-    if (invitation.used) {
+    if (invitation.used || invitation.code_used_at) {
       throw createError({
         statusCode: 410,
         message: 'Invitation has already been used',
@@ -56,13 +56,16 @@ export default defineEventHandler(async (event) => {
       });
     }
 
+    // Project to what the join card renders; non-members must not see the rest
+    const { id, name, address, created_at } = houseResult.data;
+
     // Check if this user already belongs to any house
     const currentHouseResult = await repos.houses.getCurrentForUser(user.id);
     const userInHouse = !!currentHouseResult.data;
 
     return {
       data: {
-        house: houseResult.data,
+        house: { id, name, address: address ?? null, created_at },
         invitation: {
           id: invitation.id,
           expires_at: invitation.expires_at,
