@@ -24,23 +24,40 @@ const isUniqueViolation = (err: unknown): boolean =>
   (err as { code?: unknown } | null)?.code === PG_UNIQUE_VIOLATION;
 
 /**
- * Lock the house row, then throw HOUSE_FULL if active members already reach
- * max_members. Must run inside the caller's transaction so concurrent joins
- * serialize on the house row.
+ * Lock the house row and check, in order, that an invitation can still be
+ * redeemed. Throws:
+ * - 'House not found' when the house row is gone;
+ * - HOUSE_ARCHIVED when the house is archived;
+ * - INVITER_REVOKED when the inviter is no longer an active owner/admin
+ *   (removed, demoted, left, transferred ownership or erased);
+ * - HOUSE_FULL when active members already reach max_members.
+ * Must run inside the caller's transaction so concurrent joins serialize on
+ * the house row. Never mutates house_members; the caller rolls back.
  */
-async function assertHouseHasCapacity(
+async function assertInvitationRedeemable(
   client: PoolClient,
   houseId: string,
+  invitedBy: string,
 ): Promise<void> {
-  const r = await client.query<{ max_members: number; current: string }>(
-    `SELECT h.max_members,
+  const r = await client.query<{
+    max_members: number;
+    status: string;
+    current: string;
+    inviter_active: boolean;
+  }>(
+    `SELECT h.max_members, h.status,
             (SELECT COUNT(*) FROM house_members
-              WHERE house_id = h.id AND left_at IS NULL) AS current
+              WHERE house_id = h.id AND left_at IS NULL) AS current,
+            EXISTS (SELECT 1 FROM house_members
+                     WHERE house_id = h.id AND user_id = $2
+                       AND left_at IS NULL AND role IN ('owner','admin')) AS inviter_active
        FROM houses h WHERE h.id = $1 FOR UPDATE`,
-    [houseId],
+    [houseId, invitedBy],
   );
   const row = r.rows[0];
   if (!row) throw new Error('House not found');
+  if (row.status === 'archived') throw new Error('HOUSE_ARCHIVED');
+  if (!row.inviter_active) throw new Error('INVITER_REVOKED');
   if (Number.parseInt(row.current, 10) >= row.max_members) {
     throw new Error('HOUSE_FULL');
   }
@@ -519,7 +536,7 @@ export class PostgresHouseRepository implements IHouseRepository {
         await client.query('BEGIN');
 
         const inviteResult = await client.query<HouseInvitation>(
-          'SELECT * FROM house_invitations WHERE token = $1 AND used = false AND code_used_at IS NULL FOR UPDATE',
+          'SELECT * FROM house_invitations WHERE token = $1 AND used = false AND code_used_at IS NULL AND expires_at > NOW() FOR UPDATE',
           [token],
         );
 
@@ -527,7 +544,11 @@ export class PostgresHouseRepository implements IHouseRepository {
           throw new Error('Invalid or already used invitation');
         const invitation = inviteResult.rows[0]!;
 
-        await assertHouseHasCapacity(client, invitation.house_id);
+        await assertInvitationRedeemable(
+          client,
+          invitation.house_id,
+          invitation.invited_by,
+        );
 
         await client.query(
           `INSERT INTO house_members (house_id, user_id, role, joined_at)
@@ -677,7 +698,11 @@ export class PostgresHouseRepository implements IHouseRepository {
           throw new Error('CODE_EXPIRED');
         }
 
-        await assertHouseHasCapacity(client, invitation.house_id);
+        await assertInvitationRedeemable(
+          client,
+          invitation.house_id,
+          invitation.invited_by,
+        );
 
         await client.query(
           `INSERT INTO house_members (house_id, user_id, role, joined_at)

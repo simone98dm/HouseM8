@@ -398,7 +398,7 @@ describe('Bulletin Board Component', () => {
       expect(w.find('.bulletin-board').exists()).toBe(false);
     });
 
-    it('falls back from first name to full name to email local part', async () => {
+    it('falls back from first name to full name', async () => {
       const base = { ...mockNotes[0]! };
       const w = await mountBoard([
         {
@@ -411,25 +411,27 @@ describe('Bulletin Board Component', () => {
           id: 'b',
           author: { id: 'u', first_name: '', last_name: 'Lovelace' },
         },
-        {
-          ...base,
-          id: 'c',
-          author: {
-            id: 'u',
-            first_name: '',
-            last_name: '',
-            email: 'bob@example.com',
-          },
-        },
         { ...base, id: 'd' },
       ]);
       const authors = w.findAll('.note-author').map((n) => n.text());
       expect(authors[0]).toMatch(/^Ada · /);
       expect(authors[1]).toMatch(/^Lovelace · /);
-      expect(authors[2]).toMatch(/^bob · /);
       // No name at all: just the time, no dangling separator.
-      expect(authors[3]).not.toContain('·');
-      expect(authors[3]).not.toMatch(/^\s/);
+      expect(authors[2]).not.toContain('·');
+      expect(authors[2]).not.toMatch(/^\s/);
+    });
+
+    it('renders an author without names as an empty label', async () => {
+      const w = await mountBoard([
+        {
+          ...mockNotes[0]!,
+          id: 'c',
+          author: { id: 'u', first_name: '', last_name: '' },
+        },
+      ]);
+      const author = w.find('.note-author').text();
+      expect(author).not.toContain('·');
+      expect(author).not.toContain('@');
     });
   });
 });

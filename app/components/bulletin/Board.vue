@@ -33,7 +33,7 @@ const formatTimeAgo = (date: string) => {
   return rtf.format(-Math.floor(hours / 24), 'day');
 };
 
-// First name, else full name, else the part of the email before "@": never
+// First name, else full name, else empty: never
 // empty-string-with-a-separator ("· 2h ago").
 const authorName = (note: BulletinNote) => {
   const author = note.author;
@@ -41,7 +41,6 @@ const authorName = (note: BulletinNote) => {
   return (
     author.first_name?.trim() ||
     `${author.first_name ?? ''} ${author.last_name ?? ''}`.trim() ||
-    author.email?.split('@')[0] ||
     ''
   );
 };

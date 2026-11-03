@@ -33,7 +33,12 @@ export const createExpenseSchema = z.object({
   categories: categoriesSchema.optional().default([]),
   // Who paid; must belong to the house. Defaults to the current user.
   payer_id: z.string().uuid().optional(),
-  user_ids: z.array(z.string().uuid()).min(1),
+  user_ids: z
+    .array(z.string().uuid())
+    .min(1)
+    .refine((ids) => new Set(ids).size === ids.length, {
+      message: 'user_ids must be unique',
+    }),
 });
 
 export default defineEventHandler(async (event) => {

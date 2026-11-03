@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Check if invitation was already used
-    if (invitation.used) {
+    if (invitation.used || invitation.code_used_at) {
       throw createError({
         statusCode: 410,
         message: 'Invitation has already been used',
@@ -75,6 +75,16 @@ export default defineEventHandler(async (event) => {
       throw createError({
         statusCode: 409,
         message: 'This house is full',
+      });
+    }
+    if (
+      acceptResult.error === 'INVITER_REVOKED' ||
+      acceptResult.error === 'HOUSE_ARCHIVED' ||
+      acceptResult.error === 'Invalid or already used invitation'
+    ) {
+      throw createError({
+        statusCode: 410,
+        message: 'Invitation is no longer valid',
       });
     }
     if (acceptResult.error === 'duplicate key') {

@@ -112,6 +112,12 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'This house is full.',
       });
     }
+    if (msg === 'INVITER_REVOKED' || msg === 'HOUSE_ARCHIVED') {
+      throw createError({
+        statusCode: 410,
+        statusMessage: 'Invitation is no longer valid',
+      });
+    }
     if (msg === 'duplicate key') {
       throw createError({
         statusCode: 409,

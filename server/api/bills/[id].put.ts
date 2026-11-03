@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { categoriesSchema } from '~~/server/utils/categories-schema';
 import {
   verifyAuthCompat,
-  ensureHouseMember,
+  ensureBillCreator,
 } from '~~/server/utils/repository-auth';
 import { getRepositories } from '~~/server/repositories/factory';
 import { logger } from '~~/server/utils/logger';
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
 
     const repos = getRepositories();
 
-    // Get bill to verify house membership
+    // Load the bill (404 if missing) before the creator check.
     const bill = await repos.bills.getById(billId);
     if (bill.error || !bill.data) {
       throw createError({
@@ -40,8 +40,8 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Verify user is member of house
-    await ensureHouseMember(bill.data.house_id, user.id);
+    // Only the creator may edit (same rule as DELETE/advance).
+    await ensureBillCreator(billId, user.id);
 
     // Update bill
     const { data, error } = await repos.bills.update(billId, body);

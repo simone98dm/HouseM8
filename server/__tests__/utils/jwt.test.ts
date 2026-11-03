@@ -113,6 +113,26 @@ describe('server/utils/jwt', () => {
       expect(result).toBeNull();
     });
 
+    it('should return null for a token signed with HS512 using the same secret', async () => {
+      const { SignJWT } = await import('jose');
+      const secret = new TextEncoder().encode(
+        'test-jwt-secret-must-be-at-least-32chars!!',
+      );
+      const token = await new SignJWT({
+        userId: TEST_USER_ID,
+        email: TEST_EMAIL,
+        typ: 'access',
+      })
+        .setProtectedHeader({ alg: 'HS512' })
+        .setIssuedAt()
+        .setExpirationTime('15m')
+        .sign(secret);
+
+      const result = await verifyToken(token, 'access');
+
+      expect(result).toBeNull();
+    });
+
     it('should return null for a token signed with a different secret', async () => {
       // Build a token manually signed with a different secret
       const { SignJWT } = await import('jose');

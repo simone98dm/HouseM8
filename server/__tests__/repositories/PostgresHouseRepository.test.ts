@@ -5,17 +5,35 @@ import { PostgresHouseRepository } from '../../repositories/postgres/PostgresHou
 const invitation = {
   id: 'inv-1',
   house_id: 'h-1',
+  invited_by: 'u-admin',
   code_used_at: null,
   code_locked_until: null,
   code_expires_at: new Date(Date.now() + 3_600_000).toISOString(),
 };
 
-/** Transaction client. `current`/`max` drive the capacity check. */
-const makeTxRepo = (current: number, max: number) => {
-  const clientQuery = vi.fn(async (sql: string) => {
+/**
+ * Transaction client. `current`/`max` drive the capacity check; `overrides`
+ * tweak the house row (e.g. `status`, `inviter_active`).
+ */
+const makeTxRepo = (
+  current: number,
+  max: number,
+  overrides: Record<string, unknown> = {},
+) => {
+  const clientQuery = vi.fn(async (sql: string, _params?: unknown[]) => {
     if (sql.includes('FROM house_invitations')) return { rows: [invitation] };
     if (sql.includes('FROM houses h')) {
-      return { rows: [{ max_members: max, current: String(current) }] };
+      return {
+        rows: [
+          {
+            max_members: max,
+            current: String(current),
+            status: 'active',
+            inviter_active: true,
+            ...overrides,
+          },
+        ],
+      };
     }
     if (sql.includes('UPDATE house_invitations')) return { rows: [invitation] };
     return { rows: [] };
@@ -74,6 +92,90 @@ describe('PostgresHouseRepository — capacity enforcement', () => {
     const result = await repo.redeemInviteCode('123456', 'u-2');
 
     expect(result.error).toBeNull();
+  });
+});
+
+describe('PostgresHouseRepository — inviter authority at redemption', () => {
+  const sqls = (q: ReturnType<typeof vi.fn>) =>
+    q.mock.calls.map(([s]: unknown[]) => s as string);
+
+  it('acceptInvitation rejects INVITER_REVOKED when inviter is no longer an active owner/admin', async () => {
+    const { repo, clientQuery } = makeTxRepo(1, 5, { inviter_active: false });
+
+    const result = await repo.acceptInvitation('tok', 'u-2');
+
+    expect(result.error).toBe('INVITER_REVOKED');
+    expect(memberInserted(clientQuery)).toBe(false);
+    expect(clientQuery).toHaveBeenCalledWith('ROLLBACK');
+  });
+
+  it('redeemInviteCode rejects INVITER_REVOKED for the same reason', async () => {
+    const { repo, clientQuery } = makeTxRepo(1, 5, { inviter_active: false });
+
+    const result = await repo.redeemInviteCode('123456', 'u-2');
+
+    expect(result.error).toBe('INVITER_REVOKED');
+    expect(memberInserted(clientQuery)).toBe(false);
+    expect(clientQuery).toHaveBeenCalledWith('ROLLBACK');
+  });
+
+  it('rejects HOUSE_ARCHIVED for an archived house', async () => {
+    for (const redeem of [
+      (r: PostgresHouseRepository) => r.acceptInvitation('tok', 'u-2'),
+      (r: PostgresHouseRepository) => r.redeemInviteCode('123456', 'u-2'),
+    ]) {
+      const { repo, clientQuery } = makeTxRepo(1, 5, { status: 'archived' });
+
+      const result = await redeem(repo);
+
+      expect(result.error).toBe('HOUSE_ARCHIVED');
+      expect(memberInserted(clientQuery)).toBe(false);
+    }
+  });
+
+  it('passes invited_by to the authority check', async () => {
+    for (const redeem of [
+      (r: PostgresHouseRepository) => r.acceptInvitation('tok', 'u-2'),
+      (r: PostgresHouseRepository) => r.redeemInviteCode('123456', 'u-2'),
+    ]) {
+      const { repo, clientQuery } = makeTxRepo(1, 5);
+
+      await redeem(repo);
+
+      const call = clientQuery.mock.calls.find(([s]) =>
+        (s as string).includes('FROM houses h'),
+      );
+      expect(call?.[1]).toEqual(['h-1', invitation.invited_by]);
+      expect(call?.[0]).toContain("role IN ('owner','admin')");
+    }
+  });
+
+  it('acceptInvitation ignores an expired token', async () => {
+    const { repo, clientQuery } = makeTxRepo(1, 5);
+
+    await repo.acceptInvitation('tok', 'u-2');
+
+    expect(
+      sqls(clientQuery).find((s) => s.includes('FROM house_invitations')),
+    ).toContain('expires_at > NOW()');
+  });
+
+  it('never mutates existing house_members when rejecting', async () => {
+    for (const overrides of [
+      { inviter_active: false },
+      { status: 'archived' },
+    ]) {
+      const { repo, clientQuery } = makeTxRepo(1, 5, overrides);
+
+      await repo.acceptInvitation('tok', 'u-2');
+      await repo.redeemInviteCode('123456', 'u-2');
+
+      expect(
+        sqls(clientQuery).some((s) =>
+          /UPDATE house_members|DELETE FROM house_members/.test(s),
+        ),
+      ).toBe(false);
+    }
   });
 });
 

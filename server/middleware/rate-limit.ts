@@ -56,6 +56,13 @@ const LIMITED_ROUTES: LimitedRoute[] = [
     max: 30,
     windowSeconds: 60,
   },
+  {
+    name: 'invitation-lookup',
+    pattern: /^\/api\/invitation\/[^/]+\/?$/,
+    method: 'GET',
+    max: 30,
+    windowSeconds: 60,
+  },
   { name: 'email-change', pattern: /^\/api\/users\/me\/email/ },
   // Expensive or irreversible; a few per hour is plenty for a real user.
   {

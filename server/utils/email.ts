@@ -6,6 +6,9 @@ import { Resend } from 'resend';
  * Uses Resend for email delivery
  */
 
+/** Cap on the subject line; CR/LF are stripped to prevent header injection. */
+const MAX_SUBJECT_LENGTH = 200;
+
 // ===========================
 // Types & Interfaces
 // ===========================
@@ -173,7 +176,9 @@ export const sendEmail = async (
     const result = await resend.emails.send({
       from: fromEmail,
       to: Array.isArray(payload.to) ? recipients : recipients[0]!,
-      subject: payload.subject,
+      subject: payload.subject
+        .replace(/[\r\n]+/g, ' ')
+        .slice(0, MAX_SUBJECT_LENGTH),
       html: payload.html,
     });
 

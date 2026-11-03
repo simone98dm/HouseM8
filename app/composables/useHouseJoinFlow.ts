@@ -1,4 +1,4 @@
-import type { House } from '~/types';
+import type { InvitationHouse } from '~/types';
 
 /**
  * Owns the /house/join/[token] page's invitation flow: loading the house
@@ -18,7 +18,7 @@ export function useHouseJoinFlow() {
 
   const token = computed(() => route.params.token as string);
 
-  const house = ref<House | null>(null);
+  const house = ref<InvitationHouse | null>(null);
   const loading = ref(true);
   const accepting = ref(false);
   const error = ref('');

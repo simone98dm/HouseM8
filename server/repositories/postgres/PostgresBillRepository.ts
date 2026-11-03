@@ -35,7 +35,6 @@ export class PostgresBillRepository implements IBillRepository {
         `SELECT b.*,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url
@@ -92,7 +91,6 @@ export class PostgresBillRepository implements IBillRepository {
         `SELECT b.*,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url
@@ -285,7 +283,6 @@ export class PostgresBillRepository implements IBillRepository {
         `SELECT b.*,
           json_build_object(
             'id', u.id,
-            'email', u.email,
             'first_name', u.first_name,
             'last_name', u.last_name,
             'avatar_url', u.avatar_url

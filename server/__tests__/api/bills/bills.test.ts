@@ -1,6 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import { getRepositories } from '~~/server/repositories/factory';
+import {
+  ensureBillCreator,
+  ensureHouseMember,
+} from '~~/server/utils/repository-auth';
 
 vi.stubGlobal(
   'defineEventHandler',
@@ -152,5 +156,61 @@ describe('DELETE /api/bills/[id]', () => {
     const { default: handler } = await import('../../../api/bills/[id].delete');
 
     await expect(handler(mockEvent)).rejects.toMatchObject({ statusCode: 400 });
+  });
+});
+
+describe('PUT /api/bills/[id]', () => {
+  const mockEvent = {} as any;
+  const update = vi
+    .fn()
+    .mockResolvedValue({ data: { ...mockBill, active: false }, error: null });
+  const getById = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    getRouterParamMock.mockReturnValue('b-1');
+    readValidatedBodyMock.mockResolvedValue({ active: false });
+    getById.mockResolvedValue({ data: mockBill, error: null });
+    update.mockResolvedValue({
+      data: { ...mockBill, active: false },
+      error: null,
+    });
+    vi.mocked(getRepositories).mockReturnValue({
+      bills: { getById, update },
+    } as unknown as ReturnType<typeof getRepositories>);
+  });
+
+  it('updates when caller is the bill creator', async () => {
+    const { default: handler } = await import('../../../api/bills/[id].put');
+    const result = await handler(mockEvent);
+
+    expect(result.success).toBe(true);
+    expect(update).toHaveBeenCalledWith('b-1', { active: false });
+  });
+
+  it('rejects a non-creator member with 403 and does not update', async () => {
+    vi.mocked(ensureBillCreator).mockRejectedValueOnce(
+      Object.assign(new Error('x'), { statusCode: 403 }),
+    );
+    const { default: handler } = await import('../../../api/bills/[id].put');
+
+    await expect(handler(mockEvent)).rejects.toMatchObject({ statusCode: 403 });
+    expect(update).not.toHaveBeenCalled();
+  });
+
+  it('returns 404 for an unknown bill before any authorization', async () => {
+    getById.mockResolvedValue({ data: null, error: 'not found' });
+    const { default: handler } = await import('../../../api/bills/[id].put');
+
+    await expect(handler(mockEvent)).rejects.toMatchObject({ statusCode: 404 });
+    expect(ensureBillCreator).not.toHaveBeenCalled();
+  });
+
+  it('authorizes with ensureBillCreator(billId, userId), not membership', async () => {
+    const { default: handler } = await import('../../../api/bills/[id].put');
+    await handler(mockEvent);
+
+    expect(ensureBillCreator).toHaveBeenCalledWith('b-1', 'u-1');
+    expect(ensureHouseMember).not.toHaveBeenCalled();
   });
 });

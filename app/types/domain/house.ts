@@ -4,6 +4,13 @@
 
 import type { User } from './user';
 
+export interface InvitationHouse {
+  id: string;
+  name: string;
+  address: string | null;
+  created_at: string;
+}
+
 export interface House {
   id: string;
   name: string;

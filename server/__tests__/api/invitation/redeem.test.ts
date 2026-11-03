@@ -119,6 +119,22 @@ describe('POST /api/invitation/redeem', () => {
     expect(houses.registerFailedRedeemAttempt).not.toHaveBeenCalled();
   });
 
+  it.each([
+    ['INVITER_REVOKED', 410],
+    ['HOUSE_ARCHIVED', 410],
+  ])(
+    'maps %s to %i without counting a failed attempt',
+    async (error, statusCode) => {
+      houses.redeemInviteCode.mockResolvedValue({ data: null, error });
+
+      await expect(call()).rejects.toMatchObject({
+        statusCode,
+        message: 'Invitation is no longer valid',
+      });
+      expect(houses.registerFailedRedeemAttempt).not.toHaveBeenCalled();
+    },
+  );
+
   it('maps a unique-violation (already in a house) to 409, not 500', async () => {
     houses.redeemInviteCode.mockResolvedValue({
       data: null,
